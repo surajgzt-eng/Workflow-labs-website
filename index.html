@@ -441,6 +441,20 @@
             opacity: 0.9;
         }
 
+        .product-image {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 16px;
+            margin-bottom: 1.25rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: transform 0.3s;
+        }
+
+        .product-card:hover .product-image {
+            transform: scale(1.02);
+        }
+
         /* FAQs Section */
         .faq {
             padding: 6rem 5%;
@@ -903,11 +917,11 @@
     <script>
         // ── PRODUCTS DATABASE ──
         const PRODUCTS = [
-          { id: 1, name: "Dog Nail Scratch Board (with treat box)", desc: "Trimming dog nails doesn't have to be a battle of wills. Pups scratch the board to get hidden treats, filing their own nails naturally!", price: 24.99, tag: "Pet Care" },
-          { id: 2, name: "4-in-1 Rotating Travel Dispenser Bottle", desc: "No more loose travel toiletries leaking in bags. A single rotating cylinder that holds 4 TSA-approved refillable pump canisters.", price: 19.99, tag: "Travel Essential" },
-          { id: 3, name: "LED Mechanical Key Clicker Keychain", desc: "Crisp blue mechanical keyboard switches on a heavy-duty keyring. Every press clicks satisfingly and glows with violet LED light.", price: 12.99, tag: "Desk Fidget" },
-          { id: 4, name: "No-Mess Vegetable Peeler (with container)", desc: "Peel potatoes and carrots without flying skins. The integrated transparent container catches and traps every scrap as you go.", price: 14.99, tag: "Kitchen Utility" },
-          { id: 5, name: "Appliance Cord Organizers (6-Pack)", desc: "Clear your cluttered counters. Flex-silicone adhesive wrappers stick securely to blenders or air fryers to keep power cables wound tightly.", price: 9.99, tag: "Home Organization" }
+          { id: 1, name: "Dog Nail Scratch Board (with treat box)", desc: "Trimming dog nails doesn't have to be a battle of wills. Pups scratch the board to get hidden treats, filing their own nails naturally!", price: 24.99, tag: "Pet Care", image: "https://sc02.alicdn.com/kf/A3f8fb425b2694d36908b0eb95c4073080.png" },
+          { id: 2, name: "4-in-1 Rotating Travel Dispenser Bottle", desc: "No more loose travel toiletries leaking in bags. A single rotating cylinder that holds 4 TSA-approved refillable pump canisters.", price: 19.99, tag: "Travel Essential", image: "https://sc02.alicdn.com/kf/A9d4faf35e7c146009fab6754e2535838K.png" },
+          { id: 3, name: "LED Mechanical Key Clicker Keychain", desc: "Crisp blue mechanical keyboard switches on a heavy-duty keyring. Every press clicks satisfingly and glows with violet LED light.", price: 12.99, tag: "Desk Fidget", image: "https://sc02.alicdn.com/kf/Aca3c17682e0a4fd9a430d8bc783a204cr.png" },
+          { id: 4, name: "No-Mess Vegetable Peeler (with container)", desc: "Peel potatoes and carrots without flying skins. The integrated transparent container catches and traps every scrap as you go.", price: 14.99, tag: "Kitchen Utility", image: "https://sc02.alicdn.com/kf/Abbce4bf819844a369690127e47ef66f9t.png" },
+          { id: 5, name: "Appliance Cord Organizers (6-Pack)", desc: "Clear your cluttered counters. Flex-silicone adhesive wrappers stick securely to blenders or air fryers to keep power cables wound tightly.", price: 9.99, tag: "Home Organization", image: "https://sc02.alicdn.com/kf/A3665ee61856e411ba1b793cb4b8abc3cK.png" }
         ];
 
         // ── FAQ DATABASE ──
@@ -925,6 +939,7 @@
         productGrid.innerHTML = PRODUCTS.map(p => `
             <div class="product-card">
                 <div>
+                    <img src="${p.image}" alt="${p.name}" class="product-image">
                     <span class="prod-tag">${p.tag}</span>
                     <h3>${p.name}</h3>
                     <p>${p.desc}</p>
