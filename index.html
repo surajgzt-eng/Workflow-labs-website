@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Workflow Labs | AI-Powered Creator Tools</title>
+    <title>ViralVibe Labs | Satisfying Solutions to Daily Annoyances</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         * {
@@ -13,16 +13,16 @@
         }
 
         :root {
-            --bg-dark: #0a0a0f;
-            --bg-card: #12121a;
-            --neon-purple: #a855f7;
-            --neon-pink: #ec4899;
-            --neon-cyan: #06b6d4;
-            --neon-blue: #3b82f6;
+            --bg-dark: #050810;
+            --bg-card: #0f1629;
+            --bg-card-hover: #141c35;
+            --neon-purple: #7c3aed;
+            --neon-green: #10b981;
             --text-primary: #ffffff;
             --text-secondary: #94a3b8;
-            --gradient-primary: linear-gradient(135deg, #a855f7, #ec4899);
-            --gradient-secondary: linear-gradient(135deg, #06b6d4, #3b82f6);
+            --text-muted: #475569;
+            --gradient-primary: linear-gradient(135deg, #7c3aed, #ec4899);
+            --gradient-secondary: linear-gradient(135deg, #10b981, #06b6d4);
         }
 
         body {
@@ -31,6 +31,7 @@
             color: var(--text-primary);
             line-height: 1.6;
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
         }
 
         /* Animated Background - Fast Dynamic Liquid Light */
@@ -41,7 +42,7 @@
             width: 100%;
             height: 100%;
             z-index: -1;
-            background: #0a0a0f;
+            background: #050810;
             overflow: hidden;
         }
 
@@ -51,7 +52,7 @@
             width: 500px;
             height: 500px;
             border-radius: 50%;
-            background: radial-gradient(circle, rgba(168, 85, 247, 0.8) 0%, rgba(168, 85, 247, 0.4) 30%, transparent 70%);
+            background: radial-gradient(circle, rgba(124, 58, 237, 0.6) 0%, rgba(124, 58, 237, 0.2) 30%, transparent 70%);
             filter: blur(60px);
             pointer-events: none;
             transform: translate(-50%, -50%);
@@ -71,12 +72,12 @@
         }
 
         .liquid-trail-1 {
-            background: radial-gradient(circle, rgba(6, 182, 212, 0.6) 0%, rgba(6, 182, 212, 0.2) 40%, transparent 70%);
+            background: radial-gradient(circle, rgba(16, 185, 129, 0.4) 0%, rgba(16, 185, 129, 0.15) 40%, transparent 70%);
             filter: blur(50px);
         }
 
         .liquid-trail-2 {
-            background: radial-gradient(circle, rgba(236, 72, 153, 0.5) 0%, rgba(236, 72, 153, 0.1) 50%, transparent 80%);
+            background: radial-gradient(circle, rgba(236, 72, 153, 0.35) 0%, rgba(236, 72, 153, 0.1) 50%, transparent 80%);
             filter: blur(40px);
         }
 
@@ -92,7 +93,7 @@
         .ambient-1 {
             width: 600px;
             height: 600px;
-            background: radial-gradient(circle, rgba(168, 85, 247, 0.5) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(124, 58, 237, 0.4) 0%, transparent 70%);
             top: -200px;
             right: -150px;
         }
@@ -100,18 +101,9 @@
         .ambient-2 {
             width: 500px;
             height: 500px;
-            background: radial-gradient(circle, rgba(6, 182, 212, 0.4) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(16, 185, 129, 0.3) 0%, transparent 70%);
             bottom: -150px;
             left: -150px;
-        }
-
-        .ambient-3 {
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(236, 72, 153, 0.3) 0%, transparent 70%);
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
         }
 
         /* Navigation */
@@ -125,7 +117,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(10, 10, 15, 0.7);
+            background: rgba(5, 8, 16, 0.7);
             backdrop-filter: blur(30px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.06);
         }
@@ -133,24 +125,15 @@
         .logo {
             display: flex;
             align-items: center;
-            gap: 0.75rem;
-            font-weight: 700;
-            font-size: 1.5rem;
+            gap: 0.5rem;
+            font-weight: 800;
+            font-size: 1.4rem;
+            text-decoration: none;
+            color: var(--text-primary);
         }
 
-        .logo-icon {
-            width: 40px;
-            height: 40px;
-            background: var(--gradient-primary);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .logo-icon svg {
-            width: 24px;
-            height: 24px;
+        .logo span {
+            color: var(--neon-purple);
         }
 
         .nav-links {
@@ -171,36 +154,29 @@
             color: var(--text-primary);
         }
 
-        .nav-cta {
+        .cart-trigger {
             padding: 0.75rem 1.5rem;
-            background: var(--gradient-primary);
-            border: none;
-            border-radius: 8px;
+            background: rgba(124, 58, 237, 0.1);
+            border: 1px solid rgba(124, 58, 237, 0.3);
+            border-radius: 20px;
             color: white;
             font-weight: 600;
             cursor: pointer;
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: all 0.3s;
             font-size: 0.95rem;
         }
 
-        .nav-cta:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(168, 85, 247, 0.4);
+        .cart-trigger:hover {
+            border-color: var(--neon-purple);
+            box-shadow: 0 0 15px rgba(124, 58, 237, 0.2);
         }
 
-        /* Mobile Menu */
-        .mobile-menu {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            cursor: pointer;
-        }
-
-        .mobile-menu span {
-            width: 25px;
-            height: 2px;
-            background: white;
-            transition: 0.3s;
+        .cart-count {
+            background: var(--neon-purple);
+            padding: 2px 7px;
+            border-radius: 10px;
+            font-size: 11px;
+            margin-left: 4px;
         }
 
         /* Hero Section */
@@ -220,18 +196,19 @@
             align-items: center;
             gap: 0.5rem;
             padding: 0.5rem 1rem;
-            background: rgba(168, 85, 247, 0.1);
-            border: 1px solid rgba(168, 85, 247, 0.3);
+            background: rgba(124, 58, 237, 0.1);
+            border: 1px solid rgba(124, 58, 237, 0.3);
             border-radius: 100px;
             font-size: 0.875rem;
             color: var(--neon-purple);
             margin-bottom: 2rem;
+            font-weight: 600;
         }
 
         .hero h1 {
-            font-size: clamp(3rem, 10vw, 6rem);
+            font-size: clamp(2.5rem, 8vw, 5rem);
             font-weight: 900;
-            line-height: 1.1;
+            line-height: 1.15;
             margin-bottom: 1.5rem;
             background: linear-gradient(135deg, #fff 0%, #94a3b8 100%);
             -webkit-background-clip: text;
@@ -275,7 +252,7 @@
 
         .btn-primary:hover {
             transform: translateY(-3px);
-            box-shadow: 0 20px 40px rgba(168, 85, 247, 0.4);
+            box-shadow: 0 20px 40px rgba(124, 58, 237, 0.4);
         }
 
         .btn-secondary {
@@ -296,27 +273,43 @@
             border-color: rgba(255, 255, 255, 0.4);
         }
 
-        .scroll-indicator {
-            position: absolute;
-            bottom: 2rem;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.5rem;
+        /* Badges Section */
+        .badges {
+            padding: 3rem 5%;
+            background: rgba(15, 22, 41, 0.5);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .badges-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .badge-item h3 {
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .badge-item p {
             color: var(--text-secondary);
             font-size: 0.875rem;
-            animation: bounce 2s infinite;
         }
 
-        @keyframes bounce {
-            0%, 100% { transform: translateX(-50%) translateY(0); }
-            50% { transform: translateX(-50%) translateY(10px); }
+        .badge-icon {
+            font-size: 24px;
+            display: block;
+            margin-bottom: 0.5rem;
         }
 
-        /* Features Section */
-        .features {
+        /* Products Section */
+        .products {
             padding: 6rem 5%;
         }
 
@@ -328,12 +321,13 @@
         .section-tag {
             display: inline-block;
             padding: 0.5rem 1rem;
-            background: rgba(6, 182, 212, 0.1);
-            border: 1px solid rgba(6, 182, 212, 0.3);
+            background: rgba(124, 58, 237, 0.1);
+            border: 1px solid rgba(124, 58, 237, 0.3);
             border-radius: 100px;
             font-size: 0.875rem;
-            color: var(--neon-cyan);
+            color: var(--neon-purple);
             margin-bottom: 1rem;
+            font-weight: 700;
         }
 
         .section-header h2 {
@@ -348,26 +342,29 @@
             margin: 0 auto;
         }
 
-        .features-grid {
+        .products-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
             max-width: 1200px;
             margin: 0 auto;
         }
 
-        .feature-card {
-            background: rgba(18, 18, 26, 0.6);
+        .product-card {
+            background: rgba(15, 22, 41, 0.6);
             backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 24px;
             padding: 2rem;
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
             position: relative;
             overflow: hidden;
         }
 
-        .feature-card::before {
+        .product-card::before {
             content: '';
             position: absolute;
             top: 0;
@@ -377,158 +374,149 @@
             background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
         }
 
-        .feature-card:hover {
+        .product-card:hover {
             transform: translateY(-8px);
-            border-color: rgba(168, 85, 247, 0.25);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4), 0 0 40px rgba(168, 85, 247, 0.1);
+            border-color: rgba(124, 58, 237, 0.25);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4), 0 0 40px rgba(124, 58, 237, 0.1);
         }
 
-        .feature-card:hover::before {
-            background: linear-gradient(90deg, transparent, rgba(168, 85, 247, 0.5), transparent);
+        .product-card:hover::before {
+            background: linear-gradient(90deg, transparent, rgba(124, 58, 237, 0.5), transparent);
         }
 
-        .feature-icon {
-            width: 60px;
-            height: 60px;
-            background: var(--gradient-primary);
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1.5rem;
-            font-size: 1.5rem;
+        .prod-tag {
+            background: rgba(124, 58, 237, 0.15);
+            border: 1px solid rgba(124, 58, 237, 0.25);
+            color: var(--neon-purple);
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 3px 8px;
+            border-radius: 4px;
+            display: inline-block;
+            margin-bottom: 14px;
+            align-self: flex-start;
         }
 
-        .feature-card:nth-child(2) .feature-icon {
-            background: var(--gradient-secondary);
-        }
-
-        .feature-card:nth-child(3) .feature-icon {
-            background: linear-gradient(135deg, #ec4899, #f97316);
-        }
-
-        .feature-card:nth-child(4) .feature-icon {
-            background: linear-gradient(135deg, #10b981, #06b6d4);
-        }
-
-        .feature-card h3 {
-            font-size: 1.25rem;
+        .product-card h3 {
+            font-size: 1.3rem;
             font-weight: 700;
             margin-bottom: 0.75rem;
         }
 
-        .feature-card p {
+        .product-card p {
             color: var(--text-secondary);
             font-size: 0.95rem;
+            line-height: 1.5;
+            margin-bottom: 1.5rem;
+            flex: 1;
         }
 
-        /* Stats Section */
-        .stats {
-            padding: 4rem 5%;
-            background: rgba(18, 18, 26, 0.5);
-            backdrop-filter: blur(10px);
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        .product-meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: auto;
         }
 
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 3rem;
-            max-width: 1000px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .stat-item h3 {
-            font-size: 3rem;
+        .prod-price {
+            font-size: 18px;
             font-weight: 800;
-            background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 0.5rem;
+            color: var(--neon-green);
         }
 
-        .stat-item p {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
+        .prod-atc {
+            padding: 8px 18px;
+            background: var(--neon-purple);
+            border: none;
+            border-radius: 20px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: opacity 0.2s;
         }
 
-        /* Testimonials */
-        .testimonials {
+        .prod-atc:hover {
+            opacity: 0.9;
+        }
+
+        /* FAQs Section */
+        .faq {
             padding: 6rem 5%;
         }
 
-        .testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
+        .accordion {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            max-width: 800px;
             margin: 0 auto;
         }
 
-        .testimonial-card {
-            background: rgba(18, 18, 26, 0.6);
+        .accordion-item {
+            background: rgba(15, 22, 41, 0.6);
             backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 24px;
-            padding: 2rem;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 12px;
+            overflow: hidden;
         }
 
-        .testimonial-card:hover {
-            border-color: rgba(6, 182, 212, 0.2);
-            transform: translateY(-4px);
-        }
-
-        .testimonial-card .quote {
-            font-size: 1.125rem;
-            line-height: 1.8;
-            margin-bottom: 1.5rem;
+        .accordion-toggle {
+            width: 100%;
+            background: transparent;
+            border: none;
+            padding: 18px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            text-align: left;
+            font-size: 15px;
+            font-weight: 600;
             color: var(--text-primary);
         }
 
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
+        .accordion-icon {
+            font-size: 18px;
+            font-weight: 300;
+            color: var(--neon-purple);
+            transition: transform 0.2s;
         }
 
-        .author-avatar {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: var(--gradient-primary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 1.25rem;
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.25s ease-out;
         }
 
-        .author-info h4 {
-            font-weight: 600;
-            margin-bottom: 0.25rem;
-        }
-
-        .author-info p {
+        .accordion-inner {
+            padding: 0 24px 20px 24px;
+            font-size: 13.5px;
+            line-height: 1.6;
             color: var(--text-secondary);
-            font-size: 0.875rem;
+        }
+
+        .accordion-item.is-expanded .accordion-content {
+            max-height: 200px;
+        }
+
+        .accordion-item.is-expanded .accordion-icon {
+            transform: rotate(45deg);
         }
 
         /* CTA Section */
         .cta {
-            padding: 8rem 5%;
+            padding: 6rem 5%;
             text-align: center;
         }
 
         .cta-box {
             max-width: 800px;
             margin: 0 auto;
-            background: rgba(18, 18, 26, 0.6);
+            background: rgba(15, 22, 41, 0.6);
             backdrop-filter: blur(20px);
-            border: 1px solid rgba(168, 85, 247, 0.2);
+            border: 1px solid rgba(124, 58, 237, 0.2);
             border-radius: 32px;
             padding: 4rem;
             position: relative;
@@ -542,7 +530,7 @@
             left: 20%;
             right: 20%;
             height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(168, 85, 247, 0.5), transparent);
+            background: linear-gradient(90deg, transparent, rgba(124, 58, 237, 0.5), transparent);
         }
 
         .cta h2 {
@@ -557,6 +545,48 @@
             margin-bottom: 2rem;
         }
 
+        .news-form {
+            display: flex;
+            gap: 8px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .news-form input {
+            flex: 1;
+            background: var(--bg-dark);
+            border: 1px solid rgba(124, 58, 237, 0.3);
+            padding: 12px 16px;
+            border-radius: 24px;
+            color: var(--text-primary);
+            outline: none;
+        }
+
+        .news-form input:focus {
+            border-color: var(--neon-purple);
+        }
+
+        .news-form button {
+            background: var(--neon-purple);
+            color: white;
+            border: none;
+            font-weight: 600;
+            padding: 12px 24px;
+            border-radius: 24px;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+
+        .news-form button:hover {
+            opacity: 0.9;
+        }
+
+        @media(max-width: 640px) {
+            .news-form {
+                flex-direction: column;
+            }
+        }
+
         /* Footer */
         footer {
             padding: 4rem 5% 2rem;
@@ -566,131 +596,170 @@
         .footer-content {
             max-width: 1200px;
             margin: 0 auto;
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
         }
 
         .footer-brand p {
             color: var(--text-secondary);
-            margin-top: 1rem;
-            max-width: 300px;
+            font-size: 11.5px;
+            margin-top: 0.5rem;
         }
 
-        .footer-links h4 {
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-        }
-
-        .footer-links ul {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 0.75rem;
+        .footer-links {
+            display: flex;
+            gap: 1.5rem;
         }
 
         .footer-links a {
             color: var(--text-secondary);
             text-decoration: none;
             transition: color 0.3s;
+            font-size: 12px;
         }
 
         .footer-links a:hover {
             color: var(--text-primary);
         }
 
-        .footer-bottom {
-            max-width: 1200px;
-            margin: 3rem auto 0;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        /* CART DRAWER OVERLAY */
+        .cart-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(4px);
+            z-index: 2000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .cart-overlay.is-open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .cart-drawer {
+            position: fixed;
+            top: 0;
+            right: -360px;
+            bottom: 0;
+            width: 360px;
+            background: var(--bg-card);
+            border-left: 1px solid rgba(124, 58, 237, 0.2);
+            box-shadow: -10px 0 32px rgba(0,0,0,0.5);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: right 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            padding: 24px;
+        }
+
+        .cart-overlay.is-open .cart-drawer {
+            right: 0;
+        }
+
+        .drawer-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            padding-bottom: 16px;
         }
 
-        .footer-bottom p {
+        .drawer-header h2 {
+            font-size: 18px;
+            font-weight: 800;
+        }
+
+        .drawer-close {
+            background: transparent;
+            border: none;
+            font-size: 24px;
             color: var(--text-secondary);
-            font-size: 0.875rem;
+            cursor: pointer;
         }
 
-        .social-links {
+        .drawer-items {
+            flex: 1;
+            overflow-y: auto;
+            padding: 16px 0;
             display: flex;
-            gap: 1rem;
+            flex-direction: column;
+            gap: 12px;
         }
 
-        .social-links a {
-            width: 40px;
-            height: 40px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
+        .drawer-item {
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            justify-content: center;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .drawer-item-title {
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .drawer-item-qty {
+            font-size: 11px;
             color: var(--text-secondary);
-            transition: all 0.3s;
+            margin-top: 2px;
         }
 
-        .social-links a:hover {
-            background: var(--gradient-primary);
+        .drawer-item-remove {
+            background: transparent;
+            border: none;
+            color: var(--red);
+            font-size: 11px;
+            cursor: pointer;
+        }
+
+        .drawer-footer {
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding-top: 16px;
+        }
+
+        .drawer-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .checkout-btn {
+            background: var(--neon-purple);
             color: white;
+            border: none;
+            width: 100%;
+            padding: 12px;
+            border-radius: 24px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: opacity 0.2s;
         }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
-            .mobile-menu {
-                display: flex;
-            }
-
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .footer-content {
-                grid-template-columns: 1fr 1fr;
-            }
-
-            .footer-brand {
-                grid-column: span 2;
-            }
+        .checkout-btn:hover {
+            opacity: 0.9;
         }
 
-        /* Animations */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeIn 0.8s forwards;
+        .empty-note {
+            font-size: 12px;
+            color: var(--text-muted);
+            text-align: center;
+            padding: 24px 0;
         }
 
-        @keyframes fadeIn {
-            to {
-                opacity: 1;
-                transform: translateY(0);
+        @media(max-width: 400px) {
+            .cart-drawer {
+                width: 100%;
+                right: -100%;
             }
-        }
-
-        .delay-1 { animation-delay: 0.1s; }
-        .delay-2 { animation-delay: 0.2s; }
-        .delay-3 { animation-delay: 0.3s; }
-        .delay-4 { animation-delay: 0.4s; }
-
-        /* Utility for fade in on scroll */
-        .reveal {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
         }
     </style>
 </head>
@@ -699,7 +768,6 @@
         <!-- Ambient background orbs -->
         <div class="ambient-orb ambient-1"></div>
         <div class="ambient-orb ambient-2"></div>
-        <div class="ambient-orb ambient-3"></div>
         <!-- Fast-following liquid core -->
         <div class="liquid-core" id="liquidCore"></div>
         <!-- Trailing orbs for motion effect -->
@@ -707,207 +775,251 @@
         <div class="liquid-trail liquid-trail-2" id="liquidTrail2"></div>
     </div>
 
+    <!-- ── NAVIGATION BAR ── -->
     <nav>
         <div class="logo">
-            <div class="logo-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
-                    <circle cx="12" cy="12" r="3"/>
-                    <line x1="12" y1="3" x2="12" y2="9"/>
-                    <line x1="12" y1="15" x2="12" y2="21"/>
-                    <line x1="3" y1="12" x2="9" y2="12"/>
-                    <line x1="15" y1="12" x2="21" y2="12"/>
-                </svg>
-            </div>
-            <span>Workflow Labs</span>
+            <span>ViralVibe</span>Labs
         </div>
         <ul class="nav-links">
-            <li><a href="#features">Features</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#testimonials">Testimonials</a></li>
+            <li><a href="#products">Products</a></li>
+            <li><a href="#faq">FAQs</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
-        <button class="nav-cta">Get Started</button>
-        <div class="mobile-menu">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
+        <button class="cart-trigger" id="cartTrigger">
+            🛒 Cart <span class="cart-count" id="cartCountBadge">0</span>
+        </button>
     </nav>
 
+    <!-- ── HERO SECTION ── -->
     <section class="hero">
-        <div class="hero-badge">✨ AI-Powered Creator Tools</div>
-        <h1>Automate. Create.<br><span>Earn.</span></h1>
-        <p class="hero-subtitle">Helping creators use AI better. Save time. Create faster. Build smarter workflows with voice prompting, automation, and cutting-edge AI tools.</p>
+        <div class="hero-badge">✨ Satisfying · Aesthetic · Viral</div>
+        <h1>Say Goodbye To<br><span>Daily Annoyances.</span></h1>
+        <p class="hero-subtitle">We design visually satisfying, highly tactile, and fun problem-solving gadgets that turn frustrating routines into satisfying habits.</p>
         <div class="hero-buttons">
-            <a href="#contact" class="btn-primary">Start Building</a>
-            <a href="#features" class="btn-secondary">Explore Tools</a>
-        </div>
-        <div class="scroll-indicator">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M12 5v14M19 12l-7 7-7-7"/>
-            </svg>
-            Scroll to explore
+            <a href="#products" class="btn-primary">Shop Viral Collection</a>
+            <a href="#faq" class="btn-secondary">Explore FAQs</a>
         </div>
     </section>
 
-    <section class="features" id="features">
+    <!-- ── TRUST BADGES ROW ── -->
+    <section class="badges">
+        <div class="badges-grid">
+            <div class="badge-item">
+                <span class="badge-icon">🚚</span>
+                <h3>Free Standard Shipping</h3>
+                <p>Dispatched fast from domestic US warehouses</p>
+            </div>
+            <div class="badge-item">
+                <span class="badge-icon">🛡️</span>
+                <h3>30-Day Money Back</h3>
+                <p>100% stress-free return guarantee</p>
+            </div>
+            <div class="badge-item">
+                <span class="badge-icon">🩺</span>
+                <h3>Expert Approved</h3>
+                <p>Veterinarian & organization recommended</p>
+            </div>
+            <div class="badge-item">
+                <span class="badge-icon">🔒</span>
+                <h3>Secure Checkouts</h3>
+                <p>SSL fully encrypted safe payments</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── PRODUCTS GRID ── -->
+    <section class="products" id="products">
         <div class="section-header">
-            <span class="section-tag">Our Tools</span>
-            <h2>Everything You Need to Succeed</h2>
-            <p>Powerful AI tools and workflows designed specifically for content creators who want to stay ahead of the curve.</p>
+            <span class="section-tag">Featured Collections</span>
+            <h2>Satisfyingly Useful Products</h2>
+            <p>Our top curated selection of highly visual and interactive problem solvers to upgrade your daily routines.</p>
         </div>
-        <div class="features-grid">
-            <div class="feature-card reveal">
-                <div class="feature-icon">🎙️</div>
-                <h3>Voice AI</h3>
-                <p>Skip the typing. Use voice commands to create content faster than ever before. The best creators are already switching to Voice AI.</p>
-            </div>
-            <div class="feature-card reveal">
-                <div class="feature-icon">⚡</div>
-                <h3>AI Workflows</h3>
-                <p>Build intelligent automation pipelines that handle repetitive tasks. Focus on creation, not busywork.</p>
-            </div>
-            <div class="feature-card reveal">
-                <div class="feature-icon">🔧</div>
-                <h3>Automation Tools</h3>
-                <p>Connect your favorite apps and automate cross-platform workflows. Save hours every single day.</p>
-            </div>
-            <div class="feature-card reveal">
-                <div class="feature-icon">💡</div>
-                <h3>AI for Business</h3>
-                <p>Scale your content operation with AI-powered business tools. Turn your creative skills into a sustainable business.</p>
-            </div>
+        <div class="products-grid" id="productGrid">
+            <!-- Dynamically populated -->
         </div>
     </section>
 
-    <section class="stats">
-        <div class="stats-grid">
-            <div class="stat-item">
-                <h3>10K+</h3>
-                <p>Creators Helped</p>
-            </div>
-            <div class="stat-item">
-                <h3>50M+</h3>
-                <p>Tasks Automated</p>
-            </div>
-            <div class="stat-item">
-                <h3>100+</h3>
-                <p>Workflow Templates</p>
-            </div>
-            <div class="stat-item">
-                <h3>24/7</h3>
-                <p>AI Support</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="testimonials" id="testimonials">
+    <!-- ── FAQS ACCORDION ── -->
+    <section class="faq" id="faq">
         <div class="section-header">
-            <span class="section-tag">Testimonials</span>
-            <h2>What Creators Are Saying</h2>
-            <p>Join thousands of creators who have transformed their workflow with Workflow Labs.</p>
+            <span class="section-tag">Common Inquiries</span>
+            <h2>Frequently Asked Questions</h2>
+            <p>Everything you need to know about our sourcing, shipping, and usage mechanics.</p>
         </div>
-        <div class="testimonials-grid">
-            <div class="testimonial-card">
-                <p class="quote">"Workflow Labs completely changed how I create content. The voice AI tools are incredible — I've cut my production time in half!"</p>
-                <div class="testimonial-author">
-                    <div class="author-avatar">S</div>
-                    <div class="author-info">
-                        <h4>Sarah Chen</h4>
-                        <p>YouTube Creator, 500K+ subscribers</p>
-                    </div>
-                </div>
-            </div>
-            <div class="testimonial-card">
-                <p class="quote">"The automation workflows have saved me literally 20+ hours per week. I'm now focusing on what actually matters — growing my brand."</p>
-                <div class="testimonial-author">
-                    <div class="author-avatar">M</div>
-                    <div class="author-info">
-                        <h4>Mike Rodriguez</h4>
-                        <p>Digital Marketer & Consultant</p>
-                    </div>
-                </div>
-            </div>
-            <div class="testimonial-card">
-                <p class="quote">"As a business owner, Workflow Labs helped me scale content creation without hiring a full team. Best investment I've made."</p>
-                <div class="testimonial-author">
-                    <div class="author-avatar">J</div>
-                    <div class="author-info">
-                        <h4>Jessica Park</h4>
-                        <p>Founder, Content Agency</p>
-                    </div>
-                </div>
-            </div>
+        <div class="accordion" id="faqAccordion">
+            <!-- Dynamically populated -->
         </div>
     </section>
 
+    <!-- ── CTA NEWSLETTER ── -->
     <section class="cta" id="contact">
         <div class="cta-box">
-            <h2>Ready to Transform Your Workflow?</h2>
-            <p>Join thousands of creators who are already building smarter, faster, and earning more with Workflow Labs.</p>
-            <div class="hero-buttons">
-                <a href="#" class="btn-primary">Get Started Free</a>
-                <a href="mailto:hello@workflowlabs.io" class="btn-secondary">Contact Us</a>
-            </div>
+            <h2>Join the Satisfying Vibe</h2>
+            <p>Subscribe for exclusive 30% off coupons, viral product sneak peeks, and satisfying daily updates.</p>
+            <form class="news-form" onsubmit="event.preventDefault(); alert('Thank you for subscribing to ViralVibe Labs!')">
+                <input type="email" placeholder="Enter your email address" required>
+                <button type="submit">Subscribe Now</button>
+            </form>
         </div>
     </section>
 
+    <!-- ── FOOTER ── -->
     <footer>
         <div class="footer-content">
             <div class="footer-brand">
-                <div class="logo">
-                    <div class="logo-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
-                            <circle cx="12" cy="12" r="3"/>
-                            <line x1="12" y1="3" x2="12" y2="9"/>
-                            <line x1="12" y1="15" x2="12" y2="21"/>
-                            <line x1="3" y1="12" x2="9" y2="12"/>
-                            <line x1="15" y1="12" x2="21" y2="12"/>
-                        </svg>
-                    </div>
-                    <span>Workflow Labs</span>
+                <div class="logo" style="font-size: 1.25rem;">
+                    <span>ViralVibe</span>Labs
                 </div>
-                <p>Helping creators use AI better. Voice prompting, AI workflows, automation, and tools for the modern creator.</p>
+                <p>© 2026 ViralVibe Labs. All rights reserved. Visually satisfying solutions for your daily annoyances.</p>
             </div>
             <div class="footer-links">
-                <h4>Product</h4>
-                <ul>
-                    <li><a href="#">Voice AI</a></li>
-                    <li><a href="#">AI Workflows</a></li>
-                    <li><a href="#">Automation</a></li>
-                    <li><a href="#">Templates</a></li>
-                </ul>
-            </div>
-            <div class="footer-links">
-                <h4>Company</h4>
-                <ul>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Blog</a></li>
-                    <li><a href="#">Careers</a></li>
-                    <li><a href="#">Contact</a></li>
-                </ul>
-            </div>
-            <div class="footer-links">
-                <h4>Legal</h4>
-                <ul>
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Terms of Service</a></li>
-                    <li><a href="#">Cookie Policy</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 Workflow Labs. All rights reserved.</p>
-            <div class="social-links">
-                <a href="#" aria-label="Instagram">📷</a>
-                <a href="#" aria-label="Twitter">🐦</a>
-                <a href="#" aria-label="YouTube">▶️</a>
-                <a href="#" aria-label="LinkedIn">💼</a>
+                <a href="#products">Products</a>
+                <a href="#faq">FAQs</a>
+                <a href="#">Privacy Policy</a>
             </div>
         </div>
     </footer>
 
+    <!-- ── CART DRAWER ── -->
+    <div class="cart-overlay" id="cartOverlay">
+        <div class="cart-drawer">
+            <div class="drawer-header">
+                <h2>Your Cart</h2>
+                <button class="drawer-close" id="cartClose">×</button>
+            </div>
+            <div class="drawer-items" id="cartDrawerItems">
+                <!-- Dynamically populated -->
+            </div>
+            <div class="drawer-footer">
+                <div class="drawer-total">
+                  <span>Subtotal:</span>
+                  <span id="drawerTotalSum">$0.00</span>
+                </div>
+                <button class="checkout-btn" onclick="alert('Proceeding securely to Checkout!')">Secure Checkout</button>
+            </div>
+        </div>
+    </div>
+
     <script>
+        // ── PRODUCTS DATABASE ──
+        const PRODUCTS = [
+          { id: 1, name: "Dog Nail Scratch Board (with treat box)", desc: "Trimming dog nails doesn't have to be a battle of wills. Pups scratch the board to get hidden treats, filing their own nails naturally!", price: 24.99, tag: "Pet Care" },
+          { id: 2, name: "4-in-1 Rotating Travel Dispenser Bottle", desc: "No more loose travel toiletries leaking in bags. A single rotating cylinder that holds 4 TSA-approved refillable pump canisters.", price: 19.99, tag: "Travel Essential" },
+          { id: 3, name: "LED Mechanical Key Clicker Keychain", desc: "Crisp blue mechanical keyboard switches on a heavy-duty keyring. Every press clicks satisfingly and glows with violet LED light.", price: 12.99, tag: "Desk Fidget" },
+          { id: 4, name: "No-Mess Vegetable Peeler (with container)", desc: "Peel potatoes and carrots without flying skins. The integrated transparent container catches and traps every scrap as you go.", price: 14.99, tag: "Kitchen Utility" },
+          { id: 5, name: "Appliance Cord Organizers (6-Pack)", desc: "Clear your cluttered counters. Flex-silicone adhesive wrappers stick securely to blenders or air fryers to keep power cables wound tightly.", price: 9.99, tag: "Home Organization" }
+        ];
+
+        // ── FAQ DATABASE ──
+        const FAQS = [
+          { q: "How do I teach my dog to use the scratch board?", a: "Slide open the treat drawer and place smelly treats inside. Close it halfway. When your dog nudges or taps the board to dig them out, reward them with a click. They will learn to scratch-to-file in less than a week!" },
+          { q: "Is the 4-in-1 travel bottle leakproof?", a: "Yes, 100%! The rugged, outer pressure-resistant sleeve secures the four inner pump bottles, completely locking down any fluid shifts during flight cabin altitude pressure changes." },
+          { q: "How fast does shipping take?", a: "All domestic US orders are dispatched from our local fulfillment centers and arrive in 2-5 business days. International shipping takes 6-12 business days." },
+          { q: "Are the cord organizers safe for high-heat appliances?", a: "Yes! They are backed by heavy-duty, heat-resistant 3M Nano adhesive tape which is fully rated for hot appliance surfaces like stand mixers, pressure cookers, and air fryers." }
+        ];
+
+        let cart = [];
+
+        // Render products
+        const productGrid = document.getElementById('productGrid');
+        productGrid.innerHTML = PRODUCTS.map(p => `
+            <div class="product-card">
+                <div>
+                    <span class="prod-tag">${p.tag}</span>
+                    <h3>${p.name}</h3>
+                    <p>${p.desc}</p>
+                </div>
+                <div class="product-meta">
+                    <span class="prod-price">$${p.price.toFixed(2)}</span>
+                    <button class="prod-atc" onclick="addToCart(${p.id})">Add To Cart</button>
+                </div>
+            </div>
+        `).join('');
+
+        // Render FAQs
+        const faqAccordion = document.getElementById('faqAccordion');
+        faqAccordion.innerHTML = FAQS.map((f, i) => `
+            <div class="accordion-item">
+                <button class="accordion-toggle" onclick="toggleAccordion(this)">
+                    <span>${f.q}</span>
+                    <span class="accordion-icon">+</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-inner">
+                        ${f.a}
+                    </div>
+                </div>
+            </div>
+        `).join('');
+
+        function toggleAccordion(btn) {
+            const item = btn.closest('.accordion-item');
+            const isExpanded = item.classList.contains('is-expanded');
+            
+            document.querySelectorAll('.accordion-item').forEach(el => {
+                el.classList.remove('is-expanded');
+            });
+            
+            if (!isExpanded) {
+                item.classList.add('is-expanded');
+            }
+        }
+
+        // Cart Drawer Listeners
+        const cartTrigger = document.getElementById('cartTrigger');
+        const cartOverlay = document.getElementById('cartOverlay');
+        const cartClose = document.getElementById('cartClose');
+
+        cartTrigger.addEventListener('click', () => cartOverlay.classList.add('is-open'));
+        cartClose.addEventListener('click', () => cartOverlay.classList.remove('is-open'));
+        cartOverlay.addEventListener('click', (e) => {
+            if (e.target === cartOverlay) cartOverlay.classList.remove('is-open');
+        });
+
+        function addToCart(id) {
+            const prod = PRODUCTS.find(p => p.id === id);
+            const existing = cart.find(i => i.id === id);
+            if (existing) {
+                existing.quantity += 1;
+            } else {
+                cart.push({ ...prod, quantity: 1 });
+            }
+            updateCart();
+            cartOverlay.classList.add('is-open');
+        }
+
+        function updateCart() {
+            const badge = document.getElementById('cartCountBadge');
+            const itemsContainer = document.getElementById('cartDrawerItems');
+            const totalSum = document.getElementById('drawerTotalSum');
+
+            const count = cart.reduce((acc, i) => acc + i.quantity, 0);
+            badge.textContent = count;
+
+            const total = cart.reduce((acc, i) => acc + (i.price * i.quantity), 0);
+            totalSum.textContent = `$${total.toFixed(2)}`;
+
+            if (cart.length === 0) {
+                itemsContainer.innerHTML = '<p class="empty-note">Your cart is empty.</p>';
+                return;
+            }
+
+            itemsContainer.innerHTML = cart.map(item => `
+                <div class="drawer-item">
+                    <div>
+                        <div class="drawer-item-title">${item.name}</div>
+                        <div class="drawer-item-qty">Qty: <strong>${item.quantity}</strong> · $${item.price.toFixed(2)}</div>
+                    </div>
+                    <button class="drawer-item-remove" onclick="removeFromCart(${item.id})">Remove</button>
+                </div>
+            `).join('');
+        }
+
+        function removeFromCart(id) {
+            cart = cart.filter(i => i.id !== id);
+            updateCart();
+        }
+
         // Fast dynamic liquid light effect
         const liquidCore = document.getElementById('liquidCore');
         const liquidTrail1 = document.getElementById('liquidTrail1');
@@ -916,17 +1028,14 @@
         let mouseX = window.innerWidth / 2;
         let mouseY = window.innerHeight / 2;
         
-        // Core position - fastest
         let coreX = mouseX;
         let coreY = mouseY;
         
-        // Trail positions - progressively slower for motion blur effect
         let trail1X = mouseX;
         let trail1Y = mouseY;
         let trail2X = mouseX;
         let trail2Y = mouseY;
 
-        // Velocity tracking for shape deformation
         let lastMouseX = mouseX;
         let lastMouseY = mouseY;
         let velocityX = 0;
@@ -936,7 +1045,6 @@
             mouseX = e.clientX;
             mouseY = e.clientY;
             
-            // Calculate velocity
             velocityX = mouseX - lastMouseX;
             velocityY = mouseY - lastMouseY;
             lastMouseX = mouseX;
@@ -951,43 +1059,34 @@
         });
 
         function animate() {
-            // Core follows very fast (90% per frame)
             coreX += (mouseX - coreX) * 0.15;
             coreY += (mouseY - coreY) * 0.15;
             
-            // Trail 1 follows fast (70% per frame)
             trail1X += (mouseX - trail1X) * 0.08;
             trail1Y += (mouseY - trail1Y) * 0.08;
             
-            // Trail 2 follows slower (50% per frame)
             trail2X += (mouseX - trail2X) * 0.04;
             trail2Y += (mouseY - trail2Y) * 0.04;
 
-            // Calculate speed for shape deformation
             const speed = Math.sqrt(velocityX * velocityX + velocityY * velocityY);
             const normalizedSpeed = Math.min(speed / 30, 1);
             
-            // Dynamic shape - stretch in direction of movement
             const angle = Math.atan2(velocityY, velocityX) * (180 / Math.PI);
             const stretchX = 500 + normalizedSpeed * 200;
             const stretchY = 500 - normalizedSpeed * 150;
             
-            // Apply transforms with shape deformation
             liquidCore.style.left = coreX + 'px';
             liquidCore.style.top = coreY + 'px';
             liquidCore.style.width = stretchX + 'px';
             liquidCore.style.height = stretchY + 'px';
             liquidCore.style.transform = `translate(-50%, -50%) rotate(${angle}deg)`;
 
-            // Trail 1 - cyan
             liquidTrail1.style.left = trail1X + 'px';
             liquidTrail1.style.top = trail1Y + 'px';
             
-            // Trail 2 - pink
             liquidTrail2.style.left = trail2X + 'px';
             liquidTrail2.style.top = trail2Y + 'px';
 
-            // Decay velocity
             velocityX *= 0.9;
             velocityY *= 0.9;
 
@@ -996,7 +1095,6 @@
 
         animate();
 
-        // Hide effects when cursor leaves
         document.addEventListener('mouseleave', () => {
             liquidCore.style.opacity = '0.3';
         });
@@ -1005,41 +1103,6 @@
             mouseX = e.clientX;
             mouseY = e.clientY;
             liquidCore.style.opacity = '1';
-        });
-
-        // Smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth' });
-                }
-            });
-        });
-
-        // Scroll reveal animation
-        const revealElements = document.querySelectorAll('.feature-card, .testimonial-card, .stat-item');
-        const revealObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                }
-            });
-        }, { threshold: 0.1 });
-
-        revealElements.forEach(el => revealObserver.observe(el));
-
-        // Navbar background on scroll
-        window.addEventListener('scroll', () => {
-            const nav = document.querySelector('nav');
-            if (window.scrollY > 50) {
-                nav.style.background = 'rgba(10, 10, 15, 0.9)';
-                nav.style.borderBottomColor = 'rgba(255, 255, 255, 0.1)';
-            } else {
-                nav.style.background = 'rgba(10, 10, 15, 0.7)';
-                nav.style.borderBottomColor = 'rgba(255, 255, 255, 0.06)';
-            }
         });
     </script>
 </body>
