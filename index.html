@@ -982,6 +982,90 @@
             box-shadow: 0 16px 36px rgba(239, 68, 68, 0.3);
         }
 
+        /* Proven Automation Blueprints styles */
+        .blueprints {
+            background-color: var(--bg-base);
+            padding: 8rem 8% 6rem;
+        }
+
+        .blueprints-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.5rem;
+        }
+
+        .blueprint-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-glass);
+            border-radius: 32px;
+            padding: 3.5rem 2.5rem;
+            box-shadow: 0 20px 40px rgba(15, 23, 42, 0.03), 0 1px 2px rgba(15, 23, 42, 0.02);
+            transition: var(--transition-smooth);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .blueprint-card:hover {
+            box-shadow: 0 30px 60px rgba(15, 23, 42, 0.08);
+            border-color: rgba(79, 70, 229, 0.2);
+            transform: translateY(-8px);
+        }
+
+        .blueprint-header {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .blueprint-dept {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--accent-indigo);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .blueprint-badge {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 800;
+            font-size: 1.4rem;
+            color: var(--text-primary);
+            line-height: 1.25;
+        }
+
+        .blueprint-flow {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .flow-step {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        .flow-step strong {
+            color: var(--text-primary);
+        }
+
+        .blueprint-outcome {
+            margin-top: auto;
+        }
+
+        .outcome-tag {
+            display: inline-block;
+            background: rgba(16, 185, 129, 0.1);
+            color: #059669; /* Emerald/green */
+            padding: 0.5rem 1rem;
+            border-radius: 100px;
+            font-size: 0.85rem;
+            font-weight: 700;
+        }
+
         /* Media queries */
         @media (max-width: 1024px) {
             .hero-container {
@@ -1012,7 +1096,8 @@
                 gap: 4rem;
             }
 
-            .services-grid {
+            .services-grid,
+            .blueprints-grid {
                 grid-template-columns: 1fr;
             }
 
@@ -1066,6 +1151,7 @@
         <ul class="nav-links">
             <li><a href="#problem">Core Bottleneck</a></li>
             <li><a href="#services">Services</a></li>
+            <li><a href="#blueprints">Blueprints</a></li>
             <li><a href="#proof">Proof</a></li>
             <li><a href="#contact">Inquiry</a></li>
         </ul>
@@ -1076,9 +1162,9 @@
     <section class="hero" id="hero">
         <div class="hero-container">
             <div class="hero-content" id="hero-reveal">
-                <div class="hero-badge">Bengaluru's Elite Enterprise AI Partner</div>
-                <h1>Drive Enterprise Growth with <span>Custom AI Automation.</span></h1>
-                <p class="hero-subtitle">We build premium AI voice agents, cognitive data pipelines, and custom workflow automations that eliminate manual overhead, optimize performance, and accelerate growth.</p>
+                <div class="hero-badge">Bengaluru's Enterprise Automation Partners</div>
+                <h1>Stop losing 40% of your team's capacity. <span>Scale your operations 50% faster.</span></h1>
+                <p class="hero-subtitle">We build custom AI voice agents and cognitive pipelines that qualify incoming inquiries, automate billing matching, and sync your database systems 24/7. Get your first prototype in 48 hours—completely free.</p>
                 <div class="hero-buttons">
                     <button class="btn btn-primary" id="openDemoBtn">
                         <span style="font-size: 1.2rem;">🎙️</span> See Live Voice Agent Demo
@@ -1109,15 +1195,15 @@
     <section class="problem" id="problem">
         <div class="problem-layout">
             <div class="problem-stat" id="stat-reveal">
-                <div class="stat-number">40%</div>
-                <div class="stat-label">Efficiency Lost</div>
+                <div class="stat-number">14 Hrs</div>
+                <div class="stat-label">Lost Per Week / Employee</div>
             </div>
             <div class="problem-description" id="problem-text-reveal">
                 <span class="section-tag">The Friction Cost</span>
-                <h3>Unstructured workflows drain enterprise focus.</h3>
-                <p>Over 40% of team efficiency is lost to manual email triage, repetitive CRM updates, and disconnected data systems, keeping your top talent from focusing on high-leverage growth tasks.</p>
+                <h3>Manual entry is a silent tax on your growth.</h3>
+                <p>Your team does not scale because they are bogged down sorting incoming email requests, copying numbers between software tools, and manually updating CRM records. This manual entry is a silent tax on your growth.</p>
                 <div class="highlight-box">
-                    Our cognitive data pipelines and custom voice agents eliminate manual friction points, running background tasks and client outreach 24/7 with zero overhead.
+                    Our cognitive pipelines process invoices, qualify leads, and update records in the background, allowing your staff to focus entirely on high-leverage, revenue-generating tasks.
                 </div>
             </div>
         </div>
@@ -1134,31 +1220,132 @@
             <!-- Service Card 1 -->
             <div class="tilt-card" id="service-card-1">
                 <div class="card-icon">🎙️</div>
-                <h3>AI Voice & Chat Agents</h3>
-                <p>Deploy custom conversational agents that handle customer service, qualify incoming inquiries, and manage outgoing outreach 24/7. Fully integrated with your knowledge base to resolve complex queries instantly.</p>
+                <h3>Autonomous Intake Agents</h3>
+                <p>Qualify incoming inquiries, route tickets, and update CRM records 24/7. Deploy custom conversational agents that handle customer service and scale response capacity without increasing headcount.</p>
             </div>
             <!-- Service Card 2 -->
             <div class="tilt-card" id="service-card-2">
                 <div class="card-icon">🧠</div>
-                <h3>Cognitive Data Pipelines</h3>
-                <p>Transform unstructured emails, documents, and transcripts into structured database records automatically. Power your systems with real-time decision-making capabilities that eliminate manual data entry entirely.</p>
+                <h3>Cognitive Ingestion Pipelines</h3>
+                <p>Extract unstructured data from emails, vendor invoices, and PDFs with 99.9% accuracy and sync ERPs. Power your database systems with automated document processing that eliminates human data entry.</p>
             </div>
             <!-- Service Card 3 -->
             <div class="tilt-card" id="service-card-3">
                 <div class="card-icon">⚡</div>
-                <h3>Workflow Automation & Sync</h3>
-                <p>Connect your legacy tools, communication channels, and cloud storage into unified, event-driven pipelines. Sync customer data, trigger smart alerts, and automate report generation with zero latency.</p>
+                <h3>Operational Sync & Trigger</h3>
+                <p>Automate accounts payable matching, customer onboarding, and logistics alerts with human-in-the-loop validation. Connect legacy platforms and trigger event-driven workflows with zero latency.</p>
             </div>
         </div>
     </section>
 
-    <!-- SECTION 4: THE NO-RISK PROOF -->
+    <!-- SECTION 4: PROVEN AUTOMATION BLUEPRINTS -->
+    <section class="blueprints" id="blueprints">
+        <div class="section-header" id="blueprints-header-reveal">
+            <span class="section-tag">Automation Blueprints</span>
+            <h2>Proven Blueprints for Enterprise Efficiency</h2>
+            <p>Deploy pre-configured cognitive pipelines designed to eliminate friction across your core operations.</p>
+        </div>
+        <div class="blueprints-grid">
+            <!-- Card 1: Sales & CRM -->
+            <div class="blueprint-card">
+                <div class="blueprint-header">
+                    <span class="blueprint-dept">Sales & CRM</span>
+                    <span class="blueprint-badge">Auto-Prospect Enrichment</span>
+                </div>
+                <div class="blueprint-flow">
+                    <div class="flow-step"><strong>Trigger:</strong> New lead submits inquiry on website.</div>
+                    <div class="flow-step"><strong>AI Execution:</strong> Scrapes LinkedIn, updates CRM with headcount, tech stack, and intent data.</div>
+                    <div class="flow-step"><strong>Human-in-the-Loop:</strong> Sales representative reviews automatically drafted intro email.</div>
+                </div>
+                <div class="blueprint-outcome">
+                    <span class="outcome-tag">Boosts response rates by 40%</span>
+                </div>
+            </div>
+            <!-- Card 2: Support -->
+            <div class="blueprint-card">
+                <div class="blueprint-header">
+                    <span class="blueprint-dept">Support</span>
+                    <span class="blueprint-badge">Zendesk Triage & KB Sync</span>
+                </div>
+                <div class="blueprint-flow">
+                    <div class="flow-step"><strong>Trigger:</strong> Customer submits a support ticket.</div>
+                    <div class="flow-step"><strong>AI Execution:</strong> Classifies ticket sentiment, queries internal knowledge base, drafts resolution.</div>
+                    <div class="flow-step"><strong>Human-in-the-Loop:</strong> Agent approves response before sending to user.</div>
+                </div>
+                <div class="blueprint-outcome">
+                    <span class="outcome-tag">Reduces ticket resolution time by 65%</span>
+                </div>
+            </div>
+            <!-- Card 3: Finance -->
+            <div class="blueprint-card">
+                <div class="blueprint-header">
+                    <span class="blueprint-dept">Finance</span>
+                    <span class="blueprint-badge">AP Invoicing & 3-Way Matching</span>
+                </div>
+                <div class="blueprint-flow">
+                    <div class="flow-step"><strong>Trigger:</strong> Vendor invoice received via accounts payable inbox.</div>
+                    <div class="flow-step"><strong>AI Execution:</strong> Extracts line items, matches against purchase order and receiving logs in NetSuite.</div>
+                    <div class="flow-step"><strong>Human-in-the-Loop:</strong> CFO reviews matching report when discrepancies exceed 2%.</div>
+                </div>
+                <div class="blueprint-outcome">
+                    <span class="outcome-tag">Cuts AP discrepancies by 75%</span>
+                </div>
+            </div>
+            <!-- Card 4: Legal & Docs -->
+            <div class="blueprint-card">
+                <div class="blueprint-header">
+                    <span class="blueprint-dept">Legal & Docs</span>
+                    <span class="blueprint-badge">Contract Compliance Audit</span>
+                </div>
+                <div class="blueprint-flow">
+                    <div class="flow-step"><strong>Trigger:</strong> Supplier contract uploaded to shared drive.</div>
+                    <div class="flow-step"><strong>AI Execution:</strong> Audits contract against standard MSA guidelines, flags non-compliant clauses.</div>
+                    <div class="flow-step"><strong>Human-in-the-Loop:</strong> In-house counsel reviews highlighted risks and suggested edits.</div>
+                </div>
+                <div class="blueprint-outcome">
+                    <span class="outcome-tag">Saves 80% of legal review time</span>
+                </div>
+            </div>
+            <!-- Card 5: Operations -->
+            <div class="blueprint-card">
+                <div class="blueprint-header">
+                    <span class="blueprint-dept">Operations</span>
+                    <span class="blueprint-badge">Supply Chain Exception Routing</span>
+                </div>
+                <div class="blueprint-flow">
+                    <div class="flow-step"><strong>Trigger:</strong> Shipping carrier reports a transit delay.</div>
+                    <div class="flow-step"><strong>AI Execution:</strong> Re-calculates ETA, queries alternate inventory hubs, drafts alert notifications.</div>
+                    <div class="flow-step"><strong>Human-in-the-Loop:</strong> Logistics manager selects alternative shipping route.</div>
+                </div>
+                <div class="blueprint-outcome">
+                    <span class="outcome-tag">Reduces late deliveries by 45%</span>
+                </div>
+            </div>
+            <!-- Card 6: HR -->
+            <div class="blueprint-card">
+                <div class="blueprint-header">
+                    <span class="blueprint-dept">HR</span>
+                    <span class="blueprint-badge">Automated Provisioning</span>
+                </div>
+                <div class="blueprint-flow">
+                    <div class="flow-step"><strong>Trigger:</strong> HR system registers new employee contract signed.</div>
+                    <div class="flow-step"><strong>AI Execution:</strong> Provisions email, sets up Slack and GitHub accounts, generates welcome pack.</div>
+                    <div class="flow-step"><strong>Human-in-the-Loop:</strong> HR manager triggers the final setup verification check.</div>
+                </div>
+                <div class="blueprint-outcome">
+                    <span class="outcome-tag">Eliminates 90% onboarding effort</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 5: THE NO-RISK PROOF -->
     <section class="proof" id="proof">
         <div class="proof-box" id="proof-reveal">
             <div class="proof-text">
                 <span class="section-tag" style="color: var(--accent-indigo);">Strategic Proof</span>
-                <h2>Built on Results, Not Promises.</h2>
-                <p>We believe elite partnerships are validated by performance. We will build a functional, custom AI prototype for your most critical operational bottleneck entirely for free. If it doesn't clearly demonstrate immediate time savings and performance improvement for your team, you pay nothing.</p>
+                <h2>A working prototype. Built for your specific bottleneck. Free.</h2>
+                <p>We do not pitch slides. We build functional software. We will design a custom, live automation for your most painful database or email bottleneck. Test it with your team. If it does not save them at least 5 hours in the first week, we walk away. No invoices, no contracts, no catch.</p>
             </div>
             <div class="proof-guarantee">
                 <span class="guarantee-badge">⚙️</span>
@@ -1237,6 +1424,7 @@
             <ul class="footer-links-row">
                 <li><a href="#problem">Core Bottleneck</a></li>
                 <li><a href="#services">Services</a></li>
+                <li><a href="#blueprints">Blueprints</a></li>
                 <li><a href="#proof">Proof</a></li>
                 <li><a href="#contact">Inquiry</a></li>
             </ul>
@@ -1526,6 +1714,29 @@
             ease: "power4.out"
         });
 
+        // Blueprints Section Reveal
+        gsap.from("#blueprints-header-reveal", {
+            scrollTrigger: {
+                trigger: "#blueprints",
+                start: "top 85%"
+            },
+            opacity: 0,
+            y: 30,
+            duration: 0.8
+        });
+
+        gsap.from(".blueprint-card", {
+            scrollTrigger: {
+                trigger: ".blueprints-grid",
+                start: "top 85%"
+            },
+            opacity: 0,
+            y: 50,
+            duration: 1,
+            stagger: 0.1,
+            ease: "power4.out"
+        });
+
         // Proof Section Box Reveal
         gsap.from("#proof-reveal", {
             scrollTrigger: {
@@ -1732,13 +1943,15 @@
 
         // Dialogue database for realistic call experience
         const DIALOGUE = [
-            { sender: 'bot', text: 'Hi! Thank you for testing Workflow Labs AI. I am your operational efficiency assistant. Am I speaking with the enterprise operations lead?' },
-            { sender: 'user', text: 'Yes, I manage our operations and data workflows.' },
-            { sender: 'bot', text: 'Excellent. Studies show mid-sized enterprises lose 40% of their operational capacity to manual email triage and repetitive data entry. Where is your team spending the most manual time?' },
-            { sender: 'user', text: 'Definitely in routing incoming customer requests and updating our internal CRMs.' },
-            { sender: 'bot', text: 'Understood. We can build a custom cognitive pipeline that automates that triage and syncs your systems in real-time. Let us build a free custom prototype for your team to test. Deal?' },
-            { sender: 'user', text: 'That sounds perfect. How do we start?' },
-            { sender: 'bot', text: 'Great! Just fill out the form on our page with your primary bottleneck, and I will schedule a brief operational audit call. Thank you!' }
+            { sender: 'bot', text: 'Hi! Welcome to Workflow Labs AI Demo. I am your cognitive pipeline assistant. Let us simulate the NetSuite Accounts Payable 3-way matching workflow. Shall we begin?' },
+            { sender: 'user', text: 'Yes, let us run it. How does the system handle an incoming invoice?' },
+            { sender: 'bot', text: 'Perfect. When a vendor invoice enters the inbox, my ingestion pipeline extracts the line items using OCR with 99.9% accuracy. Next, it connects to NetSuite to compare it against the purchase order and receiving logs.' },
+            { sender: 'user', text: 'What happens if a line item price or quantity doesn\'t match the purchase order?' },
+            { sender: 'bot', text: 'Good question! If a discrepancy exceeds 2%, I flag the error automatically, put the NetSuite transaction on hold, and immediately push a Slack alert with a detailed summary to the finance channel.' },
+            { sender: 'user', text: 'And how does the team resolve it?' },
+            { sender: 'bot', text: 'The Slack alert includes quick-action buttons. Your accounts payable lead can review the discrepancies and approve or reject the invoice directly inside Slack. That is human-in-the-loop design in action. Would you like to build a prototype for your actual systems?' },
+            { sender: 'user', text: 'That is exactly what we need. Let\'s set up the prototype.' },
+            { sender: 'bot', text: 'Fantastic! Just fill out the operational audit form on our website, and we will build a custom prototype for your database or email bottleneck within 48 hours—completely free.' }
         ];
 
         function initiateDemoCall() {
