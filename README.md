@@ -1,6 +1,6 @@
 # Workflow Labs Agency Website
 
-A premium, ultra-modern single-page agency website built for **Workflow Labs**—an elite AI automation and strategic consulting partner for mid-sized and large enterprises in Bengaluru, India, and globally.
+A premium, ultra-modern single-page agency website built for **Workflow Labs**—an elite AI automation and strategic consulting partner for mid-sized and large enterprises globally.
 
 ## Features
 

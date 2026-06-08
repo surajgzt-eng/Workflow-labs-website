@@ -282,7 +282,7 @@
             transform: translateY(-3px);
         }
 
-        /* Hero 3D Graphic container */
+        /* Hero Dashboard container */
         .hero-visual {
             flex: 1;
             position: relative;
@@ -292,36 +292,439 @@
             justify-content: center;
         }
 
-        #threejs-canvas-container {
+        .hero-dashboard {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            gap: 1rem;
             width: 100%;
             height: 100%;
-            cursor: grab;
-            position: absolute;
-            top: 0;
-            left: 0;
-            z-index: 1;
+            padding: 0.5rem;
         }
 
-        .threejs-fallback {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+        .dashboard-card {
+            backdrop-filter: blur(16px) saturate(120%);
+            -webkit-backdrop-filter: blur(16px) saturate(120%);
+            background: rgba(255, 255, 255, 0.45);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 20px;
+            padding: 1.25rem;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.04);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow: hidden;
+            position: relative;
+            transition: var(--transition-smooth);
+        }
+
+        .dashboard-card:hover {
+            background: rgba(255, 255, 255, 0.55);
+            border-color: rgba(79, 70, 229, 0.25);
+            box-shadow: 0 12px 40px 0 rgba(79, 70, 229, 0.08);
+            transform: translateY(-2px);
+        }
+
+        .widget-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .widget-title {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            font-size: 0.85rem;
+            color: var(--text-primary);
+        }
+
+        .status-badge {
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 0.2rem 0.5rem;
+            border-radius: 100px;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .pulse-green {
+            background: rgba(16, 185, 129, 0.1);
+            color: #059669;
+        }
+
+        .pulse-green::before {
+            content: '';
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #10B981;
+            animation: flash-green 1.5s infinite alternate;
+        }
+
+        @keyframes flash-green {
+            0% { opacity: 0.4; transform: scale(0.8); }
+            100% { opacity: 1; transform: scale(1.2); }
+        }
+
+        .caller-details {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.5);
+            border: 1px solid rgba(15, 23, 42, 0.03);
+            border-radius: 12px;
+            padding: 0.4rem 0.6rem;
+        }
+
+        .caller-avatar-mini {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--gradient-indigo);
             display: flex;
             align-items: center;
             justify-content: center;
-            z-index: 0;
-            pointer-events: none;
-            opacity: 0;
-            transition: opacity 0.5s;
+            font-size: 0.8rem;
+            color: white;
         }
 
-        .threejs-fallback svg {
-            width: 80%;
-            height: 80%;
-            opacity: 0.4;
+        .caller-info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
         }
+
+        .caller-name {
+            font-size: 0.75rem;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .caller-meta {
+            font-size: 0.6rem;
+            color: var(--text-muted);
+        }
+
+        .mini-soundwave {
+            display: flex;
+            align-items: center;
+            gap: 3px;
+            height: 24px;
+        }
+
+        .sw-bar {
+            width: 3px;
+            height: 8px;
+            background: var(--accent-indigo);
+            border-radius: 3px;
+            animation: bounce-sw 1.2s ease-in-out infinite alternate;
+        }
+
+        .sw-bar:nth-child(2) { animation-delay: 0.15s; }
+        .sw-bar:nth-child(3) { animation-delay: 0.3s; }
+        .sw-bar:nth-child(4) { animation-delay: 0.45s; }
+        .sw-bar:nth-child(5) { animation-delay: 0.6s; }
+
+        @keyframes bounce-sw {
+            0% { height: 6px; }
+            100% { height: 20px; }
+        }
+
+        .widget-transcript {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.4);
+            border: 1px solid rgba(15, 23, 42, 0.05);
+            border-radius: 12px;
+            padding: 0.5rem 0.75rem;
+            font-size: 0.75rem;
+            overflow-y: auto;
+            max-height: 80px;
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+            margin-top: 0.5rem;
+            scrollbar-width: none;
+        }
+
+        .widget-transcript::-webkit-scrollbar {
+            display: none;
+        }
+
+        .dash-bubble {
+            padding: 0.35rem 0.55rem;
+            border-radius: 10px;
+            max-width: 90%;
+            line-height: 1.3;
+            animation: bubble-fade-in 0.3s ease-out forwards;
+        }
+
+        .dash-bubble.bot {
+            background: rgba(79, 70, 229, 0.08);
+            color: var(--text-primary);
+            align-self: flex-start;
+            border-bottom-left-radius: 2px;
+        }
+
+        .dash-bubble.user {
+            background: var(--gradient-indigo);
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 2px;
+        }
+
+        @keyframes bubble-fade-in {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Analytics Widget styles */
+        .sync-active {
+            background: rgba(79, 70, 229, 0.1);
+            color: var(--accent-indigo);
+        }
+
+        .sync-active::before {
+            content: '';
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--accent-indigo);
+            animation: flash-green 1.5s infinite alternate;
+        }
+
+        .pipeline-progress-container {
+            margin-top: 0.5rem;
+        }
+
+        .pipeline-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.7rem;
+            font-weight: 700;
+            margin-bottom: 0.2rem;
+        }
+
+        .pipeline-val {
+            color: var(--text-secondary);
+        }
+
+        .pipeline-bar-bg {
+            background: rgba(15, 23, 42, 0.05);
+            height: 5px;
+            border-radius: 100px;
+            overflow: hidden;
+        }
+
+        .pipeline-bar-fill {
+            background: var(--gradient-indigo);
+            height: 100%;
+            border-radius: 100px;
+        }
+
+        .animated-bar {
+            animation: load-bar-anim 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes load-bar-anim {
+            0% { width: 30%; }
+            100% { width: 100%; }
+        }
+
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.4rem;
+            margin-top: 0.5rem;
+        }
+
+        .kpi-card {
+            background: rgba(255, 255, 255, 0.6);
+            border: 1px solid rgba(15, 23, 42, 0.03);
+            border-radius: 12px;
+            padding: 0.4rem 0.6rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .kpi-num {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: #10B981;
+            line-height: 1.1;
+        }
+
+        .kpi-num-small {
+            font-size: 0.9rem;
+            font-weight: 800;
+            color: #10B981;
+        }
+
+        .kpi-label {
+            font-size: 0.6rem;
+            font-weight: 700;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+            margin-top: 0.1rem;
+        }
+
+        /* Scheduler Widget styles */
+        .scheduler-queue {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+            margin-top: 0.5rem;
+            flex: 1;
+        }
+
+        .queue-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.5);
+            border: 1px solid rgba(15, 23, 42, 0.03);
+            border-radius: 10px;
+            padding: 0.35rem 0.55rem;
+            font-size: 0.7rem;
+        }
+
+        .queue-platform {
+            font-weight: 700;
+        }
+
+        .queue-time {
+            color: var(--text-muted);
+            font-size: 0.6rem;
+        }
+
+        .queue-status {
+            font-size: 0.6rem;
+            font-weight: 700;
+            padding: 0.1rem 0.35rem;
+            border-radius: 4px;
+        }
+
+        .queue-status.published {
+            background: rgba(16, 185, 129, 0.1);
+            color: #059669;
+        }
+
+        .queue-status.queued {
+            background: rgba(79, 70, 229, 0.1);
+            color: var(--accent-indigo);
+        }
+
+        .queue-status.generating {
+            background: rgba(245, 158, 11, 0.1);
+            color: #D97706;
+        }
+
+        .timeline-visual {
+            position: relative;
+            height: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 0.5rem;
+            padding: 0 0.5rem;
+        }
+
+        .timeline-line {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: rgba(15, 23, 42, 0.05);
+            transform: translateY(-50%);
+            z-index: 1;
+        }
+
+        .timeline-node {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #94A3B8;
+            z-index: 2;
+        }
+
+        .timeline-node.completed {
+            background: #10B981;
+        }
+
+        .timeline-node.active {
+            background: #4F46E5;
+            box-shadow: 0 0 6px #4F46E5;
+        }
+
+        .timeline-node.pending {
+            background: #E2E8F0;
+        }
+
+        /* Copywriter Widget styles */
+        .text-editor-box {
+            background: #0F172A;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #F1F5F9;
+            font-family: monospace;
+            flex: 1;
+            margin-top: 0.5rem;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            height: 100px;
+        }
+
+        .editor-header {
+            background: #1E293B;
+            padding: 0.35rem 0.55rem;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .dot-btn {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+        }
+
+        .dot-btn.red { background: #EF4444; }
+        .dot-btn.yellow { background: #F59E0B; }
+        .dot-btn.green { background: #10B981; }
+
+        .editor-label {
+            font-size: 0.55rem;
+            color: #94A3B8;
+            margin-left: 0.5rem;
+        }
+
+        .editor-body {
+            padding: 0.55rem;
+            font-size: 0.7rem;
+            line-height: 1.3;
+            white-space: pre-wrap;
+            flex: 1;
+            color: #38BDF8;
+        }
+
+        .cursor-blink {
+            animation: cursor-blink-anim 0.8s infinite;
+            color: #F1F5F9;
+        }
+
+        @keyframes cursor-blink-anim {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 1; }
+        }
+
 
         /* Section Headers */
         .section-header {
@@ -1088,7 +1491,11 @@
 
             .hero-visual {
                 width: 100%;
-                height: 400px;
+                height: auto;
+            }
+            .hero-dashboard {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto;
             }
 
             .problem-layout {
@@ -1162,7 +1569,7 @@
     <section class="hero" id="hero">
         <div class="hero-container">
             <div class="hero-content" id="hero-reveal">
-                <div class="hero-badge">Bengaluru's Enterprise Automation Partners</div>
+                <div class="hero-badge">Enterprise Automation Partners</div>
                 <h1>Stop losing 40% of your team's capacity. <span>Scale your operations 50% faster.</span></h1>
                 <p class="hero-subtitle">We build custom AI voice agents and cognitive pipelines that qualify incoming inquiries, automate billing matching, and sync your database systems 24/7. Get your first prototype in 48 hours—completely free.</p>
                 <div class="hero-buttons">
@@ -1173,19 +1580,123 @@
                 </div>
             </div>
             <div class="hero-visual">
-                <!-- Three.js Canvas Container -->
-                <div id="threejs-canvas-container"></div>
-                <!-- Dynamic SVG Fallback in case WebGL fails -->
-                <div class="threejs-fallback" id="threejs-fallback">
-                    <svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M50 200 C 120 100, 180 300, 250 200 C 320 100, 380 200, 450 200" stroke="url(#fallback-grad)" stroke-width="6" stroke-linecap="round"/>
-                        <defs>
-                            <linearGradient id="fallback-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" stop-color="#4F46E5"/>
-                                <stop offset="100%" stop-color="#6366F1"/>
-                            </linearGradient>
-                        </defs>
-                    </svg>
+                <div class="hero-dashboard">
+                    <!-- Widget 1: AI Voice Call Simulator -->
+                    <div class="dashboard-card voice-widget">
+                        <div class="widget-header">
+                            <span class="widget-title">🎙️ AI Voice Call Simulator</span>
+                            <span class="status-badge pulse-green">Call Session: Active</span>
+                        </div>
+                        <div class="caller-details">
+                            <div class="caller-avatar-mini">🤖</div>
+                            <div class="caller-info">
+                                <div class="caller-name">Workflow Voice AI</div>
+                                <div class="caller-meta">Active AP Matcher</div>
+                            </div>
+                            <div class="mini-soundwave">
+                                <span class="sw-bar"></span>
+                                <span class="sw-bar"></span>
+                                <span class="sw-bar"></span>
+                                <span class="sw-bar"></span>
+                                <span class="sw-bar"></span>
+                            </div>
+                        </div>
+                        <div class="widget-transcript" id="dashTranscript">
+                            <!-- Populated dynamically by javascript -->
+                        </div>
+                    </div>
+
+                    <!-- Widget 2: Data Ingestion & Analytics -->
+                    <div class="dashboard-card analytics-widget">
+                        <div class="widget-header">
+                            <span class="widget-title">📊 Cognitive Ingestion</span>
+                            <span class="status-badge sync-active">Active Sync</span>
+                        </div>
+                        <div class="pipeline-status">
+                            <div class="pipeline-progress-container">
+                                <div class="pipeline-labels">
+                                    <span>PDF Ingestion & OCR</span>
+                                    <span class="pipeline-val">99.9% Acc</span>
+                                </div>
+                                <div class="pipeline-bar-bg">
+                                    <div class="pipeline-bar-fill" style="width: 99.9%;"></div>
+                                </div>
+                            </div>
+                            <div class="pipeline-progress-container" style="margin-top: 0.4rem;">
+                                <div class="pipeline-labels">
+                                    <span>NetSuite ERP Sync</span>
+                                    <span class="pipeline-val">100% Completed</span>
+                                </div>
+                                <div class="pipeline-bar-bg">
+                                    <div class="pipeline-bar-fill animated-bar" style="width: 100%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="kpi-grid">
+                            <div class="kpi-card">
+                                <span class="kpi-num">-92%</span>
+                                <span class="kpi-label">Processing Time</span>
+                            </div>
+                            <div class="kpi-card">
+                                <span class="kpi-num" style="color: #4F46E5;">+142%</span>
+                                <span class="kpi-label">Throughput</span>
+                            </div>
+                            <div class="kpi-card" style="grid-column: span 2; padding: 0.3rem 0.6rem;">
+                                <div style="display:flex; justify-content:space-between; align-items:center; width: 100%;">
+                                    <span class="kpi-label" style="margin: 0;">Error Rate</span>
+                                    <span class="kpi-num-small">&lt;0.02%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Widget 3: Social Post Scheduler -->
+                    <div class="dashboard-card scheduler-widget">
+                        <div class="widget-header">
+                            <span class="widget-title">📅 Social Scheduler</span>
+                            <span class="status-badge" style="background: rgba(79, 70, 229, 0.1); color: var(--accent-indigo);">Autonomous Queue</span>
+                        </div>
+                        <div class="scheduler-queue">
+                            <div class="queue-item">
+                                <div class="queue-platform">🐦 X / Twitter</div>
+                                <div class="queue-time">Sync Complete</div>
+                                <span class="queue-status published">Published</span>
+                            </div>
+                            <div class="queue-item">
+                                <div class="queue-platform">🔗 LinkedIn</div>
+                                <div class="queue-time">AP Launch</div>
+                                <span class="queue-status queued">Queued</span>
+                            </div>
+                            <div class="queue-item">
+                                <div class="queue-platform">📸 Instagram</div>
+                                <div class="queue-time">Media Complete</div>
+                                <span class="queue-status generating">Generating</span>
+                            </div>
+                        </div>
+                        <div class="timeline-visual">
+                            <div class="timeline-line"></div>
+                            <div class="timeline-node completed"></div>
+                            <div class="timeline-node active"></div>
+                            <div class="timeline-node pending"></div>
+                        </div>
+                    </div>
+
+                    <!-- Widget 4: AI Copywriter Generator -->
+                    <div class="dashboard-card content-widget">
+                        <div class="widget-header">
+                            <span class="widget-title">✍️ Copywriter Generator</span>
+                            <span class="status-badge" style="background: rgba(245, 158, 11, 0.1); color: #D97706;">Writing...</span>
+                        </div>
+                        <div class="text-editor-box">
+                            <div class="editor-header">
+                                <span class="dot-btn red"></span>
+                                <span class="dot-btn yellow"></span>
+                                <span class="dot-btn green"></span>
+                                <span class="editor-label">high_convert_hook.txt</span>
+                            </div>
+                            <div class="editor-body"><span id="typingHook"></span><span class="cursor-blink">|</span></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1365,7 +1876,7 @@
                 <div class="agency-meta">
                     <div class="meta-item">
                         <div class="meta-icon">📍</div>
-                        <div>Workflow Labs, Indiranagar, Bengaluru</div>
+                        <div>Workflow Labs, Global Operations</div>
                     </div>
                     <div class="meta-item">
                         <div class="meta-icon">✉️</div>
@@ -1458,8 +1969,7 @@
         </div>
     </div>
 
-    <!-- Three.js (3D Library) -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
     
     <!-- GSAP (Animation Library) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
@@ -1467,173 +1977,97 @@
 
     <!-- Site scripts -->
     <script>
+        // ── PREMIUM HERO DASHBOARD INTERACTIONS ──
+        const DASH_DIALOGUE = [
+            { sender: 'bot', text: 'Workflow Voice AI here. Ready to sync AP?' },
+            { sender: 'user', text: 'Yes, match Invoice #8843 for NetSuite.' },
+            { sender: 'bot', text: 'Fetching PO... Found matching quantities.' },
+            { sender: 'user', text: 'Perfect. Let\'s sync it.' },
+            { sender: 'bot', text: 'Database updated. 3-way match: 100% success.' }
+        ];
+
+        const COPY_HOOKS = [
+            'Eliminate manual data entry in 48 hours.',
+            'Stop losing 40% of operational capacity.',
+            'Seamless NetSuite & Salesforce integration.',
+            'Autonomous AI agents working 24/7 for you.'
+        ];
+
+        function startDashboardVoiceSim() {
+            const transcriptEl = document.getElementById('dashTranscript');
+            if (!transcriptEl) return;
+            
+            let index = 0;
+            transcriptEl.innerHTML = '';
+            
+            function nextPhrase() {
+                if (index >= DASH_DIALOGUE.length) {
+                    setTimeout(() => {
+                        transcriptEl.innerHTML = '';
+                        index = 0;
+                        nextPhrase();
+                    }, 3000);
+                    return;
+                }
+                
+                const phrase = DASH_DIALOGUE[index];
+                const bubble = document.createElement('div');
+                bubble.className = `dash-bubble ${phrase.sender}`;
+                bubble.textContent = phrase.text;
+                transcriptEl.appendChild(bubble);
+                transcriptEl.scrollTop = transcriptEl.scrollHeight;
+                
+                index++;
+                setTimeout(nextPhrase, 2500);
+            }
+            
+            nextPhrase();
+        }
+
+        function startDashboardTypingSim() {
+            const typingEl = document.getElementById('typingHook');
+            if (!typingEl) return;
+            
+            let hookIndex = 0;
+            let charIndex = 0;
+            let isDeleting = false;
+            
+            function type() {
+                const currentHook = COPY_HOOKS[hookIndex];
+                
+                if (!isDeleting) {
+                    typingEl.textContent = currentHook.substring(0, charIndex + 1);
+                    charIndex++;
+                    
+                    if (charIndex === currentHook.length) {
+                        isDeleting = true;
+                        setTimeout(type, 2000);
+                    } else {
+                        setTimeout(type, 50);
+                    }
+                } else {
+                    typingEl.textContent = currentHook.substring(0, charIndex - 1);
+                    charIndex--;
+                    
+                    if (charIndex === 0) {
+                        isDeleting = false;
+                        hookIndex = (hookIndex + 1) % COPY_HOOKS.length;
+                        setTimeout(type, 500);
+                    } else {
+                        setTimeout(type, 30);
+                    }
+                }
+            }
+            
+            type();
+        }
+
+        // Initialize dashboard simulations
+        startDashboardVoiceSim();
+        startDashboardTypingSim();
+
         // Register GSAP ScrollTrigger
         gsap.registerPlugin(ScrollTrigger);
-
-        // ── 3D KINETIC WAVE (THREE.JS) ──
-        let scene, camera, renderer, pointsMesh, animationFrameId;
-        const container = document.getElementById('threejs-canvas-container');
-        const fallback = document.getElementById('threejs-fallback');
-
-        // Check WebGL availability
-        function hasWebGL() {
-            try {
-                const canvas = document.createElement('canvas');
-                return !!(window.WebGLRenderingContext && (canvas.getContext('webgl') || canvas.getContext('experimental-webgl')));
-            } catch (e) {
-                return false;
-            }
-        }
-
-        if (hasWebGL()) {
-            initThreeJS();
-        } else {
-            fallback.style.opacity = '1';
-        }
-
-        function initThreeJS() {
-            const width = container.clientWidth || 500;
-            const height = container.clientHeight || 500;
-
-            scene = new THREE.Scene();
-
-            // Set up camera
-            camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 100);
-            camera.position.set(0, 8, 15);
-            camera.lookAt(0, 0, 0);
-
-            // Set up renderer
-            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-            renderer.setSize(width, height);
-            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-            container.appendChild(renderer.domElement);
-
-            // Grid Wave Geometry
-            const waveWidth = 20;
-            const waveDepth = 20;
-            const widthSegments = 20;
-            const depthSegments = 20;
-            
-            const geometry = new THREE.PlaneGeometry(waveWidth, waveDepth, widthSegments, depthSegments);
-            geometry.rotateX(-Math.PI / 2); // Lay horizontal
-
-            // Generate glowing circle texture
-            function createCircleTexture() {
-                const canvas = document.createElement('canvas');
-                canvas.width = 16;
-                canvas.height = 16;
-                const ctx = canvas.getContext('2d');
-                const gradient = ctx.createRadialGradient(8, 8, 0, 8, 8, 8);
-                gradient.addColorStop(0, 'rgba(255, 255, 255, 1)');
-                gradient.addColorStop(0.3, 'rgba(99, 102, 241, 0.8)'); // Violet/indigo glow edge
-                gradient.addColorStop(1, 'rgba(99, 102, 241, 0)');
-                ctx.fillStyle = gradient;
-                ctx.fillRect(0, 0, 16, 16);
-                return new THREE.CanvasTexture(canvas);
-            }
-
-            // Vertices light dots material with premium glow properties
-            const pointsMaterial = new THREE.PointsMaterial({
-                color: 0x6366F1, // Violet
-                size: 0.35,
-                map: createCircleTexture(),
-                blending: THREE.AdditiveBlending,
-                transparent: true,
-                opacity: 0.8,
-                depthWrite: false
-            });
-
-            pointsMesh = new THREE.Points(geometry, pointsMaterial);
-            scene.add(pointsMesh);
-
-            // Ambient lighting
-            const ambientLight = new THREE.AmbientLight(0xFFFFFF, 0.7);
-            scene.add(ambientLight);
-
-            // Point lighting with metallic highlight capabilities
-            const pointLight1 = new THREE.PointLight(0x4F46E5, 2.5, 40);
-            pointLight1.position.set(5, 8, 5);
-            scene.add(pointLight1);
-
-            const pointLight2 = new THREE.PointLight(0x06B6D4, 2, 40);
-            pointLight2.position.set(-5, 8, -5);
-            scene.add(pointLight2);
-
-            // Track mouse interactions
-            let mouse = { x: 0, y: 0, targetX: 0, targetY: 0 };
-
-            window.addEventListener('mousemove', (e) => {
-                const rect = container.getBoundingClientRect();
-                if (
-                    e.clientX >= rect.left && e.clientX <= rect.right &&
-                    e.clientY >= rect.top && e.clientY <= rect.bottom
-                ) {
-                    // Normalize mouse coordinates inside container
-                    mouse.targetX = ((e.clientX - rect.left) / rect.width) * 2 - 1;
-                    mouse.targetY = -((e.clientY - rect.top) / rect.height) * 2 + 1;
-                }
-            });
-
-            const clock = new THREE.Clock();
-
-            // Render animate loop
-            function renderLoop() {
-                animationFrameId = requestAnimationFrame(renderLoop);
-
-                const time = clock.getElapsedTime() * 0.4;
-
-                // Interpolate mouse coordinates for fluid dampening
-                mouse.x += (mouse.targetX - mouse.x) * 0.05;
-                mouse.y += (mouse.targetY - mouse.y) * 0.05;
-
-                // Move camera slightly based on mouse
-                camera.position.x = mouse.x * 2;
-                camera.lookAt(0, 0, 0);
-
-                // Modify grid vertices to construct wave ripples
-                const positionAttribute = geometry.attributes.position;
-                
-                for (let i = 0; i < positionAttribute.count; i++) {
-                    const x = positionAttribute.getX(i);
-                    const z = positionAttribute.getZ(i);
-
-                    // Math distance calculations
-                    const distFromCenter = Math.sqrt(x * x + z * z);
-                    
-                    // Wave equations
-                    let y = Math.sin(x * 0.25 + time) * Math.cos(z * 0.25 + time) * 1.2;
-                    
-                    // Add micro ripples
-                    y += Math.sin(x * 0.6 - time * 1.5) * 0.25;
-
-                    // Mouse warp displacement force
-                    const mouseDist = Math.sqrt(Math.pow(x - mouse.x * 8, 2) + Math.pow(z - mouse.y * 8, 2));
-                    const influence = Math.max(0, 5 - mouseDist) * 0.35;
-                    y += Math.sin(time * 3 + distFromCenter) * influence;
-
-                    // Dampen edges to prevent boundary jank
-                    const edgeDampening = Math.exp(-distFromCenter * 0.06);
-                    y *= edgeDampening;
-
-                    positionAttribute.setY(i, y);
-                }
-
-                positionAttribute.needsUpdate = true;
-                renderer.render(scene, camera);
-            }
-
-            renderLoop();
-
-            // Resize handler
-            window.addEventListener('resize', () => {
-                const w = container.clientWidth;
-                const h = container.clientHeight;
-                camera.aspect = w / h;
-                camera.updateProjectionMatrix();
-                renderer.setSize(w, h);
-            });
-        }
-
 
         // ── 3D CARD HOVER TILT MECHANISM ──
         document.querySelectorAll('.tilt-card').forEach(card => {
