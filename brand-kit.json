@@ -68,15 +68,15 @@
     "business_name": "Workflow Labs",
     "category": "Software Company / IT Services",
     "address": {
-      "street": "Koramangala",
+      "street": "Whiterose Layout, Whitefield",
       "city": "Bengaluru",
       "state": "Karnataka",
       "pincode": "560066",
       "country": "India"
     },
     "coordinates": {
-      "lat": 12.9753,
-      "lon": 77.591
+      "lat": 12.97,
+      "lon": 77.75
     },
     "phone": "+91-XXXXX-XXXXX",
     "website": "https://surajgzt-eng.github.io/Workflow-labs-website/",

@@ -1,88 +1,33 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 120" width="400" height="120">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 100" width="400" height="100">
   <defs>
-    <linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%">
+    <linearGradient id="gLogo" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#4f46e5"/>
-      <stop offset="50%" stop-color="#7c3aed"/>
-      <stop offset="100%" stop-color="#a855f7"/>
+      <stop offset="100%" stop-color="#7c3aed"/>
     </linearGradient>
-    <linearGradient id="g2" x1="0%" y1="100%" x2="100%" y2="0%">
+    <linearGradient id="gAccent" x1="0%" y1="0%" x2="100%" y2="0%">
       <stop offset="0%" stop-color="#6366f1"/>
-      <stop offset="100%" stop-color="#c084fc"/>
+      <stop offset="100%" stop-color="#a78bfa"/>
     </linearGradient>
-    <filter id="shadow">
-      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#4f46e5" flood-opacity="0.3"/>
-    </filter>
-    <filter id="glow">
-      <feGaussianBlur stdDeviation="3" result="blur"/>
-      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-    </filter>
   </defs>
 
-  <!-- Background subtle dot pattern -->
-  <pattern id="dots" x="0" y="0" width="8" height="8" patternUnits="userSpaceOnUse">
-    <circle cx="1" cy="1" r="0.5" fill="#e0e7ff" opacity="0.5"/>
-  </pattern>
-  <rect width="400" height="120" fill="url(#dots)" rx="16"/>
-
-  <!-- Animated geometric W shape -->
-  <g filter="url(#shadow)">
-    <!-- Left vertical bar -->
-    <rect x="20" y="25" width="10" height="70" rx="5" fill="url(#g1)">
-      <animate attributeName="height" values="70;75;70" dur="3s" repeatCount="indefinite"/>
-      <animate attributeName="y" values="25;20;25" dur="3s" repeatCount="indefinite"/>
-    </rect>
-    <!-- Left diagonal 1 -->
-    <rect x="30" y="55" width="10" height="70" rx="5" fill="url(#g1)" transform="rotate(-40, 35, 55)">
-      <animate attributeName="opacity" values="1;0.7;1" dur="4s" repeatCount="indefinite"/>
-    </rect>
-    <!-- Center V peak -->
-    <polygon points="75,30 85,30 95,95 85,95" fill="url(#g1)" rx="5" opacity="0.9">
-      <animate attributeName="opacity" values="0.9;0.6;0.9" dur="5s" repeatCount="indefinite"/>
-    </polygon>
-    <rect x="85" y="30" width="10" height="65" rx="5" fill="url(#g1)">
-      <animate attributeName="height" values="65;70;65" dur="3s" repeatCount="indefinite"/>
-    </rect>
-    <!-- Right diagonal 2 -->
-    <rect x="95" y="25" width="10" height="70" rx="5" fill="url(#g1)" transform="rotate(40, 100, 95)">
-      <animate attributeName="opacity" values="1;0.7;1" dur="4s" repeatCount="indefinite"/>
-    </rect>
-    <!-- Right vertical bar -->
-    <rect x="110" y="25" width="10" height="70" rx="5" fill="url(#g1)">
-      <animate attributeName="height" values="70;65;70" dur="3s" repeatCount="indefinite"/>
-      <animate attributeName="y" values="25;30;25" dur="3s" repeatCount="indefinite"/>
-    </rect>
+  <!-- Icon: Flowing W mark - represents workflow/automation flow -->
+  <g transform="translate(10, 10)">
+    <!-- Outer rounded square -->
+    <rect x="0" y="0" width="80" height="80" rx="18" fill="url(#gLogo)"/>
+    
+    <!-- White W with flow arrow -->
+    <path d="M20 55 L30 25 L40 45 L50 25 L60 55" 
+          fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    
+    <!-- Flow arrow (the automation concept) -->
+    <path d="M58 52 L65 58 L58 64" 
+          fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+    
+    <!-- Small accent dot -->
+    <circle cx="62" cy="50" r="3" fill="#a78bfa"/>
   </g>
 
-  <!-- Orbital ring -->
-  <circle cx="65" cy="60" r="50" fill="none" stroke="url(#g2)" stroke-width="1.5" opacity="0.15">
-    <animateTransform attributeName="transform" type="rotate" from="0 65 60" to="360 65 60" dur="10s" repeatCount="indefinite"/>
-  </circle>
-  <circle cx="65" cy="60" r="40" fill="none" stroke="url(#g2)" stroke-width="1" opacity="0.1">
-    <animateTransform attributeName="transform" type="rotate" from="360 65 60" to="0 65 60" dur="8s" repeatCount="indefinite"/>
-  </circle>
-
-  <!-- Floating particles -->
-  <circle cx="25" cy="18" r="2" fill="#a855f7" opacity="0.4">
-    <animate attributeName="cy" values="18;10;18" dur="2s" repeatCount="indefinite"/>
-    <animate attributeName="opacity" values="0.4;0.1;0.4" dur="2s" repeatCount="indefinite"/>
-  </circle>
-  <circle cx="120" cy="105" r="2.5" fill="#6366f1" opacity="0.3">
-    <animate attributeName="cy" values="105;98;105" dur="2.5s" repeatCount="indefinite"/>
-  </circle>
-  <circle cx="45" cy="108" r="1.5" fill="#c084fc" opacity="0.3">
-    <animate attributeName="cy" values="108;102;108" dur="1.8s" repeatCount="indefinite"/>
-  </circle>
-
-  <!-- Text -->
-  <text x="145" y="52" font-family="'Plus Jakarta Sans',-apple-system,sans-serif" font-weight="800" font-size="28" fill="#1a1a2e" letter-spacing="-0.5">Workflow</text>
-  <text x="145" y="82" font-family="'Plus Jakarta Sans',-apple-system,sans-serif" font-weight="600" font-size="16" fill="#6366f1" letter-spacing="4">LABS</text>
-
-  <!-- Underline streak -->
-  <line x1="145" y1="90" x2="145" y2="90" stroke="url(#g1)" stroke-width="2" stroke-linecap="round">
-    <animate attributeName="x2" values="145;290;145" dur="3s" repeatCount="indefinite"/>
-    <animate attributeName="opacity" values="1;0.3;1" dur="3s" repeatCount="indefinite"/>
-  </line>
-
-  <!-- Tagline -->
-  <text x="145" y="105" font-family="'Inter',-apple-system,sans-serif" font-weight="400" font-size="10" fill="#a0a0b8" letter-spacing="2">AUTOMATE · SCALE · GROW</text>
+  <!-- Wordmark -->
+  <text x="108" y="42" font-family="'Inter',-apple-system,BlinkMacSystemFont,sans-serif" font-weight="700" font-size="28" fill="#1a1a2e" letter-spacing="-0.02em">Workflow</text>
+  <text x="108" y="72" font-family="'Inter',-apple-system,BlinkMacSystemFont,sans-serif" font-weight="600" font-size="14" fill="#6366f1" letter-spacing="0.35em">LABS</text>
 </svg>
