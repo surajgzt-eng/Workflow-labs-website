@@ -413,7 +413,7 @@
             border-radius: 32px;
             padding: 3.5rem 2.5rem;
             box-shadow: 0 20px 40px rgba(15, 23, 42, 0.03), 0 1px 2px rgba(15, 23, 42, 0.02);
-            transition: var(--transition-smooth);
+            transition: border-color 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
             transform-style: preserve-3d;
             perspective: 1000px;
         }
@@ -766,10 +766,14 @@
             border-radius: 32px;
             padding: 3.5rem 2.5rem;
             box-shadow: 0 20px 40px rgba(15, 23, 42, 0.03), 0 1px 2px rgba(15, 23, 42, 0.02);
-            transition: var(--transition-smooth);
+            transition: border-color 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+        }
+
+        .blueprint-card.revealed {
+            transition: border-color 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .blueprint-card:hover {
@@ -1227,6 +1231,7 @@
         // ── 3D CARD HOVER TILT MECHANISM ──
         document.querySelectorAll('.tilt-card').forEach(card => {
             card.addEventListener('mousemove', e => {
+                card.style.transition = 'none';
                 const rect = card.getBoundingClientRect();
                 const x = e.clientX - rect.left;
                 const y = e.clientY - rect.top;
@@ -1241,6 +1246,7 @@
             });
 
             card.addEventListener('mouseleave', () => {
+                card.style.transition = 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)';
                 card.style.transform = 'rotateX(0deg) rotateY(0deg) translateY(0)';
             });
         });
@@ -1300,7 +1306,8 @@
             y: 50,
             duration: 1,
             stagger: 0.15,
-            ease: "power4.out"
+            ease: "power4.out",
+            clearProps: "opacity,transform"
         });
 
         // Blueprints Section Reveal
@@ -1323,7 +1330,11 @@
             y: 50,
             duration: 1,
             stagger: 0.1,
-            ease: "power4.out"
+            ease: "power4.out",
+            clearProps: "opacity,transform",
+            onComplete: () => {
+                document.querySelectorAll('.blueprint-card').forEach(card => card.classList.add('revealed'));
+            }
         });
 
         // Proof Section Box Reveal
@@ -1686,6 +1697,8 @@
 
         // Initialize Kinetic Mesh
         initKineticMesh();
+
+        ScrollTrigger.refresh();
     </script>
 </body>
 </html>
