@@ -1,27 +1,28 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 100" width="360" height="100">
   <defs>
-    <linearGradient id="gC" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#7dd3fc"/>
-      <stop offset="100%" stop-color="#38bdf8"/>
+    <linearGradient id="gP" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#818cf8"/>
+      <stop offset="100%" stop-color="#4f46e5"/>
     </linearGradient>
   </defs>
 
-  <!-- Icon: no outer circle, just the dark node -->
   <g transform="translate(12, 12)">
     <rect x="0" y="0" width="76" height="76" rx="16" fill="#0f172a"/>
-    <g transform="translate(38, 38)" fill="none" stroke="url(#gC)" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
-      <!-- Main vertical stem -->
-      <line x1="0" y1="0" x2="0" y2="-20"/>
-      <!-- Triangle peak -->
-      <polygon points="0,-30 5.5,-20 -5.5,-20" fill="url(#gC)" stroke="none"/>
-      <!-- Left branch -->
+    <g transform="translate(38, 38)" fill="none" stroke="url(#gP)" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
+      <!-- Vertical stem goes all the way to arrow tip -->
+      <line x1="0" y1="0" x2="0" y2="-28"/>
+      <!-- Left arrow wing -->
+      <line x1="0" y1="-22" x2="-9" y2="-14"/>
+      <!-- Right arrow wing -->
+      <line x1="0" y1="-22" x2="9" y2="-14"/>
+      <!-- Left branch from center -->
       <line x1="0" y1="0" x2="-17" y2="21"/>
-      <!-- Right branch -->
+      <!-- Right branch from center -->
       <line x1="0" y1="0" x2="17" y2="21"/>
       <!-- Left node -->
-      <circle cx="-17" cy="21" r="3.8" fill="url(#gC)" stroke="none"/>
+      <circle cx="-17" cy="21" r="3.8" fill="url(#gP)" stroke="none"/>
       <!-- Right node -->
-      <circle cx="17" cy="21" r="3.8" fill="url(#gC)" stroke="none"/>
+      <circle cx="17" cy="21" r="3.8" fill="url(#gP)" stroke="none"/>
     </g>
   </g>
 
