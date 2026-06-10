@@ -1,0 +1,135 @@
+{
+  "brand": {
+    "name": "Workflow Labs",
+    "tagline": "Automate. Scale. Grow.",
+    "description": "AI-powered business automation studio. We build custom automation for lead generation, cold calls, WhatsApp outreach, and more."
+  },
+  "instagram": {
+    "username": "workflowlabs",
+    "display_name": "Workflow Labs",
+    "bio": "🤖 AI Automation for Business\n⚡ Lead Gen · Cold Calls · WhatsApp · Emails\n🎯 We automate the repetitive. You focus on growth.\n👇 Free audit →",
+    "link": "https://surajgzt-eng.github.io/Workflow-labs-website/",
+    "category": "Business & Technology",
+    "contact_email": "hello@workflowlabs.in",
+    "contact_phone": "+91-XXXXX-XXXXX",
+    "address": "Bengaluru, Karnataka, India",
+    "posts": [
+      {
+        "type": "Carousel",
+        "headline": "Stop doing this manually 🤯",
+        "slides": [
+          "Slide 1: Image showing a person overwhelmed with screens/monitors",
+          "Slide 2: 'Cold calling 100 leads/day?' → 'AI does it in 10 min'",
+          "Slide 3: 'Writing emails one by one?' → 'Automated sequences'",
+          "Slide 4: 'WhatsApp outreach?' → 'Personalised at scale'",
+          "Slide 5: CTA: 'Get your free audit → link in bio'"
+        ]
+      },
+      {
+        "type": "Reel",
+        "headline": "AI Voice Agent calling a lead in real-time 🎧",
+        "description": "Watch how our AI voice agent handles objections, answers questions, and books meetings — all without a human."
+      },
+      {
+        "type": "Post",
+        "headline": "10,000+ hours saved for our clients ⏱️",
+        "description": "That's 416 days of human work returned to founders. What would you do with an extra year?"
+      },
+      {
+        "type": "Carousel",
+        "headline": "The 4-step automation framework 🏗️",
+        "slides": [
+          "Step 1: Discovery call (15 min)",
+          "Step 2: We build a free prototype",
+          "Step 3: Test & refine with your data",
+          "Step 4: Deploy & save hours daily"
+        ]
+      },
+      {
+        "type": "Post",
+        "headline": "Client win: 3x lead generation in 2 weeks 📈",
+        "description": "A Bengaluru agency was spending 20 hrs/week on manual lead gen. We automated it. Now they focus on closing."
+      },
+      {
+        "type": "Reel",
+        "headline": "Behind the scenes: Building an automation pipeline 🛠️",
+        "description": "Quick look at how we design and deploy custom automation workflows for our clients."
+      }
+    ],
+    "story_highlights": [
+      "🤖 Automations",
+      "⚡ Case Studies",
+      "🎥 Demos",
+      "📞 AI Calls",
+      "📋 Process"
+    ]
+  },
+  "google_business": {
+    "business_name": "Workflow Labs",
+    "category": "Software Company / IT Services",
+    "address": {
+      "street": "Koramangala",
+      "city": "Bengaluru",
+      "state": "Karnataka",
+      "pincode": "560066",
+      "country": "India"
+    },
+    "coordinates": {
+      "lat": 12.9753,
+      "lon": 77.591
+    },
+    "phone": "+91-XXXXX-XXXXX",
+    "website": "https://surajgzt-eng.github.io/Workflow-labs-website/",
+    "hours": {
+      "monday": "9:00 AM – 8:00 PM",
+      "tuesday": "9:00 AM – 8:00 PM",
+      "wednesday": "9:00 AM – 8:00 PM",
+      "thursday": "9:00 AM – 8:00 PM",
+      "friday": "9:00 AM – 8:00 PM",
+      "saturday": "10:00 AM – 4:00 PM",
+      "sunday": "Closed"
+    },
+    "description": "Workflow Labs is an AI automation studio based in Bengaluru. We help businesses eliminate repetitive tasks through custom automation — lead generation, cold call AI agents, WhatsApp outreach, email campaigns, and more. Get a free prototype before you pay.",
+    "services": [
+      "Lead Generation Automation",
+      "AI Cold Call Agents",
+      "WhatsApp Outreach Automation",
+      "Email Campaign Automation",
+      "Content Creation Automation",
+      "Custom Workflow Automation"
+    ],
+    "attributes": {
+      "free_consultation": true,
+      "free_prototype": true,
+      "online_estimates": true,
+      "no_contract_required": true
+    },
+    "photos": [
+      {
+        "category": "Cover Photo",
+        "description": "Workflow Labs branded hero image with AI/automation theme"
+      },
+      {
+        "category": "Team",
+        "description": "Team working on automation dashboards"
+      },
+      {
+        "category": "Services",
+        "description": "AI call agent interface screenshot"
+      },
+      {
+        "category": "Services",
+        "description": "Lead generation dashboard showing analytics"
+      },
+      {
+        "category": "Workspace",
+        "description": "Modern co-working space in Bengaluru"
+      }
+    ],
+    "reviews_goal": [
+      "Request initial reviews from first 5 clients",
+      "Respond to every review within 24 hours",
+      "Encourage photo reviews showing results"
+    ]
+  }
+}

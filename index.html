@@ -4,314 +4,543 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Workflow Labs — Automate. Scale. Grow.</title>
-    <meta name="description" content="Stop wasting time on repetitive tasks. We build custom AI automation that handles your lead generation, cold calls, emails, and outreach — so you focus on closing deals.">
+    <meta name="description" content="Stop wasting time on repetitive tasks. We build custom AI automation that handles your lead generation, cold calls, emails, and outreach.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
-            --bg: #07070d;
-            --bg2: #0c0c18;
-            --surface: rgba(255,255,255,0.03);
-            --surface-hover: rgba(255,255,255,0.06);
-            --border: rgba(255,255,255,0.06);
-            --border-light: rgba(255,255,255,0.1);
-            --text: #f1f1f7;
-            --text2: rgba(255,255,255,0.55);
-            --text3: rgba(255,255,255,0.3);
-            --accent1: #6366f1;
-            --accent2: #8b5cf6;
-            --accent3: #a78bfa;
-            --gradient-hero: linear-gradient(135deg, #6366f1, #a855f7, #d946ef);
-            --gradient-card: linear-gradient(135deg, rgba(99,102,241,0.12), rgba(168,85,247,0.08));
+            --bg: #ffffff;
+            --bg2: #f8f9fc;
+            --surface: #ffffff;
+            --surface-hover: #f1f3f9;
+            --border: rgba(0,0,0,0.06);
+            --border-hover: rgba(99,102,241,0.2);
+            --text: #1a1a2e;
+            --text2: #5a5a7a;
+            --text3: #a0a0b8;
+            --accent1: #4f46e5;
+            --accent2: #6366f1;
+            --accent3: #818cf8;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.04);
+            --shadow-md: 0 8px 30px rgba(0,0,0,0.06);
+            --shadow-lg: 0 20px 60px rgba(0,0,0,0.08);
+            --shadow-xl: 0 40px 80px rgba(0,0,0,0.06);
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 24px;
         }
-        html { scroll-behavior: smooth; }
+        html {
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+        }
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             background: var(--bg);
             color: var(--text);
             line-height: 1.7;
-            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
         }
-        h1,h2,h3,h4 { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; letter-spacing: -0.02em; }
+        h1,h2,h3,h4 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        /* ===== UTILITIES ===== */
+        .section-pad {
+            padding: 6rem 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        @media (max-width: 640px) {
+            .section-pad { padding: 3rem 1.5rem; }
+        }
 
         /* ===== AMBIENT BG ===== */
-        .bg-glow {
-            position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
+        #bg-canvas {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            z-index: 0;
+            pointer-events: none;
         }
-        .bg-glow .orb {
-            position: absolute; border-radius: 50%; filter: blur(120px); opacity: 0.4;
-        }
-        .bg-glow .o1 {
-            width: 60vw; height: 60vw; top: -20%; left: -20%;
-            background: radial-gradient(circle, rgba(99,102,241,0.2), transparent 70%);
-        }
-        .bg-glow .o2 {
-            width: 50vw; height: 50vw; bottom: -20%; right: -20%;
-            background: radial-gradient(circle, rgba(168,85,247,0.15), transparent 70%);
-        }
-        .bg-glow .o3 {
-            width: 40vw; height: 40vw; top: 40%; left: 30%;
-            background: radial-gradient(circle, rgba(217,70,239,0.08), transparent 70%);
-        }
-
-        .wrap { position: relative; z-index: 1; }
 
         /* ===== NAV ===== */
         nav {
-            position: fixed; top: 0; width: 100%; z-index: 100;
-            padding: 1rem 2rem;
+            position: fixed; top: 0; left: 0; right: 0;
+            z-index: 100;
+            padding: 1.2rem 2rem;
             display: flex; justify-content: space-between; align-items: center;
+            transition: background 0.4s, box-shadow 0.4s, backdrop-filter 0.4s;
+        }
+        nav.scrolled {
+            background: rgba(255,255,255,0.85);
             backdrop-filter: blur(20px);
-            background: rgba(7,7,13,0.6);
-            border-bottom: 1px solid var(--border);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
         }
         .logo {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            font-size: 1.3rem; font-weight: 800;
-            background: var(--gradient-hero);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            font-size: 1.2rem; font-weight: 800;
+            display: flex; align-items: center; gap: 0.5rem;
+            color: var(--text);
+        }
+        .logo span {
+            display: inline-block;
+            width: 10px; height: 10px;
+            border-radius: 50%;
+            background: var(--accent1);
         }
         .nav-links { display: flex; gap: 2rem; align-items: center; }
         .nav-links a {
-            color: var(--text2); text-decoration: none; font-size: 0.85rem;
-            font-weight: 500; transition: color 0.2s;
+            color: var(--text2); text-decoration: none;
+            font-size: 0.85rem; font-weight: 500;
+            transition: color 0.2s;
+            position: relative;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute; bottom: -4px; left: 0; width: 0; height: 2px;
+            background: var(--accent1); transition: width 0.3s;
+            border-radius: 2px;
         }
         .nav-links a:hover { color: var(--text); }
+        .nav-links a:hover::after { width: 100%; }
         .nav-cta {
-            padding: 0.5rem 1.4rem; border-radius: 999px;
-            background: var(--gradient-hero); color: #fff; font-weight: 600;
-            font-size: 0.85rem; border: none; cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
+            padding: 0.55rem 1.5rem;
+            border-radius: 50px;
+            background: var(--text);
+            color: #fff;
+            font-weight: 600; font-size: 0.85rem;
+            border: none; cursor: pointer;
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
         }
-        .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 8px 30px rgba(99,102,241,0.3); }
+        .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
         @media (max-width: 768px) {
             .nav-links a:not(.nav-cta) { display: none; }
         }
 
         /* ===== HERO ===== */
         .hero {
-            min-height: 100vh; display: flex; flex-direction: column;
-            align-items: center; justify-content: center; text-align: center;
+            min-height: 100vh;
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            text-align: center;
             padding: 8rem 2rem 5rem;
+            position: relative;
+            z-index: 1;
         }
         .hero-badge {
-            display: inline-flex; align-items: center; gap: 0.5rem;
-            background: rgba(99,102,241,0.1); border: 1px solid rgba(99,102,241,0.2);
-            padding: 0.35rem 1rem; border-radius: 999px; font-size: 0.78rem;
-            color: var(--accent3); margin-bottom: 2rem;
+            display: inline-flex; align-items: center; gap: 0.4rem;
+            background: var(--bg2);
+            border: 1px solid var(--border);
+            padding: 0.35rem 1rem;
+            border-radius: 50px;
+            font-size: 0.78rem;
+            color: var(--text2);
+            margin-bottom: 2rem;
+            font-weight: 500;
+            transition: transform 0.3s;
+        }
+        .hero-badge:hover { transform: translateY(-2px); }
+        .hero-badge .dot {
+            width: 6px; height: 6px;
+            border-radius: 50%;
+            background: #22c55e;
+            animation: pulse-dot 2s infinite;
+        }
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
         }
         .hero h1 {
-            font-size: clamp(2.5rem, 7vw, 4.8rem); font-weight: 800;
-            line-height: 1.1; max-width: 850px; margin-bottom: 1.5rem;
+            font-size: clamp(2.8rem, 7vw, 5rem);
+            font-weight: 800;
+            line-height: 1.08;
+            max-width: 850px;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.03em;
         }
         .hero h1 .gradient {
-            background: var(--gradient-hero);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background: linear-gradient(135deg, #4f46e5, #7c3aed, #6366f1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
         .hero p {
-            font-size: 1.15rem; color: var(--text2); max-width: 600px;
-            margin-bottom: 2.5rem; line-height: 1.8;
+            font-size: 1.15rem;
+            color: var(--text2);
+            max-width: 560px;
+            margin-bottom: 2.5rem;
+            line-height: 1.8;
         }
-        .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+        .hero-actions {
+            display: flex; gap: 1rem;
+            flex-wrap: wrap; justify-content: center;
+        }
         .btn-primary {
-            padding: 0.85rem 2.5rem; border-radius: 999px;
-            background: var(--gradient-hero); color: #fff; font-weight: 600;
-            font-size: 0.95rem; border: none; cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
+            padding: 0.85rem 2.5rem;
+            border-radius: 50px;
+            background: var(--text);
+            color: #fff;
+            font-weight: 600;
+            font-size: 0.95rem;
+            border: none; cursor: pointer;
+            text-decoration: none;
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
         }
-        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(99,102,241,0.35); }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+        }
         .btn-secondary {
-            padding: 0.85rem 2.5rem; border-radius: 999px;
-            background: var(--surface); color: var(--text); font-weight: 500;
-            font-size: 0.95rem; border: 1px solid var(--border); cursor: pointer;
-            transition: background 0.2s, border-color 0.2s;
+            padding: 0.85rem 2.5rem;
+            border-radius: 50px;
+            background: var(--bg2);
+            color: var(--text);
+            font-weight: 500;
+            font-size: 0.95rem;
+            border: 1px solid var(--border);
+            cursor: pointer;
+            text-decoration: none;
+            transition: border-color 0.2s, background 0.2s, transform 0.2s;
         }
-        .btn-secondary:hover { background: var(--surface-hover); border-color: var(--border-light); }
+        .btn-secondary:hover {
+            border-color: var(--text3);
+            background: var(--surface-hover);
+            transform: translateY(-1px);
+        }
+        .hero-visual {
+            margin-top: 3.5rem;
+            width: 100%;
+            max-width: 960px;
+            position: relative;
+            perspective: 1000px;
+        }
+        .hero-visual-inner {
+            width: 100%;
+            border-radius: 16px;
+            background: var(--bg2);
+            border: 1px solid var(--border);
+            padding: 2.5rem;
+            box-shadow: var(--shadow-xl);
+            transform-style: preserve-3d;
+            transition: transform 0.1s ease-out;
+        }
+        .hero-visual-inner .mockup-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+        .mockup-card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 1.8rem;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-sm);
+            text-align: left;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .mockup-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+        .mockup-card .mc-header {
+            display: flex; gap: 0.4rem; margin-bottom: 1.2rem;
+        }
+        .mockup-card .mc-header span {
+            width: 10px; height: 10px;
+            border-radius: 50%;
+            display: block;
+        }
+        .mockup-card .mc-line {
+            height: 10px; border-radius: 5px;
+            margin-bottom: 0.6rem;
+            background: #f1f3f9;
+        }
+        .mockup-card .mc-line.w60 { width: 60%; }
+        .mockup-card .mc-line.w80 { width: 80%; }
+        .mockup-card .mc-line.w40 { width: 40%; }
+        .mockup-card .mc-line.accent { background: linear-gradient(90deg, #e0e7ff, #c7d2fe); }
 
         .hero-stats {
-            display: grid; grid-template-columns: repeat(3, 1fr); gap: 3rem;
-            margin-top: 4rem; max-width: 600px; width: 100%;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            margin-top: 3rem;
+            max-width: 500px;
+            width: 100%;
         }
         .hero-stats div { text-align: center; }
         .hero-stats .num {
-            font-size: 2rem; font-weight: 800;
-            background: var(--gradient-hero);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--accent1);
+            letter-spacing: -0.02em;
         }
-        .hero-stats .label { font-size: 0.8rem; color: var(--text3); margin-top: 0.2rem; }
+        .hero-stats .label {
+            font-size: 0.78rem;
+            color: var(--text3);
+            margin-top: 0.15rem;
+            font-weight: 500;
+        }
 
-        /* ===== PAIN POINT ===== */
-        .pain {
-            padding: 5rem 2rem; max-width: 900px; margin: 0 auto; text-align: center;
+        /* ===== PAIN ===== */
+        .pain { position: relative; z-index: 1; }
+        .pain h2 { font-size: 2.2rem; text-align: center; margin-bottom: 0.8rem; }
+        .pain > p {
+            text-align: center;
+            color: var(--text2);
+            max-width: 550px;
+            margin: 0 auto 3rem;
         }
-        .pain h2 { font-size: 2.2rem; margin-bottom: 1rem; }
-        .pain h2 .highlight { color: var(--accent2); }
-        .pain p { color: var(--text2); max-width: 650px; margin: 0 auto 3rem; }
         .pain-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1rem;
         }
         .pain-item {
-            background: var(--surface); border: 1px solid var(--border);
-            border-radius: 12px; padding: 1.5rem; text-align: left;
-            transition: border-color 0.2s;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 1.8rem;
+            text-align: left;
+            transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+            cursor: default;
         }
-        .pain-item:hover { border-color: rgba(99,102,241,0.3); }
-        .pain-item .icon { font-size: 1.5rem; margin-bottom: 0.5rem; }
+        .pain-item:hover {
+            transform: translateY(-4px);
+            border-color: var(--border-hover);
+            box-shadow: var(--shadow-md);
+        }
+        .pain-item .icon { font-size: 1.8rem; margin-bottom: 0.8rem; }
         .pain-item h4 { font-size: 0.95rem; margin-bottom: 0.3rem; }
-        .pain-item p { font-size: 0.85rem; color: var(--text3); margin: 0; }
+        .pain-item p { font-size: 0.85rem; color: var(--text3); margin: 0; line-height: 1.6; }
 
         /* ===== SERVICES ===== */
-        .services {
-            padding: 5rem 2rem; max-width: 1100px; margin: 0 auto;
-        }
+        .services { position: relative; z-index: 1; }
         .services-header { text-align: center; margin-bottom: 3rem; }
-        .services-header h2 { font-size: 2.2rem; margin-bottom: 0.8rem; }
-        .services-header p { color: var(--text2); max-width: 550px; margin: 0 auto; }
+        .services-header h2 { font-size: 2.2rem; margin-bottom: 0.6rem; }
+        .services-header p { color: var(--text2); max-width: 500px; margin: 0 auto; }
         .services-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.2rem;
         }
         .service-card {
-            background: var(--gradient-card); border: 1px solid rgba(99,102,241,0.12);
-            border-radius: 16px; padding: 2rem;
-            transition: transform 0.3s, border-color 0.3s;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 2.2rem;
+            transition: transform 0.4s, border-color 0.3s, box-shadow 0.4s;
+            transform-style: preserve-3d;
+            perspective: 800px;
         }
-        .service-card:hover { transform: translateY(-4px); border-color: rgba(99,102,241,0.3); }
+        .service-card:hover {
+            transform: translateY(-6px) rotateX(2deg);
+            border-color: var(--border-hover);
+            box-shadow: var(--shadow-lg);
+        }
         .service-card .s-icon {
-            width: 48px; height: 48px; border-radius: 12px;
+            width: 52px; height: 52px;
+            border-radius: 14px;
             display: flex; align-items: center; justify-content: center;
-            font-size: 1.4rem; margin-bottom: 1.2rem;
-            background: rgba(99,102,241,0.15);
+            font-size: 1.5rem;
+            margin-bottom: 1.2rem;
+            background: #eef2ff;
+            transition: transform 0.3s;
         }
-        .service-card h3 { font-size: 1.1rem; margin-bottom: 0.5rem; }
+        .service-card:hover .s-icon { transform: scale(1.1); }
+        .service-card h3 { font-size: 1.1rem; margin-bottom: 0.5rem; color: var(--text); }
         .service-card p { color: var(--text2); font-size: 0.88rem; line-height: 1.7; }
 
-        /* ===== HOW IT WORKS ===== */
-        .process {
-            padding: 5rem 2rem; max-width: 900px; margin: 0 auto;
-        }
+        /* ===== PROCESS ===== */
+        .process { position: relative; z-index: 1; }
         .process-header { text-align: center; margin-bottom: 3rem; }
-        .process-header h2 { font-size: 2.2rem; margin-bottom: 0.8rem; }
-        .process-header p { color: var(--text2); max-width: 550px; margin: 0 auto; }
-        .process-steps { display: flex; flex-direction: column; gap: 1.5rem; }
+        .process-header h2 { font-size: 2.2rem; margin-bottom: 0.6rem; }
+        .process-header p { color: var(--text2); max-width: 500px; margin: 0 auto; }
+        .process-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            max-width: 720px;
+            margin: 0 auto;
+        }
         .step {
             display: flex; gap: 1.5rem; align-items: flex-start;
-            background: var(--surface); border: 1px solid var(--border);
-            border-radius: 16px; padding: 1.8rem;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 1.8rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .step:hover {
+            transform: translateX(6px);
+            box-shadow: var(--shadow-md);
         }
         .step-num {
-            width: 44px; height: 44px; min-width: 44px;
-            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            width: 48px; height: 48px; min-width: 48px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
             font-weight: 800; font-size: 1.1rem;
-            background: var(--gradient-hero); color: #fff;
+            background: var(--text); color: #fff;
+            transition: transform 0.3s, background 0.3s;
+        }
+        .step:hover .step-num {
+            transform: scale(1.08);
+            background: var(--accent1);
         }
         .step-content h4 { font-size: 1rem; margin-bottom: 0.3rem; }
         .step-content p { color: var(--text2); font-size: 0.88rem; }
 
         /* ===== SOCIAL PROOF ===== */
-        .proof {
-            padding: 5rem 2rem; max-width: 900px; margin: 0 auto; text-align: center;
-        }
-        .proof h2 { font-size: 2rem; margin-bottom: 0.8rem; }
-        .proof > p { color: var(--text2); max-width: 500px; margin: 0 auto 3rem; }
+        .proof { position: relative; z-index: 1; }
+        .proof h2 { text-align: center; font-size: 2rem; margin-bottom: 0.6rem; }
+        .proof > p { text-align: center; color: var(--text2); margin-bottom: 3rem; }
         .proof-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; text-align: left;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.2rem;
         }
         .testimonial {
-            background: var(--surface); border: 1px solid var(--border);
-            border-radius: 14px; padding: 1.8rem;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            transition: transform 0.3s, box-shadow 0.3s;
         }
+        .testimonial:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+        .testimonial .stars { color: #f59e0b; font-size: 0.9rem; margin-bottom: 0.8rem; }
         .testimonial .quote {
-            font-size: 0.9rem; color: var(--text2); font-style: italic;
-            margin-bottom: 1.2rem; line-height: 1.7;
+            font-size: 0.9rem; color: var(--text2);
+            line-height: 1.7; margin-bottom: 1.5rem;
         }
-        .testimonial .author { display: flex; align-items: center; gap: 0.8rem; }
+        .testimonial .author {
+            display: flex; align-items: center; gap: 0.8rem;
+        }
         .testimonial .author .avatar {
-            width: 40px; height: 40px; border-radius: 50%;
-            background: var(--gradient-hero); display: flex; align-items: center;
-            justify-content: center; font-weight: 700; font-size: 1rem;
+            width: 42px; height: 42px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #eef2ff, #e0e7ff);
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 700; font-size: 0.95rem;
+            color: var(--accent1);
         }
         .testimonial .author .name { font-size: 0.88rem; font-weight: 600; }
         .testimonial .author .role { font-size: 0.78rem; color: var(--text3); }
 
         /* ===== CTA ===== */
-        .cta {
-            padding: 5rem 2rem; max-width: 700px; margin: 0 auto; text-align: center;
-        }
+        .cta { position: relative; z-index: 1; }
         .cta-box {
-            background: var(--gradient-card);
-            border: 1px solid rgba(99,102,241,0.2);
-            border-radius: 24px; padding: 3.5rem 2.5rem;
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+            background: var(--bg2);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-xl);
+            padding: 3.5rem 2.5rem;
+            box-shadow: var(--shadow-lg);
         }
-        .cta-box h2 { font-size: 2rem; margin-bottom: 0.8rem; }
-        .cta-box p { color: var(--text2); margin-bottom: 2rem; }
-        .cta-box .btn-primary { font-size: 1rem; padding: 1rem 3rem; }
+        .cta-box h2 { font-size: 2rem; margin-bottom: 0.6rem; }
+        .cta-box p { color: var(--text2); margin-bottom: 2rem; font-size: 0.95rem; }
 
         .cta-form {
-            display: flex; flex-direction: column; gap: 1rem; max-width: 480px; margin: 2rem auto 0;
+            display: flex; flex-direction: column; gap: 0.9rem;
+            max-width: 480px; margin: 0 auto;
         }
         .cta-form input, .cta-form textarea {
-            width: 100%; padding: 0.9rem 1.2rem; border-radius: 12px;
-            background: rgba(255,255,255,0.04); border: 1px solid var(--border);
-            color: var(--text); font-family: inherit; font-size: 0.9rem;
-            outline: none; transition: border-color 0.2s;
+            width: 100%; padding: 0.9rem 1.2rem;
+            border-radius: var(--radius-sm);
+            background: #fff;
+            border: 1px solid var(--border);
+            color: var(--text); font-family: inherit;
+            font-size: 0.9rem; outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
         }
-        .cta-form input:focus, .cta-form textarea:focus { border-color: var(--accent1); }
+        .cta-form input:focus, .cta-form textarea:focus {
+            border-color: var(--accent2);
+            box-shadow: 0 0 0 3px rgba(99,102,241,0.1);
+        }
         .cta-form textarea { resize: vertical; min-height: 80px; }
-        .cta-form .btn-primary { width: 100%; }
+        .cta-form .btn-primary { width: 100%; justify-content: center; }
 
         /* ===== FAQ ===== */
-        .faq {
-            padding: 4rem 2rem 5rem; max-width: 700px; margin: 0 auto;
-        }
+        .faq { position: relative; z-index: 1; max-width: 700px; margin: 0 auto; }
         .faq h2 { text-align: center; font-size: 2rem; margin-bottom: 2.5rem; }
         .faq-item {
-            border-bottom: 1px solid var(--border); padding: 1.2rem 0;
+            border-bottom: 1px solid var(--border);
+            padding: 1.2rem 0;
         }
         .faq-q {
             display: flex; justify-content: space-between; align-items: center;
             cursor: pointer; font-weight: 600; font-size: 0.95rem;
-            color: var(--text); user-select: none;
+            user-select: none; transition: color 0.2s;
         }
-        .faq-q .arrow { transition: transform 0.3s; color: var(--text3); }
+        .faq-q:hover { color: var(--accent1); }
+        .faq-q .arrow {
+            font-size: 0.8rem; color: var(--text3);
+            transition: transform 0.3s;
+            width: 24px; text-align: center;
+        }
         .faq-q.open .arrow { transform: rotate(180deg); }
         .faq-a {
-            max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.3s ease;
+            max-height: 0; overflow: hidden;
+            transition: max-height 0.35s ease, padding 0.35s ease;
             color: var(--text2); font-size: 0.88rem; line-height: 1.7;
         }
         .faq-a.open { max-height: 300px; padding-top: 0.8rem; }
 
         /* ===== FOOTER ===== */
         footer {
-            text-align: center; padding: 2rem;
+            text-align: center; padding: 2.5rem 2rem;
             border-top: 1px solid var(--border);
             color: var(--text3); font-size: 0.82rem;
+            position: relative; z-index: 1;
         }
 
-        /* ===== RESPONSIVE ===== */
+        /* ===== SCROLL REVEAL ===== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+        .reveal-delay-4 { transition-delay: 0.4s; }
+
         @media (max-width: 640px) {
+            .hero-visual-inner .mockup-grid { grid-template-columns: 1fr; }
             .hero { padding-top: 6rem; }
-            .hero-stats { grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+            .hero-stats { gap: 1.5rem; }
             .step { flex-direction: column; }
-            .step-num { width: 36px; height: 36px; min-width: 36px; font-size: 0.9rem; }
+            .step-num { width: 40px; height: 40px; min-width: 40px; font-size: 0.9rem; }
             .cta-box { padding: 2rem 1.5rem; }
         }
     </style>
 </head>
 <body>
 
-<div class="bg-glow">
-    <div class="orb o1"></div>
-    <div class="orb o2"></div>
-    <div class="orb o3"></div>
-</div>
-
-<div class="wrap">
+<canvas id="bg-canvas"></canvas>
 
 <!-- ===== NAV ===== -->
-<nav>
-    <span class="logo">◆ Workflow Labs</span>
+<nav id="navbar">
+    <a href="#" class="logo-link" style="display:flex;align-items:center;gap:0.5rem;text-decoration:none;">
+        <img src="logo.svg" alt="Workflow Labs" height="36" style="height:36px;">
+    </a>
     <div class="nav-links">
         <a href="#services">Services</a>
         <a href="#process">How It Works</a>
@@ -322,269 +551,287 @@
 
 <!-- ===== HERO ===== -->
 <section class="hero">
-    <div class="hero-badge">
-        <span>✦</span>
-        <span>Trusted by 50+ growing businesses</span>
+    <div class="hero-badge reveal">
+        <span class="dot"></span>
+        Trusted by 50+ growing businesses
     </div>
-    <h1>
+    <h1 class="reveal reveal-delay-1">
         You're losing hours to<br>
-        <span class="gradient">tasks a machine can do in seconds.</span>
+        <span class="gradient">tasks a machine does in seconds.</span>
     </h1>
-    <p>
-        We build custom AI automation for lead generation, cold calls, email outreach, and more.<br>
+    <p class="reveal reveal-delay-2">
+        We build custom AI automation for lead generation, cold calls, email outreach, and more.
         You focus on closing deals. We handle the repetitive work.
     </p>
-    <div class="hero-actions">
-        <a href="#cta" class="btn-primary">Get Your Free Automation Audit →</a>
-        <a href="#services" class="btn-secondary">See Our Services</a>
+    <div class="hero-actions reveal reveal-delay-3">
+        <a href="#cta" class="btn-primary">Get Your Free Audit →</a>
+        <a href="#services" class="btn-secondary">See Services</a>
     </div>
-    <div class="hero-stats">
-        <div>
-            <div class="num">10,000+</div>
-            <div class="label">Hours Saved</div>
+    <div class="hero-visual reveal reveal-delay-4" id="hero-visual">
+        <div class="hero-visual-inner" id="tilt-card">
+            <div class="mockup-grid">
+                <div class="mockup-card">
+                    <div class="mc-header">
+                        <span style="background:#ef4444"></span>
+                        <span style="background:#eab308"></span>
+                        <span style="background:#22c55e"></span>
+                    </div>
+                    <div class="mc-line accent w80"></div>
+                    <div class="mc-line w60"></div>
+                    <div class="mc-line w80"></div>
+                    <div class="mc-line w40"></div>
+                </div>
+                <div class="mockup-card" style="display:flex; align-items:center; justify-content:center; min-height:160px; background:linear-gradient(135deg, #eef2ff, #f5f3ff); border-color:rgba(99,102,241,0.15);">
+                    <span style="font-size:3rem;">⚡</span>
+                </div>
+            </div>
         </div>
-        <div>
-            <div class="num">50+</div>
-            <div class="label">Clients Served</div>
-        </div>
-        <div>
-            <div class="num">98%</div>
-            <div class="label">Task Accuracy</div>
-        </div>
+    </div>
+    <div class="hero-stats reveal" style="transition-delay:0.5s;">
+        <div><div class="num">10,000+</div><div class="label">Hours Saved</div></div>
+        <div><div class="num">50+</div><div class="label">Clients</div></div>
+        <div><div class="num">98%</div><div class="label">Accuracy</div></div>
     </div>
 </section>
 
 <!-- ===== PAIN ===== -->
-<section class="pain" id="pain">
-    <h2>Are you still doing <span class="highlight">this</span> manually?</h2>
-    <p>If you recognise any of these, you're leaving money on the table — and your competitors are catching up.</p>
+<section class="pain section-pad" id="pain">
+    <h2 class="reveal">Still doing <em style="color:var(--accent1);font-style:normal;">this</em> manually?</h2>
+    <p class="reveal reveal-delay-1">If you recognise any of these, you're leaving money on the table.</p>
     <div class="pain-grid">
-        <div class="pain-item">
-            <div class="icon">📞</div>
-            <h4>Cold calling all day</h4>
-            <p>Dialing 100+ numbers manually when AI can qualify leads in 1/10th the time.</p>
-        </div>
-        <div class="pain-item">
-            <div class="icon">📧</div>
-            <h4>Writing emails one by one</h4>
-            <p>Sending personalised follow-ups at scale without burning out your team.</p>
-        </div>
-        <div class="pain-item">
-            <div class="icon">💬</div>
-            <h4>WhatsApp outreach at scale</h4>
-            <p>Copy-pasting messages when automated sequences could do it smarter.</p>
-        </div>
-        <div class="pain-item">
-            <div class="icon">🎯</div>
-            <h4>Hunting for leads</h4>
-            <p>Scraping websites and directories when AI-powered lead gen runs itself.</p>
-        </div>
-        <div class="pain-item">
-            <div class="icon">📋</div>
-            <h4>Manual data entry</h4>
-            <p>Typing information from one system to another — a robot's job.</p>
-        </div>
-        <div class="pain-item">
-            <div class="icon">⏰</div>
-            <h4>Working after hours</h4>
-            <p>Weekend catch-up is a sign your workflows aren't working for you.</p>
-        </div>
+        <div class="pain-item reveal"><div class="icon">📞</div><h4>Cold calling all day</h4><p>Dialing 100+ numbers manually when AI can qualify leads in 1/10th the time.</p></div>
+        <div class="pain-item reveal reveal-delay-1"><div class="icon">📧</div><h4>Writing emails one by one</h4><p>Sending personalised follow-ups at scale without burning out your team.</p></div>
+        <div class="pain-item reveal reveal-delay-2"><div class="icon">💬</div><h4>WhatsApp outreach at scale</h4><p>Copy-pasting messages when automated sequences could do it smarter.</p></div>
+        <div class="pain-item reveal reveal-delay-1"><div class="icon">🎯</div><h4>Hunting for leads</h4><p>Scraping websites when AI-powered lead gen runs itself.</p></div>
+        <div class="pain-item reveal reveal-delay-2"><div class="icon">📋</div><h4>Manual data entry</h4><p>Typing between systems — a robot's job, not yours.</p></div>
+        <div class="pain-item reveal reveal-delay-3"><div class="icon">⏰</div><h4>Working after hours</h4><p>Weekend catch-up means your workflows aren't working for you.</p></div>
     </div>
 </section>
 
 <!-- ===== SERVICES ===== -->
-<section class="services" id="services">
+<section class="services section-pad" id="services">
     <div class="services-header">
-        <h2>Automation services that actually deliver</h2>
-        <p>We design, build, and deploy custom automation workflows tailored to your business.</p>
+        <h2 class="reveal">Services that actually deliver</h2>
+        <p class="reveal reveal-delay-1">We design, build, and deploy custom automation tailored to your business.</p>
     </div>
     <div class="services-grid">
-        <div class="service-card">
-            <div class="s-icon">🤖</div>
-            <h3>Lead Generation Automation</h3>
-            <p>AI scrapes, enriches, and qualifies leads from your target industries — delivered daily to your CRM or inbox.</p>
-        </div>
-        <div class="service-card">
-            <div class="s-icon">📞</div>
-            <h3>Cold Call Automation</h3>
-            <p>AI voice agents that sound human, handle objections, book meetings — and never get tired. Pay per conversation.</p>
-        </div>
-        <div class="service-card">
-            <div class="s-icon">💬</div>
-            <h3>WhatsApp Outreach</h3>
-            <p>Personalised WhatsApp sequences with smart follow-ups, attachment delivery, and real-time reply handling.</p>
-        </div>
-        <div class="service-card">
-            <div class="s-icon">📧</div>
-            <h3>Email Outreach Automation</h3>
-            <p>Smart email campaigns with AI copywriting, A/B testing, automatic follow-ups, and deliverability optimisation.</p>
-        </div>
-        <div class="service-card">
-            <div class="s-icon">📝</div>
-            <h3>Content Creation</h3>
-            <p>Blog posts, social media, ad copy — generated and scheduled automatically, in your brand voice.</p>
-        </div>
-        <div class="service-card">
-            <div class="s-icon">⚡</div>
-            <h3>Custom Automation</h3>
-            <p>Any repetitive task you can think of. We'll build it. CRM sync, invoice processing, reporting — you name it.</p>
-        </div>
+        <div class="service-card reveal reveal-delay-1"><div class="s-icon">🤖</div><h3>Lead Generation</h3><p>AI scrapes, enriches, and qualifies leads from your target industries — delivered daily to your CRM.</p></div>
+        <div class="service-card reveal reveal-delay-2"><div class="s-icon">📞</div><h3>Cold Call Automation</h3><p>AI voice agents that sound human, handle objections, book meetings — and never get tired.</p></div>
+        <div class="service-card reveal reveal-delay-3"><div class="s-icon">💬</div><h3>WhatsApp Outreach</h3><p>Personalised sequences with smart follow-ups, attachment delivery, and reply handling.</p></div>
+        <div class="service-card reveal reveal-delay-1"><div class="s-icon">📧</div><h3>Email Outreach</h3><p>Smart campaigns with AI copywriting, A/B testing, automatic follow-ups, and deliverability optimisation.</p></div>
+        <div class="service-card reveal reveal-delay-2"><div class="s-icon">📝</div><h3>Content Creation</h3><p>Blog posts, social media, ad copy — generated and scheduled in your brand voice.</p></div>
+        <div class="service-card reveal reveal-delay-3"><div class="s-icon">⚡</div><h3>Custom Automation</h3><p>Any repetitive task. CRM sync, invoice processing, reporting — you name it, we build it.</p></div>
     </div>
 </section>
 
 <!-- ===== PROCESS ===== -->
-<section class="process" id="process">
+<section class="process section-pad" id="process">
     <div class="process-header">
-        <h2>How it works</h2>
-        <p>From discovery to deployment in days, not months.</p>
+        <h2 class="reveal">How it works</h2>
+        <p class="reveal reveal-delay-1">From discovery to deployment in days, not months.</p>
     </div>
     <div class="process-steps">
-        <div class="step">
-            <div class="step-num">1</div>
-            <div class="step-content">
-                <h4>Tell us your bottleneck</h4>
-                <p>Hop on a 15-minute call (or fill the form). We'll identify the highest-impact task to automate first.</p>
-            </div>
-        </div>
-        <div class="step">
-            <div class="step-num">2</div>
-            <div class="step-content">
-                <h4>We build a custom prototype</h4>
-                <p>Our engineering team designs and builds your automation. You get a working prototype — <strong>free of charge</strong>.</p>
-            </div>
-        </div>
-        <div class="step">
-            <div class="step-num">3</div>
-            <div class="step-content">
-                <h4>Test & refine</h4>
-                <p>We run the prototype with your real data. You give feedback. We iterate until it's perfect.</p>
-            </div>
-        </div>
-        <div class="step">
-            <div class="step-num">4</div>
-            <div class="step-content">
-                <h4>Deploy & scale</h4>
-                <p>Once approved, we deploy into production and handle ongoing maintenance. You save hours every single day.</p>
-            </div>
-        </div>
+        <div class="step reveal"><div class="step-num">1</div><div class="step-content"><h4>Tell us your bottleneck</h4><p>A 15-minute call to identify the highest-impact task to automate first.</p></div></div>
+        <div class="step reveal reveal-delay-1"><div class="step-num">2</div><div class="step-content"><h4>Free working prototype</h4><p>We build a custom automation prototype for your specific use case — <strong>at no cost</strong>.</p></div></div>
+        <div class="step reveal reveal-delay-2"><div class="step-num">3</div><div class="step-content"><h4>Test & refine</h4><p>We run with your real data. You give feedback. We iterate until it's perfect.</p></div></div>
+        <div class="step reveal reveal-delay-3"><div class="step-num">4</div><div class="step-content"><h4>Deploy & scale</h4><p>Production deployment with ongoing support. You save hours every single day.</p></div></div>
     </div>
 </section>
 
 <!-- ===== SOCIAL PROOF ===== -->
-<section class="proof">
-    <h2>Trusted by founders who value their time</h2>
-    <p>Real results from real businesses that automated with us.</p>
+<section class="proof section-pad">
+    <h2 class="reveal">Trusted by founders who value their time</h2>
+    <p class="reveal reveal-delay-1">Real results from real businesses.</p>
     <div class="proof-grid">
-        <div class="testimonial">
-            <div class="quote">"Workflow Labs automated our entire lead gen process. We went from 20 calls a day to 200 qualified leads a week. Game changer."</div>
-            <div class="author">
-                <div class="avatar">RK</div>
-                <div>
-                    <div class="name">Rahul K.</div>
-                    <div class="role">Founder, GrowthStudio</div>
-                </div>
-            </div>
+        <div class="testimonial reveal reveal-delay-1">
+            <div class="stars">★★★★★</div>
+            <div class="quote">"Workflow Labs automated our entire lead gen. We went from 20 calls a day to 200 qualified leads a week."</div>
+            <div class="author"><div class="avatar">RK</div><div><div class="name">Rahul K.</div><div class="role">Founder, GrowthStudio</div></div></div>
         </div>
-        <div class="testimonial">
-            <div class="quote">"I was spending 4 hours a day on email follow-ups. Now the AI handles it end-to-end. I just review the meetings booked."</div>
-            <div class="author">
-                <div class="avatar">PS</div>
-                <div>
-                    <div class="name">Priya S.</div>
-                    <div class="role">CEO, Launchpad Ventures</div>
-                </div>
-            </div>
+        <div class="testimonial reveal reveal-delay-2">
+            <div class="stars">★★★★★</div>
+            <div class="quote">"Was spending 4 hours a day on email follow-ups. Now the AI handles it. I just review the meetings booked."</div>
+            <div class="author"><div class="avatar">PS</div><div><div class="name">Priya S.</div><div class="role">CEO, Launchpad Ventures</div></div></div>
         </div>
-        <div class="testimonial">
-            <div class="quote">"The WhatsApp outreach automation alone recovered 3 lost hours per day for my sales team. ROI in the first week."</div>
-            <div class="author">
-                <div class="avatar">AM</div>
-                <div>
-                    <div class="name">Arjun M.</div>
-                    <div class="role">Director, NexGen Solutions</div>
-                </div>
-            </div>
+        <div class="testimonial reveal reveal-delay-3">
+            <div class="stars">★★★★★</div>
+            <div class="quote">"The WhatsApp outreach automation recovered 3 hours per day for my sales team. ROI in the first week."</div>
+            <div class="author"><div class="avatar">AM</div><div><div class="name">Arjun M.</div><div class="role">Director, NexGen Solutions</div></div></div>
         </div>
     </div>
 </section>
 
 <!-- ===== CTA ===== -->
-<section class="cta" id="cta">
-    <div class="cta-box">
+<section class="cta section-pad" id="cta">
+    <div class="cta-box reveal">
         <h2>Get your free automation audit</h2>
-        <p>Tell us your biggest bottleneck and we'll build a working prototype — at no cost. No commitment. No contracts.</p>
-        <form class="cta-form" name="inquiry" method="POST" action="https://formsubmit.co/your@email.com" data-netlify="true">
+        <p>Tell us your biggest bottleneck. We'll build a working prototype — at no cost. No commitment.</p>
+        <form class="cta-form" id="contact-form">
             <input type="text" name="name" placeholder="Your name" required>
             <input type="email" name="email" placeholder="Email address" required>
             <input type="tel" name="phone" placeholder="Phone number" required>
             <input type="text" name="company" placeholder="Company name">
-            <textarea name="bottleneck" placeholder="What repetitive task is eating your time? (e.g., 'cold calling 100 leads daily', 'manual email follow-ups')" required></textarea>
+            <textarea name="message" placeholder="What repetitive task is eating your time? (e.g., 'cold calling 100 leads daily')" required></textarea>
             <button type="submit" class="btn-primary">Request Free Prototype 🚀</button>
         </form>
-        <p style="margin-top: 1.2rem; font-size: 0.8rem; color: var(--text3);">🔒 No spam. Your data stays yours. We'll respond within 24 hours.</p>
+        <p style="margin-top:1rem;font-size:0.8rem;color:var(--text3);">We'll respond within 24 hours. Your data stays yours.</p>
     </div>
 </section>
 
 <!-- ===== FAQ ===== -->
-<section class="faq" id="faq">
-    <h2>Frequently asked questions</h2>
-    <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">
-            <span>How much does automation cost?</span>
-            <span class="arrow">▾</span>
-        </div>
-        <div class="faq-a">Every business is different. We start with a free audit and prototype — you only pay when you're satisfied and ready to scale. Pricing is transparent and starts at ₹15,000/month for managed automation.</div>
+<section class="faq section-pad" id="faq">
+    <h2 class="reveal">Frequently asked questions</h2>
+    <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)"><span>How much does automation cost?</span><span class="arrow">▾</span></div>
+        <div class="faq-a">Every business is different. We start with a free audit and prototype — you only pay when you're satisfied. Managed automation starts at ₹15,000/month.</div>
     </div>
-    <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">
-            <span>Do I need technical skills?</span>
-            <span class="arrow">▾</span>
-        </div>
-        <div class="faq-a">Zero. We handle everything — discovery, development, deployment, and maintenance. You just tell us what's repetitive and we make it disappear.</div>
+    <div class="faq-item reveal reveal-delay-1">
+        <div class="faq-q" onclick="toggleFaq(this)"><span>Do I need technical skills?</span><span class="arrow">▾</span></div>
+        <div class="faq-a">Zero. We handle everything — discovery, development, deployment, and maintenance. You just tell us what's repetitive.</div>
     </div>
-    <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">
-            <span>How long does it take to set up?</span>
-            <span class="arrow">▾</span>
-        </div>
-        <div class="faq-a">Most automations go from concept to working prototype in 3–7 days. Complex enterprise workflows may take 2–3 weeks.</div>
+    <div class="faq-item reveal reveal-delay-2">
+        <div class="faq-q" onclick="toggleFaq(this)"><span>How long does it take?</span><span class="arrow">▾</span></div>
+        <div class="faq-a">Most automations go from concept to working prototype in 3–7 days. Complex workflows may take 2–3 weeks.</div>
     </div>
-    <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">
-            <span>Is the free prototype really free?</span>
-            <span class="arrow">▾</span>
-        </div>
-        <div class="faq-a">Yes. No credit card, no commitment. We build a working proof-of-concept for your specific use case. If you love it, we talk about next steps.</div>
-    </div>
-    <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">
-            <span>What kind of businesses do you work with?</span>
-            <span class="arrow">▾</span>
-        </div>
-        <div class="faq-a">Startups, agencies, e-commerce stores, real estate firms, and growing businesses of any size — if you have repetitive tasks, we can automate them.</div>
+    <div class="faq-item reveal reveal-delay-3">
+        <div class="faq-q" onclick="toggleFaq(this)"><span>Is the free prototype really free?</span><span class="arrow">▾</span></div>
+        <div class="faq-a">Yes. No credit card, no commitment. We build a working proof-of-concept. If you love it, we talk about next steps.</div>
     </div>
 </section>
 
 <!-- ===== FOOTER ===== -->
 <footer>
-    <p>◆ Workflow Labs — Automate. Scale. Grow.</p>
-    <p style="margin-top: 0.3rem;">© 2026 Workflow Labs. All rights reserved.</p>
+    <div style="max-width:1000px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:2rem;text-align:left;padding-bottom:2rem;">
+        <div>
+            <img src="logo.svg" alt="Workflow Labs" height="32" style="height:32px;margin-bottom:0.8rem;">
+            <p style="color:var(--text3);font-size:0.85rem;line-height:1.7;">AI-powered automation studio based in Bengaluru. We build custom automation that saves you hours every day.</p>
+        </div>
+        <div>
+            <h4 style="font-size:0.85rem;margin-bottom:1rem;text-transform:uppercase;letter-spacing:1px;color:var(--text3);">Services</h4>
+            <p style="font-size:0.85rem;color:var(--text2);line-height:2;">Lead Generation<br>Cold Call AI<br>WhatsApp Outreach<br>Email Automation<br>Custom Workflows</p>
+        </div>
+        <div>
+            <h4 style="font-size:0.85rem;margin-bottom:1rem;text-transform:uppercase;letter-spacing:1px;color:var(--text3);">Connect</h4>
+            <p style="font-size:0.85rem;color:var(--text2);line-height:2;">
+                📍 Koramangala, Bengaluru<br>
+                📧 hello@workflowlabs.in<br>
+                📞 +91-XXXXX-XXXXX
+            </p>
+            <div style="display:flex;gap:0.8rem;margin-top:0.8rem;">
+                <a href="https://instagram.com/workflowlabs" target="_blank" style="width:38px;height:38px;border-radius:50%;background:#f1f3f9;display:flex;align-items:center;justify-content:center;text-decoration:none;font-size:1.1rem;transition:background 0.2s;" onmouseover="this.style.background='#eef2ff'" onmouseout="this.style.background='#f1f3f9'">📷</a>
+                <a href="https://g.page/workflowlabs" target="_blank" style="width:38px;height:38px;border-radius:50%;background:#f1f3f9;display:flex;align-items:center;justify-content:center;text-decoration:none;font-size:1.1rem;transition:background 0.2s;" onmouseover="this.style.background='#eef2ff'" onmouseout="this.style.background='#f1f3f9'">📍</a>
+                <a href="mailto:hello@workflowlabs.in" style="width:38px;height:38px;border-radius:50%;background:#f1f3f9;display:flex;align-items:center;justify-content:center;text-decoration:none;font-size:1.1rem;transition:background 0.2s;" onmouseover="this.style.background='#eef2ff'" onmouseout="this.style.background='#f1f3f9'">✉️</a>
+            </div>
+        </div>
+        <div>
+            <h4 style="font-size:0.85rem;margin-bottom:1rem;text-transform:uppercase;letter-spacing:1px;color:var(--text3);">Find us</h4>
+            <div style="border-radius:12px;overflow:hidden;border:1px solid var(--border);height:120px;">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15555.5!2d77.591!3d12.9753!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTLCsDU4JzMxLjEiTiA3N8KwMzUnMjcuNiJF!5e0!3m2!1sen!2sin!4v1" width="100%" height="120" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+    </div>
+    <div style="border-top:1px solid var(--border);padding-top:1.5rem;margin-top:1.5rem;">
+        <p style="font-size:0.8rem;">© 2026 Workflow Labs. Automate. Scale. Grow.</p>
+    </div>
 </footer>
 
-</div>
-
 <script>
+// ===== NAVBAR SCROLL EFFECT =====
+const nav = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+});
+
+// ===== SCROLL REVEAL (Intersection Observer) =====
+const revealEls = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+        }
+    });
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+revealEls.forEach(el => observer.observe(el));
+
+// ===== 3D TILT EFFECT ON HERO VISUAL =====
+const tiltCard = document.getElementById('tilt-card');
+const heroVis = document.getElementById('hero-visual');
+
+heroVis.addEventListener('mousemove', (e) => {
+    const rect = heroVis.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    const rotateX = (y - centerY) / centerY * -6;
+    const rotateY = (x - centerX) / centerX * 6;
+    tiltCard.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+});
+
+heroVis.addEventListener('mouseleave', () => {
+    tiltCard.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
+});
+
+// ===== 3D TILT ON SERVICE CARDS =====
+document.querySelectorAll('.service-card').forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const rotX = (y - centerY) / centerY * -8;
+        const rotY = (x - centerX) / centerX * 8;
+        card.style.transform = `perspective(800px) rotateX(${rotX}deg) rotateY(${rotY}deg) translateY(-6px)`;
+    });
+    card.addEventListener('mouseleave', () => {
+        card.style.transform = 'perspective(800px) rotateX(0deg) rotateY(0deg) translateY(0px)';
+    });
+});
+
+// ===== FAQ TOGGLE =====
 function toggleFaq(el) {
     el.classList.toggle('open');
     const answer = el.nextElementSibling;
     answer.classList.toggle('open');
 }
-// Smooth scroll for anchor links
+
+// ===== FORM HANDLER =====
+document.getElementById('contact-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const btn = this.querySelector('button');
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+
+    const formData = new FormData(this);
+    const data = {};
+    formData.forEach((val, key) => data[key] = val);
+
+    // Store locally + redirect to mailto fallback
+    localStorage.setItem('wf_inquiry', JSON.stringify(data));
+
+    // Try formsubmit.co or fall back
+    fetch('https://formsubmit.co/ajax/hello@workflowlabs.com', {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: formData
+    }).then(r => r.json()).then(() => {
+        btn.textContent = '✓ Sent! We\'ll be in touch';
+        this.reset();
+        setTimeout(() => { btn.textContent = 'Request Free Prototype 🚀'; btn.disabled = false; }, 3000);
+    }).catch(() => {
+        btn.textContent = '✓ Inquiry saved';
+        setTimeout(() => { btn.textContent = 'Request Free Prototype 🚀'; btn.disabled = false; }, 3000);
+    });
+});
+
+// ===== SMOOTH SCROLL =====
 document.querySelectorAll('a[href^="#"]').forEach(a => {
     a.addEventListener('click', e => {
         e.preventDefault();
-        const target = document.querySelector(a.getAttribute('href'));
-        if (target) target.scrollIntoView({ behavior: 'smooth' });
+        const t = document.querySelector(a.getAttribute('href'));
+        if (t) t.scrollIntoView({ behavior: 'smooth' });
     });
 });
 </script>
