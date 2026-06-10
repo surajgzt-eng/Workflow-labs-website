@@ -1,33 +1,47 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 100" width="400" height="100">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 100" width="420" height="100">
   <defs>
-    <linearGradient id="gLogo" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#4f46e5"/>
-      <stop offset="100%" stop-color="#7c3aed"/>
+    <linearGradient id="gCyan" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#7dd3fc"/>
+      <stop offset="100%" stop-color="#38bdf8"/>
     </linearGradient>
-    <linearGradient id="gAccent" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#6366f1"/>
-      <stop offset="100%" stop-color="#a78bfa"/>
+    <linearGradient id="gText" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1e293b"/>
+      <stop offset="100%" stop-color="#334155"/>
     </linearGradient>
   </defs>
 
-  <!-- Icon: Flowing W mark - represents workflow/automation flow -->
-  <g transform="translate(10, 10)">
-    <!-- Outer rounded square -->
-    <rect x="0" y="0" width="80" height="80" rx="18" fill="url(#gLogo)"/>
+  <!-- Icon background -->
+  <rect x="0" y="0" width="80" height="80" rx="18" fill="#0f172a"/>
+
+  <!-- Icon: Branching node design from old logo -->
+  <g transform="translate(40, 40)" fill="none" stroke="url(#gCyan)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Central vertical line going up -->
+    <line x1="0" y1="0" x2="0" y2="-22"/>
     
-    <!-- White W with flow arrow -->
-    <path d="M20 55 L30 25 L40 45 L50 25 L60 55" 
-          fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- Triangle at top (upward pointing) -->
+    <polygon points="0,-32 6,-22 -6,-22" fill="url(#gCyan)" stroke="none"/>
     
-    <!-- Flow arrow (the automation concept) -->
-    <path d="M58 52 L65 58 L58 64" 
-          fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- Left branch going down -->
+    <line x1="0" y1="0" x2="-18" y2="22"/>
     
-    <!-- Small accent dot -->
-    <circle cx="62" cy="50" r="3" fill="#a78bfa"/>
+    <!-- Right branch going down -->
+    <line x1="0" y1="0" x2="18" y2="22"/>
+    
+    <!-- Circle at left branch end -->
+    <circle cx="-18" cy="22" r="4" fill="url(#gCyan)" stroke="none"/>
+    
+    <!-- Circle at right branch end -->
+    <circle cx="18" cy="22" r="4" fill="url(#gCyan)" stroke="none"/>
+  </g>
+
+  <!-- Subtle glow effect -->
+  <g transform="translate(40, 40)" opacity="0.15">
+    <circle cx="0" cy="-22" r="14" fill="#7dd3fc"/>
+    <circle cx="-18" cy="22" r="10" fill="#7dd3fc"/>
+    <circle cx="18" cy="22" r="10" fill="#7dd3fc"/>
   </g>
 
   <!-- Wordmark -->
-  <text x="108" y="42" font-family="'Inter',-apple-system,BlinkMacSystemFont,sans-serif" font-weight="700" font-size="28" fill="#1a1a2e" letter-spacing="-0.02em">Workflow</text>
-  <text x="108" y="72" font-family="'Inter',-apple-system,BlinkMacSystemFont,sans-serif" font-weight="600" font-size="14" fill="#6366f1" letter-spacing="0.35em">LABS</text>
+  <text x="100" y="42" font-family="'Inter',-apple-system,BlinkMacSystemFont,sans-serif" font-weight="700" font-size="28" fill="url(#gText)" letter-spacing="-0.02em">Workflow</text>
+  <text x="100" y="72" font-family="'Inter',-apple-system,BlinkMacSystemFont,sans-serif" font-weight="600" font-size="14" fill="#6366f1" letter-spacing="0.35em">LABS</text>
 </svg>
