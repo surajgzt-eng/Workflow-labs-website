@@ -1,47 +1,31 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 100" width="420" height="100">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 100" width="360" height="100">
   <defs>
-    <linearGradient id="gCyan" x1="0%" y1="0%" x2="0%" y2="100%">
+    <linearGradient id="gC" x1="0%" y1="0%" x2="0%" y2="100%">
       <stop offset="0%" stop-color="#7dd3fc"/>
       <stop offset="100%" stop-color="#38bdf8"/>
     </linearGradient>
-    <linearGradient id="gText" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#1e293b"/>
-      <stop offset="100%" stop-color="#334155"/>
-    </linearGradient>
   </defs>
 
-  <!-- Icon background -->
-  <rect x="0" y="0" width="80" height="80" rx="18" fill="#0f172a"/>
-
-  <!-- Icon: Branching node design from old logo -->
-  <g transform="translate(40, 40)" fill="none" stroke="url(#gCyan)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
-    <!-- Central vertical line going up -->
-    <line x1="0" y1="0" x2="0" y2="-22"/>
-    
-    <!-- Triangle at top (upward pointing) -->
-    <polygon points="0,-32 6,-22 -6,-22" fill="url(#gCyan)" stroke="none"/>
-    
-    <!-- Left branch going down -->
-    <line x1="0" y1="0" x2="-18" y2="22"/>
-    
-    <!-- Right branch going down -->
-    <line x1="0" y1="0" x2="18" y2="22"/>
-    
-    <!-- Circle at left branch end -->
-    <circle cx="-18" cy="22" r="4" fill="url(#gCyan)" stroke="none"/>
-    
-    <!-- Circle at right branch end -->
-    <circle cx="18" cy="22" r="4" fill="url(#gCyan)" stroke="none"/>
-  </g>
-
-  <!-- Subtle glow effect -->
-  <g transform="translate(40, 40)" opacity="0.15">
-    <circle cx="0" cy="-22" r="14" fill="#7dd3fc"/>
-    <circle cx="-18" cy="22" r="10" fill="#7dd3fc"/>
-    <circle cx="18" cy="22" r="10" fill="#7dd3fc"/>
+  <!-- Icon: no outer circle, just the dark node -->
+  <g transform="translate(12, 12)">
+    <rect x="0" y="0" width="76" height="76" rx="16" fill="#0f172a"/>
+    <g transform="translate(38, 38)" fill="none" stroke="url(#gC)" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
+      <!-- Main vertical stem -->
+      <line x1="0" y1="0" x2="0" y2="-20"/>
+      <!-- Triangle peak -->
+      <polygon points="0,-30 5.5,-20 -5.5,-20" fill="url(#gC)" stroke="none"/>
+      <!-- Left branch -->
+      <line x1="0" y1="0" x2="-17" y2="21"/>
+      <!-- Right branch -->
+      <line x1="0" y1="0" x2="17" y2="21"/>
+      <!-- Left node -->
+      <circle cx="-17" cy="21" r="3.8" fill="url(#gC)" stroke="none"/>
+      <!-- Right node -->
+      <circle cx="17" cy="21" r="3.8" fill="url(#gC)" stroke="none"/>
+    </g>
   </g>
 
   <!-- Wordmark -->
-  <text x="100" y="42" font-family="'Inter',-apple-system,BlinkMacSystemFont,sans-serif" font-weight="700" font-size="28" fill="url(#gText)" letter-spacing="-0.02em">Workflow</text>
-  <text x="100" y="72" font-family="'Inter',-apple-system,BlinkMacSystemFont,sans-serif" font-weight="600" font-size="14" fill="#6366f1" letter-spacing="0.35em">LABS</text>
+  <text x="104" y="40" font-family="'Inter',-apple-system,BlinkMacSystemFont,sans-serif" font-weight="700" font-size="26" fill="#1e293b" letter-spacing="-0.02em">Workflow</text>
+  <text x="104" y="68" font-family="'Inter',-apple-system,BlinkMacSystemFont,sans-serif" font-weight="600" font-size="13" fill="#6366f1" letter-spacing="0.35em">LABS</text>
 </svg>
