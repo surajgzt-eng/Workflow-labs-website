@@ -137,109 +137,109 @@
             overflow: hidden;
         }
         #particleCanvas {
-                    position: absolute;
-                    top: 0; left: 0;
-                    width: 100%;
-                    height: 100%;
-                    z-index: 0;
-                    pointer-events: none;
-                }
-                .hero-content {
-                    position: relative;
-                    z-index: 1;
-                    max-width: 850px;
-                    width: 100%;
-                    margin: 0 auto;
-                }
-                .hero-badge {
-                    display: inline-flex; align-items: center; gap: 0.4rem;
-                    background: var(--bg2);
-                    border: 1px solid var(--border);
-                    padding: 0.35rem 1rem;
-                    border-radius: 50px;
-                    font-size: 0.78rem;
-                    color: var(--text2);
-                    margin-bottom: 2rem;
-                    font-weight: 500;
-                    transition: transform 0.3s;
-                }
-                .hero-badge:hover { transform: translateY(-2px); }
-                .hero-badge .dot {
-                    width: 6px; height: 6px;
-                    border-radius: 50%;
-                    background: #22c55e;
-                    animation: pulse-dot 2s infinite;
-                }
-                @keyframes pulse-dot {
-                    0%, 100% { opacity: 1; }
-                    50% { opacity: 0.4; }
-                }
-                .hero h1 {
-                    font-size: clamp(2.8rem, 7vw, 5rem);
-                    font-weight: 800;
-                    line-height: 1.08;
-                    max-width: 850px;
-                    margin-bottom: 1.5rem;
-                    letter-spacing: -0.03em;
-                }
-                .hero h1 .gradient {
-                    background: linear-gradient(135deg, #4f46e5, #7c3aed, #6366f1);
-                    -webkit-background-clip: text;
-                    -webkit-text-fill-color: transparent;
-                    background-clip: text;
-                }
-                .hero p {
-                    font-size: 1.15rem;
-                    color: var(--text2);
-                    max-width: 560px;
-                    margin-bottom: 2.5rem;
-                    line-height: 1.8;
-                }
-                .hero-actions {
-                    display: flex; gap: 1rem;
-                    flex-wrap: wrap; justify-content: center;
-                }
-                .btn-primary {
-                    padding: 0.85rem 2.5rem;
-                    border-radius: 50px;
-                    background: var(--text);
-                    color: #fff;
-                    font-weight: 600;
-                    font-size: 0.95rem;
-                    border: none; cursor: pointer;
-                    text-decoration: none;
-                    display: inline-flex; align-items: center; gap: 0.5rem;
-                    transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
-                }
-                .btn-primary:hover {
-                    transform: translateY(-2px);
-                    box-shadow: 0 12px 40px rgba(0,0,0,0.08);
-                }
-                .btn-secondary {
-                    padding: 0.85rem 2.5rem;
-                    border-radius: 50px;
-                    background: var(--bg2);
-                    color: var(--text);
-                    font-weight: 500;
-                    font-size: 0.95rem;
-                    border: 1px solid var(--border);
-                    cursor: pointer;
-                    text-decoration: none;
-                    transition: border-color 0.2s, background 0.2s, transform 0.2s;
-                }
-                .btn-secondary:hover {
-                    border-color: var(--text3);
-                    background: var(--surface-hover);
-                    transform: translateY(-1px);
-                }
-                .hero-stats {
-                    display: flex;
-                    justify-content: center;
-                    gap: 4rem;
-                    margin-top: 3rem;
-                    flex-wrap: wrap;
-                }
-                .hero-stats div { text-align: center; }
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 0;
+            pointer-events: none;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 850px;
+            width: 100%;
+            margin: 0 auto;
+        }
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 0.4rem;
+            background: var(--bg2);
+            border: 1px solid var(--border);
+            padding: 0.35rem 1rem;
+            border-radius: 50px;
+            font-size: 0.78rem;
+            color: var(--text2);
+            margin-bottom: 2rem;
+            font-weight: 500;
+            transition: transform 0.3s;
+        }
+        .hero-badge:hover { transform: translateY(-2px); }
+        .hero-badge .dot {
+            width: 6px; height: 6px;
+            border-radius: 50%;
+            background: #22c55e;
+            animation: pulse-dot 2s infinite;
+        }
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+        .hero h1 {
+            font-size: clamp(2.8rem, 7vw, 5rem);
+            font-weight: 800;
+            line-height: 1.08;
+            max-width: 850px;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.03em;
+        }
+        .hero h1 .gradient {
+            background: linear-gradient(135deg, #4f46e5, #7c3aed, #6366f1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero p {
+            font-size: 1.15rem;
+            color: var(--text2);
+            max-width: 560px;
+            margin-bottom: 2.5rem;
+            line-height: 1.8;
+        }
+        .hero-actions {
+            display: flex; gap: 1rem;
+            flex-wrap: wrap; justify-content: center;
+        }
+        .btn-primary {
+            padding: 0.85rem 2.5rem;
+            border-radius: 50px;
+            background: var(--text);
+            color: #fff;
+            font-weight: 600;
+            font-size: 0.95rem;
+            border: none; cursor: pointer;
+            text-decoration: none;
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+        }
+        .btn-secondary {
+            padding: 0.85rem 2.5rem;
+            border-radius: 50px;
+            background: var(--bg2);
+            color: var(--text);
+            font-weight: 500;
+            font-size: 0.95rem;
+            border: 1px solid var(--border);
+            cursor: pointer;
+            text-decoration: none;
+            transition: border-color 0.2s, background 0.2s, transform 0.2s;
+        }
+        .btn-secondary:hover {
+            border-color: var(--text3);
+            background: var(--surface-hover);
+            transform: translateY(-1px);
+        }
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+        .hero-stats div { text-align: center; }
         .hero-stats .num {
             font-size: 1.8rem;
             font-weight: 800;
@@ -479,7 +479,7 @@
             opacity: 0;
             transform: translateY(40px);
             transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-                        transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .reveal.visible {
             opacity: 1;
@@ -501,8 +501,6 @@
     </style>
 </head>
 <body>
-
-<canvas id="bg-canvas"></canvas>
 
 <!-- ===== NAV ===== -->
 <nav id="navbar">
@@ -595,24 +593,24 @@
     <div style="max-width:1100px;margin:0 auto;overflow:hidden;mask-image:linear-gradient(to right,transparent,black 5%,black 95%,transparent);-webkit-mask-image:linear-gradient(to right,transparent,black 5%,black 95%,transparent);">
         <div class="logo-track" style="display:flex;gap:4rem;width:max-content;animation:scrollLogos 25s linear infinite;">
             <div style="display:flex;gap:4rem;align-items:center;">
-                <span style="font-size:1.1rem;font-weight:700;color:var(--text3);white-space:nowrap;letter-spacing:1px;">BOUNCE</span>
-                <span style="font-size:1.1rem;font-weight:700;color:var(--text3);white-space:nowrap;letter-spacing:1px;">MERAKI</span>
-                <span style="font-size:1.1rem;font-weight:700;color:var(--text3);white-space:nowrap;letter-spacing:1px;">VERTEX</span>
-                <span style="font-size:1.1rem;font-weight:700;color:var(--text3);white-space:nowrap;letter-spacing:1px;">NEXUS</span>
-                <span style="font-size:1.1rem;font-weight:700;color:var(--text3);white-space:nowrap;letter-spacing:1px;">AETHER</span>
-                <span style="font-size:1.1rem;font-weight:700;color:var(--text3);white-space:nowrap;letter-spacing:1px;">PRISM</span>
-                <span style="font-size:1.1rem;font-weight:700;color:var(--text3);white-space:nowrap;letter-spacing:1px;">ORBIT</span>
-                <span style="font-size:1.1rem;font-weight:700;color:var(--text3);white-space:nowrap;letter-spacing:1px;">CASCADE</span>
+        <span style="font-size:1.1rem;font-weight:700;color:var(--text3);white-space:nowrap;letter-spacing:1px;">BOUNCE</span>
+        <span style="font-size:1.1rem;font-weight:700;color:var(--text3);white-space:nowrap;letter-spacing:1px;">MERAKI</span>
+        <span style="font-size:1.1rem;font-weight:700;color:var(--text3);white-space:nowrap;letter-spacing:1px;">VERTEX</span>
+        <span style="font-size:1.1rem;font-weight:700;color:var(--text3);white-space:nowrap;letter-spacing:1px;">NEXUS</span>
+        <span style="font-size:1.1rem;font-weight:700;color:var(--text3);white-space:nowrap;letter-spacing:1px;">AETHER</span>
+        <span style="font-size:1.1rem;font-weight:700;color:var(--text3);white-space:nowrap;letter-spacing:1px;">PRISM</span>
+        <span style="font-size:1.1rem;font-weight:700;color:var(--text3);white-space:nowrap;letter-spacing:1px;">ORBIT</span>
+        <span style="font-size:1.1rem;font-weight:700;color:var(--text3);white-space:nowrap;letter-spacing:1px;">CASCADE</span>
             </div>
             <div style="display:flex;gap:4rem;align-items:center;">
-                <span style="font-size:1.1rem;font-weight:700;color:var(--text3);white-space:nowrap;letter-spacing:1px;">BOUNCE</span>
-                <span style="font-size:1.1rem;font-weight:700;color:var(--text3);white-space:nowrap;letter-spacing:1px;">MERAKI</span>
-                <span style="font-size:1.1rem;font-weight:700;color:var(--text3);white-space:nowrap;letter-spacing:1px;">VERTEX</span>
-                <span style="font-size:1.1rem;font-weight:700;color:var(--text3);white-space:nowrap;letter-spacing:1px;">NEXUS</span>
-                <span style="font-size:1.1rem;font-weight:700;color:var(--text3);white-space:nowrap;letter-spacing:1px;">AETHER</span>
-                <span style="font-size:1.1rem;font-weight:700;color:var(--text3);white-space:nowrap;letter-spacing:1px;">PRISM</span>
-                <span style="font-size:1.1rem;font-weight:700;color:var(--text3);white-space:nowrap;letter-spacing:1px;">ORBIT</span>
-                <span style="font-size:1.1rem;font-weight:700;color:var(--text3);white-space:nowrap;letter-spacing:1px;">CASCADE</span>
+        <span style="font-size:1.1rem;font-weight:700;color:var(--text3);white-space:nowrap;letter-spacing:1px;">BOUNCE</span>
+        <span style="font-size:1.1rem;font-weight:700;color:var(--text3);white-space:nowrap;letter-spacing:1px;">MERAKI</span>
+        <span style="font-size:1.1rem;font-weight:700;color:var(--text3);white-space:nowrap;letter-spacing:1px;">VERTEX</span>
+        <span style="font-size:1.1rem;font-weight:700;color:var(--text3);white-space:nowrap;letter-spacing:1px;">NEXUS</span>
+        <span style="font-size:1.1rem;font-weight:700;color:var(--text3);white-space:nowrap;letter-spacing:1px;">AETHER</span>
+        <span style="font-size:1.1rem;font-weight:700;color:var(--text3);white-space:nowrap;letter-spacing:1px;">PRISM</span>
+        <span style="font-size:1.1rem;font-weight:700;color:var(--text3);white-space:nowrap;letter-spacing:1px;">ORBIT</span>
+        <span style="font-size:1.1rem;font-weight:700;color:var(--text3);white-space:nowrap;letter-spacing:1px;">CASCADE</span>
             </div>
         </div>
     </div>
@@ -670,20 +668,20 @@
         <div>
             <h4 style="font-size:0.85rem;margin-bottom:1rem;text-transform:uppercase;letter-spacing:1px;color:var(--text3);">Connect</h4>
             <p style="font-size:0.85rem;color:var(--text2);line-height:2;">
-                📍 Whiterose Layout, Whitefield, Bengaluru<br>
-                📧 hello@workflowlabs.in<br>
-                📞 +91-8073010956
+        📍 Whiterose Layout, Whitefield, Bengaluru<br>
+        📧 hello@workflowlabs.in<br>
+        📞 +91-8073010956
             </p>
             <div style="display:flex;gap:0.8rem;margin-top:0.8rem;">
-                <a href="https://instagram.com/workflowlabs" target="_blank" style="width:38px;height:38px;border-radius:50%;background:#f1f3f9;display:flex;align-items:center;justify-content:center;text-decoration:none;font-size:1.1rem;transition:background 0.2s;" onmouseover="this.style.background='#eef2ff'" onmouseout="this.style.background='#f1f3f9'">📷</a>
-                <a href="https://g.page/workflowlabs" target="_blank" style="width:38px;height:38px;border-radius:50%;background:#f1f3f9;display:flex;align-items:center;justify-content:center;text-decoration:none;font-size:1.1rem;transition:background 0.2s;" onmouseover="this.style.background='#eef2ff'" onmouseout="this.style.background='#f1f3f9'">📍</a>
-                <a href="mailto:hello@workflowlabs.in" style="width:38px;height:38px;border-radius:50%;background:#f1f3f9;display:flex;align-items:center;justify-content:center;text-decoration:none;font-size:1.1rem;transition:background 0.2s;" onmouseover="this.style.background='#eef2ff'" onmouseout="this.style.background='#f1f3f9'">✉️</a>
+        <a href="https://instagram.com/workflowlabs" target="_blank" style="width:38px;height:38px;border-radius:50%;background:#f1f3f9;display:flex;align-items:center;justify-content:center;text-decoration:none;font-size:1.1rem;transition:background 0.2s;" onmouseover="this.style.background='#eef2ff'" onmouseout="this.style.background='#f1f3f9'">📷</a>
+        <a href="https://g.page/workflowlabs" target="_blank" style="width:38px;height:38px;border-radius:50%;background:#f1f3f9;display:flex;align-items:center;justify-content:center;text-decoration:none;font-size:1.1rem;transition:background 0.2s;" onmouseover="this.style.background='#eef2ff'" onmouseout="this.style.background='#f1f3f9'">📍</a>
+        <a href="mailto:hello@workflowlabs.in" style="width:38px;height:38px;border-radius:50%;background:#f1f3f9;display:flex;align-items:center;justify-content:center;text-decoration:none;font-size:1.1rem;transition:background 0.2s;" onmouseover="this.style.background='#eef2ff'" onmouseout="this.style.background='#f1f3f9'">✉️</a>
             </div>
         </div>
         <div>
             <h4 style="font-size:0.85rem;margin-bottom:1rem;text-transform:uppercase;letter-spacing:1px;color:var(--text3);">Find us</h4>
             <div style="border-radius:12px;overflow:hidden;border:1px solid var(--border);height:120px;">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3887.5!2d77.75!3d12.97!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sWhitefield%2C%20Bengaluru!5e0!3m2!1sen!2sin!4v1" width="100%" height="120" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3887.5!2d77.75!3d12.97!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sWhitefield%2C%20Bengaluru!5e0!3m2!1sen!2sin!4v1" width="100%" height="120" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
             </div>
         </div>
     </div>
@@ -732,19 +730,22 @@ document.querySelectorAll('.service-card').forEach(card => {
 (function() {
     const canvas = document.getElementById('particleCanvas');
     if (!canvas) return;
-    const container = canvas.parentElement;
     const ctx = canvas.getContext('2d');
 
     let W, H, particles = [];
-    const COUNT = 120;
-    const CONNECTION_DIST = 120;
-    const MOUSE_RADIUS = 150;
+    const COUNT = 150;
+    const CONNECTION_DIST = 130;
+    const MOUSE_RADIUS = 180;
 
     let mouse = { x: -9999, y: -9999 };
 
     function resize() {
-        W = canvas.width = container.clientWidth;
-        H = canvas.height = container.clientHeight;
+        const dpr = window.devicePixelRatio || 1;
+        W = canvas.width = window.innerWidth * dpr;
+        H = canvas.height = window.innerHeight * dpr;
+        canvas.style.width = window.innerWidth + 'px';
+        canvas.style.height = window.innerHeight + 'px';
+        ctx.scale(dpr, dpr);
     }
 
     class Particle {
@@ -752,35 +753,38 @@ document.querySelectorAll('.service-card').forEach(card => {
             this.reset();
         }
         reset() {
-            this.x = Math.random() * W;
-            this.y = Math.random() * H;
-            this.vx = (Math.random() - 0.5) * 0.3;
-            this.vy = (Math.random() - 0.5) * 0.3;
-            this.r = Math.random() * 1.5 + 1;
+            this.x = Math.random() * window.innerWidth;
+            this.y = Math.random() * window.innerHeight;
+            this.vx = (Math.random() - 0.5) * 0.4;
+            this.vy = (Math.random() - 0.5) * 0.4;
+            this.r = Math.random() * 2 + 1;
             this.baseR = this.r;
+            this.alpha = Math.random() * 0.5 + 0.3;
         }
         update() {
             this.x += this.vx;
             this.y += this.vy;
-            if (this.x < -20) this.x = W + 20;
-            if (this.x > W + 20) this.x = -20;
-            if (this.y < -20) this.y = H + 20;
-            if (this.y > H + 20) this.y = -20;
+            if (this.x < -30) this.x = window.innerWidth + 30;
+            if (this.x > window.innerWidth + 30) this.x = -30;
+            if (this.y < -30) this.y = window.innerHeight + 30;
+            if (this.y > window.innerHeight + 30) this.y = -30;
             const dx = this.x - mouse.x;
             const dy = this.y - mouse.y;
             const dist = Math.sqrt(dx * dx + dy * dy);
-            if (dist < MOUSE_RADIUS) {
+            if (dist < MOUSE_RADIUS && dist > 0) {
                 const force = (MOUSE_RADIUS - dist) / MOUSE_RADIUS;
-                this.x += (dx / dist) * force * 3;
-                this.y += (dy / dist) * force * 3;
-                this.r = this.baseR + force * 2;
+                this.x += (dx / dist) * force * 5;
+                this.y += (dy / dist) * force * 5;
+                this.r = this.baseR + force * 3;
             } else {
-                this.r += (this.baseR - this.r) * 0.08;
+                this.r += (this.baseR - this.r) * 0.1;
             }
         }
         draw() {
-            ctx.fillStyle = 'rgba(99, 102, 241, 0.75)';
-            ctx.fillRect(Math.round(this.x - this.r/2), Math.round(this.y - this.r/2), Math.ceil(this.r), Math.ceil(this.r));
+            ctx.beginPath();
+            ctx.arc(Math.round(this.x), Math.round(this.y), this.r, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(99, 102, 241, ${this.alpha})`;
+            ctx.fill();
         }
     }
 
@@ -793,39 +797,36 @@ document.querySelectorAll('.service-card').forEach(card => {
     }
 
     function drawConnections() {
-        ctx.strokeStyle = 'rgba(99, 102, 241, 0.15)';
-        ctx.lineWidth = 1;
         for (let i = 0; i < particles.length; i++) {
             for (let j = i + 1; j < particles.length; j++) {
                 const dx = particles[i].x - particles[j].x;
                 const dy = particles[i].y - particles[j].y;
                 const dist = Math.sqrt(dx * dx + dy * dy);
                 if (dist < CONNECTION_DIST) {
-                    const alpha = (1 - dist / CONNECTION_DIST);
-                    ctx.globalAlpha = alpha * 0.15;
+                    const alpha = (1 - dist / CONNECTION_DIST) * 0.12;
                     ctx.beginPath();
                     ctx.moveTo(Math.round(particles[i].x), Math.round(particles[i].y));
                     ctx.lineTo(Math.round(particles[j].x), Math.round(particles[j].y));
+                    ctx.strokeStyle = `rgba(99, 102, 241, ${alpha})`;
+                    ctx.lineWidth = 0.5;
                     ctx.stroke();
                 }
             }
         }
-        ctx.globalAlpha = 1;
     }
 
     function animate() {
-        ctx.clearRect(0, 0, W, H);
+        ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
         drawConnections();
         particles.forEach(p => { p.update(); p.draw(); });
         requestAnimationFrame(animate);
     }
 
-    container.addEventListener('mousemove', (e) => {
-        const rect = container.getBoundingClientRect();
-        mouse.x = e.clientX - rect.left;
-        mouse.y = e.clientY - rect.top;
+    window.addEventListener('mousemove', (e) => {
+        mouse.x = e.clientX;
+        mouse.y = e.clientY;
     });
-    container.addEventListener('mouseleave', () => {
+    window.addEventListener('mouseleave', () => {
         mouse.x = -9999;
         mouse.y = -9999;
     });
