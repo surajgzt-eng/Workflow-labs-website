@@ -127,12 +127,28 @@
 
         /* ===== HERO ===== */
         .hero {
-            min-height: 80vh;
+            min-height: 90vh;
             display: flex; flex-direction: column;
             align-items: center; justify-content: center;
-            padding: 6rem 2rem 4rem;
+            padding: 6rem 2rem;
+            text-align: center;
             position: relative;
             z-index: 1;
+            overflow: hidden;
+        }
+        #particleCanvas {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 850px;
+            width: 100%;
         }
         .hero-badge {
             display: inline-flex; align-items: center; gap: 0.4rem;
@@ -562,32 +578,28 @@
 
 <!-- ===== HERO ===== -->
 <section class="hero" id="hero">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;max-width:1100px;width:100%;">
-        <div style="text-align:left;">
-            <div class="hero-badge reveal">
-                <span class="dot"></span>
-                Trusted by 50+ growing businesses
-            </div>
-            <h1 class="reveal reveal-delay-1" style="font-size:clamp(2.2rem,5vw,3.8rem);">
-                You're losing hours to<br>
-                <span class="gradient">tasks a machine does in seconds.</span>
-            </h1>
-            <p class="reveal reveal-delay-2">
-                We build custom AI automation for lead generation, cold calls, email outreach, and more.
-                You focus on closing deals. We handle the repetitive work.
-            </p>
-            <div class="hero-actions reveal reveal-delay-3" style="justify-content:flex-start;">
-                <a href="#cta" class="btn-primary">Get Your Free Audit →</a>
-                <a href="#services" class="btn-secondary">See Services</a>
-            </div>
-            <div class="hero-stats reveal" style="transition-delay:0.5s;margin-top:2.5rem;">
-                <div><div class="num">10,000+</div><div class="label">Hours Saved</div></div>
-                <div><div class="num">50+</div><div class="label">Clients</div></div>
-                <div><div class="num">98%</div><div class="label">Accuracy</div></div>
-            </div>
+    <canvas id="particleCanvas"></canvas>
+    <div class="hero-content">
+        <div class="hero-badge reveal">
+            <span class="dot"></span>
+            Trusted by 50+ growing businesses
         </div>
-        <div class="reveal reveal-delay-3" style="position:relative;height:500px;border-radius:24px;overflow:hidden;border:1px solid var(--border);background:var(--bg2);">
-            <canvas id="meshCanvas" style="width:100%;height:100%;display:block;"></canvas>
+        <h1 class="reveal reveal-delay-1">
+            You're losing hours to<br>
+            <span class="gradient">tasks a machine does in seconds.</span>
+        </h1>
+        <p class="reveal reveal-delay-2">
+            We build custom AI automation for lead generation, cold calls, email outreach, and more.
+            You focus on closing deals. We handle the repetitive work.
+        </p>
+        <div class="hero-actions reveal reveal-delay-3">
+            <a href="#cta" class="btn-primary">Get Your Free Audit →</a>
+            <a href="#services" class="btn-secondary">See Services</a>
+        </div>
+        <div class="hero-stats reveal" style="transition-delay:0.5s;">
+            <div><div class="num">10,000+</div><div class="label">Hours Saved</div></div>
+            <div><div class="num">50+</div><div class="label">Clients</div></div>
+            <div><div class="num">98%</div><div class="label">Accuracy</div></div>
         </div>
     </div>
 </section>
@@ -777,7 +789,7 @@ document.querySelectorAll('.service-card').forEach(card => {
 
 // ===== INTERACTIVE PARTICLE SYSTEM =====
 (function() {
-    const canvas = document.getElementById('meshCanvas');
+    const canvas = document.getElementById('particleCanvas');
     if (!canvas) return;
     const container = canvas.parentElement;
     const ctx = canvas.getContext('2d');
@@ -797,28 +809,22 @@ document.querySelectorAll('.service-card').forEach(card => {
     class Particle {
         constructor() {
             this.reset();
-            this.y = Math.random() * H;
         }
         reset() {
             this.x = Math.random() * W;
             this.y = Math.random() * H;
-            this.vx = (Math.random() - 0.5) * 0.4;
-            this.vy = (Math.random() - 0.5) * 0.4;
-            this.r = Math.random() * 2 + 1.5;
+            this.vx = (Math.random() - 0.5) * 0.3;
+            this.vy = (Math.random() - 0.5) * 0.3;
+            this.r = Math.random() * 1.5 + 1;
             this.baseR = this.r;
         }
         update() {
-            // Drift
             this.x += this.vx;
             this.y += this.vy;
-
-            // Wrap around edges
             if (this.x < -20) this.x = W + 20;
             if (this.x > W + 20) this.x = -20;
             if (this.y < -20) this.y = H + 20;
             if (this.y > H + 20) this.y = -20;
-
-            // Mouse interaction - push away
             const dx = this.x - mouse.x;
             const dy = this.y - mouse.y;
             const dist = Math.sqrt(dx * dx + dy * dy);
@@ -826,16 +832,14 @@ document.querySelectorAll('.service-card').forEach(card => {
                 const force = (MOUSE_RADIUS - dist) / MOUSE_RADIUS;
                 this.x += (dx / dist) * force * 3;
                 this.y += (dy / dist) * force * 3;
-                this.r = this.baseR + force * 3;
+                this.r = this.baseR + force * 2;
             } else {
-                this.r += (this.baseR - this.r) * 0.05;
+                this.r += (this.baseR - this.r) * 0.08;
             }
         }
         draw() {
-            ctx.beginPath();
-            ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
-            ctx.fillStyle = 'rgba(99, 102, 241, 0.6)';
-            ctx.fill();
+            ctx.fillStyle = 'rgba(99, 102, 241, 0.75)';
+            ctx.fillRect(Math.round(this.x - this.r/2), Math.round(this.y - this.r/2), Math.ceil(this.r), Math.ceil(this.r));
         }
     }
 
@@ -848,22 +852,24 @@ document.querySelectorAll('.service-card').forEach(card => {
     }
 
     function drawConnections() {
+        ctx.strokeStyle = 'rgba(99, 102, 241, 0.15)';
+        ctx.lineWidth = 1;
         for (let i = 0; i < particles.length; i++) {
             for (let j = i + 1; j < particles.length; j++) {
                 const dx = particles[i].x - particles[j].x;
                 const dy = particles[i].y - particles[j].y;
                 const dist = Math.sqrt(dx * dx + dy * dy);
                 if (dist < CONNECTION_DIST) {
-                    const alpha = (1 - dist / CONNECTION_DIST) * 0.2;
+                    const alpha = (1 - dist / CONNECTION_DIST);
+                    ctx.globalAlpha = alpha * 0.15;
                     ctx.beginPath();
-                    ctx.moveTo(particles[i].x, particles[i].y);
-                    ctx.lineTo(particles[j].x, particles[j].y);
-                    ctx.strokeStyle = `rgba(99, 102, 241, ${alpha})`;
-                    ctx.lineWidth = 0.8;
+                    ctx.moveTo(Math.round(particles[i].x), Math.round(particles[i].y));
+                    ctx.lineTo(Math.round(particles[j].x), Math.round(particles[j].y));
                     ctx.stroke();
                 }
             }
         }
+        ctx.globalAlpha = 1;
     }
 
     function animate() {
