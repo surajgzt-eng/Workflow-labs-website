@@ -491,6 +491,7 @@
             .hero-visual-inner .mockup-grid { grid-template-columns: 1fr; }
             .hero { padding: 5rem 1.5rem 3rem; }
             .hero-stats { gap: 1.5rem; }
+            .hero-content { padding: 2rem 1.5rem !important; border-radius: 16px !important; }
             .step { flex-direction: column; }
             .step-num { width: 40px; height: 40px; min-width: 40px; font-size: 0.9rem; }
             .cta-box { padding: 2rem 1.5rem; }
@@ -729,19 +730,24 @@ document.querySelectorAll('.service-card').forEach(card => {
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
 
-    let W, H, particles = [];
-    const COUNT = 150;
-    const CONNECTION_DIST = 130;
-    const MOUSE_RADIUS = 180;
+    const isMobile = window.innerWidth < 768;
+    const COUNT = isMobile ? 60 : 150;
+    const CONNECTION_DIST = isMobile ? 100 : 130;
+    const MOUSE_RADIUS = isMobile ? 120 : 180;
+    const SPEED = isMobile ? 0.15 : 0.35;
+    const FORCE = isMobile ? 2 : 5;
 
+    let W, H, particles = [];
     let mouse = { x: -9999, y: -9999 };
+    let animId;
 
     function resize() {
-        const dpr = window.devicePixelRatio || 1;
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
         W = canvas.width = window.innerWidth * dpr;
         H = canvas.height = window.innerHeight * dpr;
         canvas.style.width = window.innerWidth + 'px';
         canvas.style.height = window.innerHeight + 'px';
+        ctx.setTransform(1, 0, 0, 1, 0, 0);
         ctx.scale(dpr, dpr);
     }
 
@@ -752,11 +758,11 @@ document.querySelectorAll('.service-card').forEach(card => {
         reset() {
             this.x = Math.random() * window.innerWidth;
             this.y = Math.random() * window.innerHeight;
-            this.vx = (Math.random() - 0.5) * 0.4;
-            this.vy = (Math.random() - 0.5) * 0.4;
-            this.r = Math.random() * 2 + 1;
+            this.vx = (Math.random() - 0.5) * SPEED;
+            this.vy = (Math.random() - 0.5) * SPEED;
+            this.r = Math.random() * 1.5 + 0.8;
             this.baseR = this.r;
-            this.alpha = Math.random() * 0.5 + 0.3;
+            this.alpha = Math.random() * 0.4 + 0.2;
         }
         update() {
             this.x += this.vx;
@@ -770,9 +776,9 @@ document.querySelectorAll('.service-card').forEach(card => {
             const dist = Math.sqrt(dx * dx + dy * dy);
             if (dist < MOUSE_RADIUS && dist > 0) {
                 const force = (MOUSE_RADIUS - dist) / MOUSE_RADIUS;
-                this.x += (dx / dist) * force * 5;
-                this.y += (dy / dist) * force * 5;
-                this.r = this.baseR + force * 3;
+                this.x += (dx / dist) * force * FORCE;
+                this.y += (dy / dist) * force * FORCE;
+                this.r = this.baseR + force * 2;
             } else {
                 this.r += (this.baseR - this.r) * 0.1;
             }
@@ -794,13 +800,14 @@ document.querySelectorAll('.service-card').forEach(card => {
     }
 
     function drawConnections() {
+        if (isMobile) return; // skip connections on mobile for perf
         for (let i = 0; i < particles.length; i++) {
             for (let j = i + 1; j < particles.length; j++) {
                 const dx = particles[i].x - particles[j].x;
                 const dy = particles[i].y - particles[j].y;
                 const dist = Math.sqrt(dx * dx + dy * dy);
                 if (dist < CONNECTION_DIST) {
-                    const alpha = (1 - dist / CONNECTION_DIST) * 0.12;
+                    const alpha = (1 - dist / CONNECTION_DIST) * 0.1;
                     ctx.beginPath();
                     ctx.moveTo(Math.round(particles[i].x), Math.round(particles[i].y));
                     ctx.lineTo(Math.round(particles[j].x), Math.round(particles[j].y));
@@ -816,19 +823,38 @@ document.querySelectorAll('.service-card').forEach(card => {
         ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
         drawConnections();
         particles.forEach(p => { p.update(); p.draw(); });
-        requestAnimationFrame(animate);
+        animId = requestAnimationFrame(animate);
     }
 
+    // Mouse interaction
     window.addEventListener('mousemove', (e) => {
         mouse.x = e.clientX;
         mouse.y = e.clientY;
     });
     window.addEventListener('mouseleave', () => {
-        mouse.x = -9999;
-        mouse.y = -9999;
+        mouse.x = -9999; mouse.y = -9999;
     });
 
-    window.addEventListener('resize', resize);
+    // Touch interaction
+    window.addEventListener('touchmove', (e) => {
+        e.preventDefault();
+        mouse.x = e.touches[0].clientX;
+        mouse.y = e.touches[0].clientY;
+    }, { passive: false });
+    window.addEventListener('touchend', () => {
+        mouse.x = -9999; mouse.y = -9999;
+    });
+
+    window.addEventListener('resize', () => {
+        const newIsMobile = window.innerWidth < 768;
+        if (newIsMobile !== isMobile) {
+            // Re-init if crossing breakpoint
+            init();
+        } else {
+            resize();
+        }
+    });
+
     init();
     animate();
 })();
