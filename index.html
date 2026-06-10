@@ -181,7 +181,7 @@
 
         /* Sections base */
         section {
-            padding: 10rem 8% 8rem;
+            padding: 6.5rem 8% 5rem;
             position: relative;
             max-width: 1400px;
             margin: 0 auto;
@@ -406,10 +406,12 @@
         }
 
         .tilt-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-glass);
+            background: rgba(255, 255, 255, 0.45);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
             border-radius: 32px;
-            padding: 4.5rem 3.5rem;
+            padding: 3.5rem 2.5rem;
             box-shadow: 0 20px 40px rgba(15, 23, 42, 0.03), 0 1px 2px rgba(15, 23, 42, 0.02);
             transition: var(--transition-smooth);
             transform-style: preserve-3d;
@@ -749,7 +751,7 @@
         /* Proven Automation Blueprints styles */
         .blueprints {
             background-color: var(--bg-base);
-            padding: 8rem 8% 6rem;
+            padding: 6.5rem 8% 5rem;
         }
 
         .blueprints-grid {
@@ -930,9 +932,9 @@
     <section class="hero" id="hero">
         <div class="hero-container">
             <div class="hero-content" id="hero-reveal">
-                <div class="hero-badge">Enterprise Automation Partners</div>
-                <h1>Stop losing 40% of your team's capacity. <span>Scale your operations 50% faster.</span></h1>
-                <p class="hero-subtitle">We build custom AI voice agents and cognitive pipelines that qualify incoming inquiries, automate billing matching, and sync your database systems 24/7. Get your first prototype in 48 hours—completely free.</p>
+                <div class="hero-badge">Gear Up For Automation</div>
+                <h1>Still doing manual work and left behind? <span>It's time to automate repeated tasks.</span></h1>
+                <p class="hero-subtitle">Stop losing 40% of your team's capacity to manual entry, sorting, and follow-ups. We build elite enterprise AI voice agents and cognitive pipelines that handle repeated workflows 24/7. Elevate performance, maximize output, and get your first working prototype free in 48 hours.</p>
                 <div class="hero-buttons">
                     <a href="dashboard.html?demo=true" class="btn btn-primary" id="openDemoBtn">
                         <span style="font-size: 1.2rem;">🎙️</span> See Live Voice Agent Demo
@@ -972,23 +974,41 @@
             <p>We build end-to-end automation infrastructure tailored for elite operations. We don't just supply software; we build high-performing cognitive workflows.</p>
         </div>
         <div class="services-grid">
-            <!-- Service Card 1 -->
+            <!-- Service Card 1: Automated Lead Generation -->
             <div class="tilt-card" id="service-card-1">
-                <div class="card-icon">🎙️</div>
-                <h3>Autonomous Intake Agents</h3>
-                <p>Qualify incoming inquiries, route tickets, and update CRM records 24/7. Deploy custom conversational agents that handle customer service and scale response capacity without increasing headcount.</p>
+                <div class="card-icon">🎯</div>
+                <h3>Automated Lead Generation</h3>
+                <p>Dynamically scrape, enrich, and qualify prospects from high-intent channels. Our pipelines aggregate contact details, firmographic data, and buying signals to automatically feed your sales pipeline with warm, ready-to-close opportunities.</p>
             </div>
-            <!-- Service Card 2 -->
+            <!-- Service Card 2: Automated WhatsApp Outreach -->
             <div class="tilt-card" id="service-card-2">
-                <div class="card-icon">🧠</div>
-                <h3>Cognitive Ingestion Pipelines</h3>
-                <p>Extract unstructured data from emails, vendor invoices, and PDFs with 99.9% accuracy and sync ERPs. Power your database systems with automated document processing that eliminates human data entry.</p>
+                <div class="card-icon">💬</div>
+                <h3>Automated WhatsApp Outreach</h3>
+                <p>Launch automated, conversational messaging and follow-ups directly on WhatsApp. Build high-engagement touchpoints with custom API triggers, maintaining personalized customer relationships at scale without any manual overhead.</p>
             </div>
-            <!-- Service Card 3 -->
+            <!-- Service Card 3: Automated Cold Calls -->
             <div class="tilt-card" id="service-card-3">
-                <div class="card-icon">⚡</div>
-                <h3>Operational Sync & Trigger</h3>
-                <p>Automate accounts payable matching, customer onboarding, and logistics alerts with human-in-the-loop validation. Connect legacy platforms and trigger event-driven workflows with zero latency.</p>
+                <div class="card-icon">📞</div>
+                <h3>Automated Cold Calls</h3>
+                <p>Deploy conversational AI voice agents to handle inbound and outbound calls naturally. Whether reaching out directly to qualified customers or dynamically searching for and vetting developers based on client requests, we offer flexible call flows.</p>
+            </div>
+            <!-- Service Card 4: Automated Email Outreach -->
+            <div class="tilt-card" id="service-card-4">
+                <div class="card-icon">✉️</div>
+                <h3>Automated Email Outreach</h3>
+                <p>Scale outbound sequencing and manage inbox responses automatically. Draft tailored, highly contextual replies, classify incoming messages based on user intent, and automatically update your database systems 24/7.</p>
+            </div>
+            <!-- Service Card 5: Automated Content Creation -->
+            <div class="tilt-card" id="service-card-5">
+                <div class="card-icon">✍️</div>
+                <h3>Automated Content Creation</h3>
+                <p>Generate high-converting marketing materials, social media posts, and custom copy dynamically. Train custom language models on your brand voice to maintain an active, elite digital presence and publish content around the clock.</p>
+            </div>
+            <!-- Service Card 6: Flexible Custom Automations -->
+            <div class="tilt-card" id="service-card-6">
+                <div class="card-icon">🔄</div>
+                <h3>Flexible Custom Automations</h3>
+                <p>From custom database syncing to dynamic developer sourcing, we design and scale options for any enterprise stack. Tell us what repetitive manual task is slowing down your growth, and we will build a custom engine to automate it.</p>
             </div>
         </div>
     </section>
@@ -1440,8 +1460,8 @@
                     noiseOffsetX: Math.random() * 100,
                     noiseOffsetY: Math.random() * 100,
                     noiseOffsetZ: Math.random() * 100,
-                    size: Math.random() * 5 + 3,
-                    color: Math.random() > 0.5 ? new THREE.Color('#4F46E5') : new THREE.Color('#6366F1')
+                    size: Math.random() * 4 + 5, // enlarged node sizes (between 5 and 9)
+                    color: Math.random() > 0.5 ? new THREE.Color('#4F46E5') : new THREE.Color('#7C3AED') // deep indigo and deep violet
                 });
             }
 
@@ -1494,7 +1514,7 @@
                 fragmentShader: pointFragmentShader,
                 transparent: true,
                 depthWrite: false,
-                blending: THREE.AdditiveBlending
+                blending: THREE.NormalBlending
             });
 
             const pointsMesh = new THREE.Points(pointsGeometry, pointsMaterial);
@@ -1521,7 +1541,7 @@
 
             const lineMaterial = new THREE.ShaderMaterial({
                 uniforms: {
-                    uColor: { value: new THREE.Color('#0F172A') }
+                    uColor: { value: new THREE.Color('#94A3B8') } // Slate/grey lines
                 },
                 vertexShader: lineVertexShader,
                 fragmentShader: lineFragmentShader,
@@ -1649,7 +1669,7 @@
                             linePositions.push(n1.x, n1.y, n1.z);
                             linePositions.push(n2.x, n2.y, n2.z);
 
-                            const alpha = (1.0 - dist / maxDistance) * 0.15;
+                            const alpha = (1.0 - dist / maxDistance) * 0.45; // Increased line opacities to 0.45 for contrast
                             lineAlphas.push(alpha, alpha);
                         }
                     }
