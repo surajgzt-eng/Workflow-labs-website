@@ -27,6 +27,6 @@
   </g>
 
   <!-- Wordmark -->
-  <text x="104" y="40" font-family="'Inter',-apple-system,BlinkMacSystemFont,sans-serif" font-weight="700" font-size="26" fill="#1e293b" letter-spacing="-0.02em">Workflow</text>
-  <text x="104" y="68" font-family="'Inter',-apple-system,BlinkMacSystemFont,sans-serif" font-weight="600" font-size="13" fill="#6366f1" letter-spacing="0.35em">LABS</text>
+  <text x="104" y="38" font-family="'Inter',-apple-system,BlinkMacSystemFont,sans-serif" font-weight="800" font-size="30" fill="#1e293b" letter-spacing="-0.02em">Workflow</text>
+  <text x="104" y="66" font-family="'Inter',-apple-system,BlinkMacSystemFont,sans-serif" font-weight="600" font-size="15" fill="#6366f1" letter-spacing="0.35em">LABS</text>
 </svg>
