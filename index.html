@@ -115,18 +115,89 @@
         @media (max-width: 768px) {
             .nav-links a:not(.nav-cta) { display: none; }
         }
-
-        /* ===== HERO ===== */
         .hero {
-            min-height: 90vh;
-            display: flex; flex-direction: column;
-            align-items: center; justify-content: center;
-            padding: 6rem 2rem;
-            text-align: center;
-            position: relative;
-            z-index: 1;
-            overflow: hidden;
-        }
+                    min-height: 90vh;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 6rem 2rem;
+                    text-align: center;
+                    position: relative;
+                    z-index: 1;
+                    overflow: hidden;
+                }
+                .hero-grid {
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+                    gap: 2.5rem;
+                    align-items: center;
+                    max-width: 1100px;
+                    width: 100%;
+                    text-align: left;
+                }
+                .hero-content {
+                    position: relative;
+                    z-index: 1;
+                    background: rgba(99, 102, 241, 0.01);
+                    backdrop-filter: blur(2px);
+                    -webkit-backdrop-filter: blur(2px);
+                    border-radius: 24px;
+                    padding: 3rem 2.5rem;
+                    box-shadow: none;
+                    border: 1px solid rgba(99, 102, 241, 0.05);
+                    pointer-events: none;
+                }
+                .hero-content > * {
+                    pointer-events: auto;
+                }
+                .hero-playground {
+                    position: relative;
+                    width: 100%;
+                    height: 420px;
+                    border-radius: 24px;
+                    overflow: hidden;
+                    background: rgba(15, 23, 42, 0.03);
+                    border: 1px solid rgba(99, 102, 241, 0.08);
+                    cursor: crosshair;
+                }
+                #playgroundCanvas {
+                    position: absolute;
+                    top: 0; left: 0;
+                    width: 100%;
+                    height: 100%;
+                }
+                .playground-hint {
+                    position: absolute;
+                    bottom: 1.2rem;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    display: flex;
+                    align-items: center;
+                    gap: 0.5rem;
+                    font-size: 0.82rem;
+                    color: var(--text3);
+                    background: rgba(255,255,255,0.85);
+                    backdrop-filter: blur(8px);
+                    padding: 0.5rem 1.2rem;
+                    border-radius: 50px;
+                    border: 1px solid rgba(99, 102, 241, 0.1);
+                    pointer-events: none;
+                    transition: opacity 0.4s;
+                    white-space: nowrap;
+                }
+                .playground-hint .playground-icon {
+                    font-size: 1rem;
+                    animation: playgroundPulse 2s ease-in-out infinite;
+                }
+                @keyframes playgroundPulse {
+                    0%, 100% { transform: scale(1); }
+                    50% { transform: scale(1.2); }
+                }
+                .hero-playground:hover .playground-hint,
+                .hero-playground.active .playground-hint {
+                    opacity: 0;
+                }
         #particleCanvas {
             position: fixed;
             top: 0; left: 0;
@@ -495,6 +566,8 @@
         @media (max-width: 640px) {
             .hero-visual-inner .mockup-grid { grid-template-columns: 1fr; }
             .hero { padding: 5rem 1.5rem 3rem; }
+            .hero-grid { grid-template-columns: 1fr !important; }
+            .hero-playground { height: 280px !important; }
             .hero-stats { gap: 1.5rem; }
             .hero-content { padding: 2rem 1.5rem !important; border-radius: 16px !important; }
             .step { flex-direction: column; }
@@ -520,27 +593,36 @@
 <!-- ===== HERO ===== -->
 <section class="hero" id="hero">
     <canvas id="particleCanvas"></canvas>
-    <div class="hero-content">
-        <div class="hero-badge reveal">
-            <span class="dot"></span>
-            Trusted by 50+ growing businesses
+    <div class="hero-grid">
+        <div class="hero-content">
+            <div class="hero-badge reveal">
+                <span class="dot"></span>
+                Trusted by 50+ growing businesses
+            </div>
+            <h1 class="reveal reveal-delay-1">
+                You're losing hours to<br>
+                <span class="gradient">tasks a machine does in seconds.</span>
+            </h1>
+            <p class="reveal reveal-delay-2">
+                We build custom AI automation for lead generation, cold calls, email outreach, and more.
+                You focus on closing deals. We handle the repetitive work.
+            </p>
+            <div class="hero-actions reveal reveal-delay-3">
+                <a href="#cta" class="btn-primary">Get Your Free Audit →</a>
+                <a href="#services" class="btn-secondary">See Services</a>
+            </div>
+            <div class="hero-stats reveal" style="transition-delay:0.5s;">
+                <div><div class="num">10,000+</div><div class="label">Hours Saved</div></div>
+                <div><div class="num">50+</div><div class="label">Clients</div></div>
+                <div><div class="num">98%</div><div class="label">Accuracy</div></div>
+            </div>
         </div>
-        <h1 class="reveal reveal-delay-1">
-            You're losing hours to<br>
-            <span class="gradient">tasks a machine does in seconds.</span>
-        </h1>
-        <p class="reveal reveal-delay-2">
-            We build custom AI automation for lead generation, cold calls, email outreach, and more.
-            You focus on closing deals. We handle the repetitive work.
-        </p>
-        <div class="hero-actions reveal reveal-delay-3">
-            <a href="#cta" class="btn-primary">Get Your Free Audit →</a>
-            <a href="#services" class="btn-secondary">See Services</a>
-        </div>
-        <div class="hero-stats reveal" style="transition-delay:0.5s;">
-            <div><div class="num">10,000+</div><div class="label">Hours Saved</div></div>
-            <div><div class="num">50+</div><div class="label">Clients</div></div>
-            <div><div class="num">98%</div><div class="label">Accuracy</div></div>
+        <div class="hero-playground reveal" id="playground">
+            <canvas id="playgroundCanvas"></canvas>
+            <div class="playground-hint">
+                <span class="playground-icon">✨</span>
+                Move your cursor here
+            </div>
         </div>
     </div>
 </section>
@@ -861,6 +943,147 @@ document.querySelectorAll('.service-card').forEach(card => {
         }
     });
 
+    init();
+    animate();
+})();
+
+// ===== PLAYGROUND PARTICLE SYSTEM =====
+(function() {
+    const container = document.getElementById('playground');
+    const canvas = document.getElementById('playgroundCanvas');
+    if (!container || !canvas) return;
+    const ctx = canvas.getContext('2d');
+
+    let W, H, particles = [];
+    const COUNT = 200;
+    const CONNECTION_DIST = 100;
+    const MOUSE_RADIUS = 200;
+    let mouse = { x: -9999, y: -9999 };
+    let isActive = false;
+
+    function resize() {
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        const rect = container.getBoundingClientRect();
+        W = canvas.width = rect.width * dpr;
+        H = canvas.height = rect.height * dpr;
+        canvas.style.width = rect.width + 'px';
+        canvas.style.height = rect.height + 'px';
+        ctx.setTransform(1, 0, 0, 1, 0, 0);
+        ctx.scale(dpr, dpr);
+    }
+
+    class Particle {
+        constructor() {
+            this.reset();
+        }
+        reset() {
+            this.x = Math.random() * canvas.clientWidth;
+            this.y = Math.random() * canvas.clientHeight;
+            this.vx = (Math.random() - 0.5) * 0.6;
+            this.vy = (Math.random() - 0.5) * 0.6;
+            this.r = Math.random() * 2.5 + 1;
+            this.baseR = this.r;
+            this.alpha = Math.random() * 0.6 + 0.2;
+            // Some dots are purple, some are cyan
+            this.hue = Math.random() > 0.5 ? 240 : 260;
+        }
+        update() {
+            this.x += this.vx;
+            this.y += this.vy;
+            const cw = canvas.clientWidth, ch = canvas.clientHeight;
+            if (this.x < -20) this.x = cw + 20;
+            if (this.x > cw + 20) this.x = -20;
+            if (this.y < -20) this.y = ch + 20;
+            if (this.y > ch + 20) this.y = -20;
+            const dx = this.x - mouse.x;
+            const dy = this.y - mouse.y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < MOUSE_RADIUS && dist > 0) {
+                const force = (MOUSE_RADIUS - dist) / MOUSE_RADIUS;
+                this.x += (dx / dist) * force * 8;
+                this.y += (dy / dist) * force * 8;
+                this.r = this.baseR + force * 4;
+                this.alpha = Math.min(1, this.alpha + force * 0.3);
+            } else {
+                this.r += (this.baseR - this.r) * 0.1;
+                this.alpha += (0.4 - this.alpha) * 0.05;
+            }
+        }
+        draw() {
+            ctx.beginPath();
+            ctx.arc(Math.round(this.x), Math.round(this.y), this.r, 0, Math.PI * 2);
+            ctx.fillStyle = `hsla(${this.hue}, 70%, 65%, ${this.alpha})`;
+            ctx.fill();
+        }
+    }
+
+    function init() {
+        resize();
+        particles = [];
+        for (let i = 0; i < COUNT; i++) particles.push(new Particle());
+    }
+
+    function drawConnections() {
+        for (let i = 0; i < particles.length; i++) {
+            for (let j = i + 1; j < particles.length; j++) {
+                const dx = particles[i].x - particles[j].x;
+                const dy = particles[i].y - particles[j].y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                if (dist < CONNECTION_DIST) {
+                    const alpha = (1 - dist / CONNECTION_DIST) * 0.15;
+                    ctx.beginPath();
+                    ctx.moveTo(Math.round(particles[i].x), Math.round(particles[i].y));
+                    ctx.lineTo(Math.round(particles[j].x), Math.round(particles[j].y));
+                    ctx.strokeStyle = `rgba(99, 102, 241, ${alpha})`;
+                    ctx.lineWidth = 0.5;
+                    ctx.stroke();
+                }
+            }
+        }
+    }
+
+    function animate() {
+        const cw = canvas.clientWidth, ch = canvas.clientHeight;
+        ctx.clearRect(0, 0, cw, ch);
+        drawConnections();
+        particles.forEach(p => { p.update(); p.draw(); });
+        requestAnimationFrame(animate);
+    }
+
+    // Mouse
+    container.addEventListener('mousemove', (e) => {
+        const rect = container.getBoundingClientRect();
+        mouse.x = e.clientX - rect.left;
+        mouse.y = e.clientY - rect.top;
+        isActive = true;
+        container.classList.add('active');
+    });
+    container.addEventListener('mouseleave', () => {
+        mouse.x = -9999; mouse.y = -9999;
+        isActive = false;
+        container.classList.remove('active');
+    });
+
+    // Touch
+    container.addEventListener('touchstart', (e) => {
+        const rect = container.getBoundingClientRect();
+        mouse.x = e.touches[0].clientX - rect.left;
+        mouse.y = e.touches[0].clientY - rect.top;
+        isActive = true;
+        container.classList.add('active');
+    }, { passive: true });
+    container.addEventListener('touchmove', (e) => {
+        const rect = container.getBoundingClientRect();
+        mouse.x = e.touches[0].clientX - rect.left;
+        mouse.y = e.touches[0].clientY - rect.top;
+    }, { passive: true });
+    container.addEventListener('touchend', () => {
+        mouse.x = -9999; mouse.y = -9999;
+        isActive = false;
+        container.classList.remove('active');
+    });
+
+    window.addEventListener('resize', init);
     init();
     animate();
 })();
