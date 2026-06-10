@@ -835,12 +835,15 @@ document.querySelectorAll('.service-card').forEach(card => {
         mouse.x = -9999; mouse.y = -9999;
     });
 
-    // Touch interaction
-    window.addEventListener('touchmove', (e) => {
-        e.preventDefault();
+    // Touch interaction — passive so it doesn't block scrolling
+    window.addEventListener('touchstart', (e) => {
         mouse.x = e.touches[0].clientX;
         mouse.y = e.touches[0].clientY;
-    }, { passive: false });
+    }, { passive: true });
+    window.addEventListener('touchmove', (e) => {
+        mouse.x = e.touches[0].clientX;
+        mouse.y = e.touches[0].clientY;
+    }, { passive: true });
     window.addEventListener('touchend', () => {
         mouse.x = -9999; mouse.y = -9999;
     });
