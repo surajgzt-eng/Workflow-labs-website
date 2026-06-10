@@ -3,1702 +3,590 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Workflow Labs | Elite Enterprise AI Automation & Strategy Partner</title>
-    <meta name="description" content="We design premium AI voice agents, custom LLM workflows, and end-to-end backend automations that eliminate manual overhead, improve performance, and drive faster growth.">
-    
-    <!-- Premium Fonts -->
+    <title>Workflow Labs — Automate. Scale. Grow.</title>
+    <meta name="description" content="Stop wasting time on repetitive tasks. We build custom AI automation that handles your lead generation, cold calls, emails, and outreach — so you focus on closing deals.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
-    <!-- Styling -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        /* Modern Reset and Design Tokens */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
-            --bg-base: #F9F9FB; /* Alabaster off-white */
-            --bg-card: rgba(255, 255, 255, 0.7);
-            --border-glass: rgba(255, 255, 255, 0.5);
-            --border-slate: rgba(15, 23, 42, 0.08);
-            --text-primary: #0F172A; /* Deep slate */
-            --text-secondary: #475569; /* Medium slate */
-            --text-muted: #94A3B8;
-            --accent-indigo: #4F46E5;
-            --accent-violet: #6366F1;
-            --gradient-metallic: linear-gradient(135deg, #0F172A 0%, #475569 100%);
-            --gradient-indigo: linear-gradient(135deg, #4F46E5 0%, #6366F1 100%);
-            --gradient-platinum: linear-gradient(135deg, #F1F5F9 0%, #E2E8F0 100%);
-            --transition-smooth: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            --bg: #07070d;
+            --bg2: #0c0c18;
+            --surface: rgba(255,255,255,0.03);
+            --surface-hover: rgba(255,255,255,0.06);
+            --border: rgba(255,255,255,0.06);
+            --border-light: rgba(255,255,255,0.1);
+            --text: #f1f1f7;
+            --text2: rgba(255,255,255,0.55);
+            --text3: rgba(255,255,255,0.3);
+            --accent1: #6366f1;
+            --accent2: #8b5cf6;
+            --accent3: #a78bfa;
+            --gradient-hero: linear-gradient(135deg, #6366f1, #a855f7, #d946ef);
+            --gradient-card: linear-gradient(135deg, rgba(99,102,241,0.12), rgba(168,85,247,0.08));
         }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
+        html { scroll-behavior: smooth; }
         body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: var(--bg-base);
-            color: var(--text-primary);
-            line-height: 1.6;
-            overflow-x: hidden;
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
             -webkit-font-smoothing: antialiased;
         }
+        h1,h2,h3,h4 { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; letter-spacing: -0.02em; }
 
-        h1, h2, h3, h4 {
-            font-family: 'Outfit', sans-serif;
-            font-weight: 800;
-            letter-spacing: -0.02em;
+        /* ===== AMBIENT BG ===== */
+        .bg-glow {
+            position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
+        }
+        .bg-glow .orb {
+            position: absolute; border-radius: 50%; filter: blur(120px); opacity: 0.4;
+        }
+        .bg-glow .o1 {
+            width: 60vw; height: 60vw; top: -20%; left: -20%;
+            background: radial-gradient(circle, rgba(99,102,241,0.2), transparent 70%);
+        }
+        .bg-glow .o2 {
+            width: 50vw; height: 50vw; bottom: -20%; right: -20%;
+            background: radial-gradient(circle, rgba(168,85,247,0.15), transparent 70%);
+        }
+        .bg-glow .o3 {
+            width: 40vw; height: 40vw; top: 40%; left: 30%;
+            background: radial-gradient(circle, rgba(217,70,239,0.08), transparent 70%);
         }
 
-        /* Ambient subtle light-mode background details */
-        .ambient-glow {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: -2;
-            pointer-events: none;
-            overflow: hidden;
-        }
+        .wrap { position: relative; z-index: 1; }
 
-        .glow-orb {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(140px);
-            opacity: 0.4;
-            will-change: transform;
-        }
-
-        .orb-1 {
-            width: 50vw;
-            height: 50vw;
-            background: radial-gradient(circle, rgba(79, 70, 229, 0.15) 0%, transparent 70%);
-            top: -10%;
-            left: -10%;
-        }
-
-        .orb-2 {
-            width: 45vw;
-            height: 45vw;
-            background: radial-gradient(circle, rgba(6, 182, 212, 0.1) 0%, transparent 70%);
-            bottom: -10%;
-            right: -10%;
-        }
-
-        /* Frosted Glass Navigation */
+        /* ===== NAV ===== */
         nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            padding: 1.5rem 8%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(249, 249, 251, 0.85);
+            position: fixed; top: 0; width: 100%; z-index: 100;
+            padding: 1rem 2rem;
+            display: flex; justify-content: space-between; align-items: center;
             backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border-slate);
-            transition: var(--transition-smooth);
+            background: rgba(7,7,13,0.6);
+            border-bottom: 1px solid var(--border);
         }
-
         .logo {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 1.5rem;
-            font-weight: 900;
-            color: var(--text-primary);
-            text-decoration: none;
-            font-family: 'Outfit', sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 1.3rem; font-weight: 800;
+            background: var(--gradient-hero);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
-
-        .logo span {
-            background: var(--gradient-indigo);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 3rem;
-            list-style: none;
-        }
-
+        .nav-links { display: flex; gap: 2rem; align-items: center; }
         .nav-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.95rem;
-            transition: var(--transition-smooth);
-            position: relative;
+            color: var(--text2); text-decoration: none; font-size: 0.85rem;
+            font-weight: 500; transition: color 0.2s;
         }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--accent-indigo);
-            transition: var(--transition-smooth);
-        }
-
-        .nav-links a:hover {
-            color: var(--text-primary);
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
+        .nav-links a:hover { color: var(--text); }
         .nav-cta {
-            padding: 0.75rem 1.75rem;
-            background: var(--gradient-metallic);
-            color: white;
-            border: none;
-            border-radius: 100px;
-            font-weight: 700;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: var(--transition-smooth);
-            text-decoration: none;
-            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.1);
-        }
-
-        .nav-cta:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(15, 23, 42, 0.2);
-        }
-
-        /* Sections base */
-        section {
-            padding: 6.5rem 8% 5rem;
-            position: relative;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        /* Hero Layout split */
-        .hero-container {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 4rem;
-            min-height: calc(100vh - 12rem);
-        }
-
-        .hero-content {
-            flex: 1;
-            max-width: 650px;
-            z-index: 10;
-        }
-
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.5rem 1.25rem;
-            background: rgba(79, 70, 229, 0.05);
-            border: 1px solid rgba(79, 70, 229, 0.15);
-            border-radius: 100px;
-            font-size: 0.85rem;
-            font-weight: 700;
-            color: var(--accent-indigo);
-            margin-bottom: 2rem;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-        }
-
-        .hero h1 {
-            font-size: clamp(2.8rem, 5vw, 4.2rem);
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-            color: var(--text-primary);
-        }
-
-        .hero h1 span {
-            background: var(--gradient-indigo);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero-subtitle {
-            font-size: 1.15rem;
-            color: var(--text-secondary);
-            margin-bottom: 3rem;
-            max-width: 580px;
-            font-weight: 500;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            padding: 1.1rem 2.2rem;
-            border-radius: 100px;
-            font-weight: 700;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: var(--transition-smooth);
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            border: none;
-        }
-
-        .btn-primary {
-            background: var(--gradient-indigo);
-            color: white;
-            box-shadow: 0 8px 24px rgba(79, 70, 229, 0.25);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 16px 36px rgba(79, 70, 229, 0.35);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--text-primary);
-            border: 1px solid var(--text-primary);
-        }
-
-        .btn-secondary:hover {
-            background: rgba(15, 23, 42, 0.04);
-            transform: translateY(-3px);
-        }
-
-        /* Hero Dashboard container */
-        .hero-visual {
-            flex: 1;
-            position: relative;
-            height: 600px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .hero-dashboard {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            grid-template-rows: repeat(2, 1fr);
-            gap: 1rem;
-            width: 100%;
-            height: 100%;
-            padding: 0.5rem;
-        }
-
-        /* Hero Dashboard container and card styling migrated to dashboard.html */
-
-
-        /* Section Headers */
-        .section-header {
-            text-align: center;
-            margin-bottom: 6rem;
-        }
-
-        .section-tag {
-            display: inline-block;
-            font-size: 0.85rem;
-            font-weight: 700;
-            color: var(--accent-indigo);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-bottom: 1rem;
-        }
-
-        .section-header h2 {
-            font-size: clamp(2.2rem, 4vw, 3.2rem);
-            color: var(--text-primary);
-            margin-bottom: 1.5rem;
-        }
-
-        .section-header p {
-            font-size: 1.15rem;
-            color: var(--text-secondary);
-            max-width: 650px;
-            margin: 0 auto;
-            font-weight: 500;
-        }
-
-        /* Section 2: Core Problem */
-        .problem-layout {
-            display: grid;
-            grid-template-columns: 1fr 1.2fr;
-            gap: 6rem;
-            align-items: center;
-        }
-
-        .problem-stat {
-            background: var(--gradient-platinum);
-            border-radius: 40px;
-            padding: 5rem 4rem;
-            text-align: center;
-            position: relative;
-            box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.8), 0 10px 30px rgba(15, 23, 42, 0.03);
-            border: 1px solid var(--border-glass);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .stat-number {
-            font-size: clamp(6rem, 10vw, 9rem);
-            font-weight: 900;
-            line-height: 1;
-            background: var(--gradient-indigo);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .stat-label {
-            font-family: 'Outfit', sans-serif;
-            font-weight: 800;
-            font-size: 1.25rem;
-            color: var(--text-primary);
-            margin-top: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        .problem-description h3 {
-            font-size: 2.2rem;
-            line-height: 1.3;
-            margin-bottom: 1.5rem;
-        }
-
-        .problem-description p {
-            font-size: 1.15rem;
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
-        }
-
-        .highlight-box {
-            border-left: 4px solid var(--accent-indigo);
-            padding: 1rem 0 1rem 2rem;
-            font-style: italic;
-            font-weight: 600;
-            font-size: 1.1rem;
-            color: var(--text-primary);
-        }
-
-        /* Section 3: Core Services (Bento grid style) */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2.5rem;
-        }
-
-        .tilt-card {
-            background: rgba(255, 255, 255, 0.45);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.6);
-            border-radius: 32px;
-            padding: 3.5rem 2.5rem;
-            box-shadow: 0 20px 40px rgba(15, 23, 42, 0.03), 0 1px 2px rgba(15, 23, 42, 0.02);
-            transition: border-color 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-            transform-style: preserve-3d;
-            perspective: 1000px;
-        }
-
-        .tilt-card:hover {
-            box-shadow: 0 30px 60px rgba(15, 23, 42, 0.08);
-            border-color: rgba(79, 70, 229, 0.2);
-        }
-
-        .card-icon {
-            width: 70px;
-            height: 70px;
-            background: var(--gradient-platinum);
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 2.5rem;
-            font-size: 2rem;
-            color: var(--accent-indigo);
-            border: 1px solid var(--border-glass);
-            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.02);
-            transform: translateZ(40px);
-        }
-
-        .tilt-card h3 {
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-            transform: translateZ(30px);
-        }
-
-        .tilt-card p {
-            color: var(--text-secondary);
-            font-size: 1.05rem;
-            line-height: 1.7;
-            transform: translateZ(20px);
-        }
-
-        /* Section 4: No-Risk Proof (Strategic Trust) */
-        .proof-box {
-            background: var(--gradient-platinum);
-            border-radius: 40px;
-            padding: 6rem 5rem;
-            border: 1px solid var(--border-glass);
-            box-shadow: 0 20px 40px rgba(15, 23, 42, 0.03);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 4rem;
-        }
-
-        .proof-text {
-            flex: 1.3;
-        }
-
-        .proof-text h2 {
-            font-size: 2.6rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .proof-text p {
-            font-size: 1.15rem;
-            color: var(--text-secondary);
-            line-height: 1.7;
-        }
-
-        .proof-guarantee {
-            flex: 0.8;
-            background: rgba(255, 255, 255, 0.8);
-            border-radius: 28px;
-            padding: 3rem;
-            border: 1px solid var(--border-glass);
-            text-align: center;
-            box-shadow: 0 8px 24px rgba(15, 23, 42, 0.02);
-        }
-
-        .guarantee-badge {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
-            display: inline-block;
-            animation: float 4s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        .guarantee-title {
-            font-family: 'Outfit', sans-serif;
-            font-weight: 800;
-            font-size: 1.25rem;
-            color: var(--text-primary);
-            margin-bottom: 0.5rem;
-            text-transform: uppercase;
-        }
-
-        .guarantee-sub {
-            font-size: 0.95rem;
-            color: var(--text-secondary);
-            font-weight: 600;
-        }
-
-        /* Section 5: Inquiry & Footer */
-        .contact-layout {
-            display: grid;
-            grid-template-columns: 1fr 1.2fr;
-            gap: 6rem;
-            align-items: start;
-        }
-
-        .contact-info h2 {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
-            line-height: 1.15;
-        }
-
-        .contact-info p {
-            font-size: 1.15rem;
-            color: var(--text-secondary);
-            margin-bottom: 3rem;
-        }
-
-        .agency-meta {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-
-        .meta-item {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            font-weight: 600;
-            color: var(--text-primary);
-        }
-
-        .meta-icon {
-            width: 44px;
-            height: 44px;
-            background: var(--gradient-platinum);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            border: 1px solid var(--border-glass);
-        }
-
-        /* Premium Forms */
-        .contact-form-container {
-            background: var(--bg-card);
-            border: 1px solid var(--border-glass);
-            border-radius: 36px;
-            padding: 4.5rem 4rem;
-            box-shadow: 0 30px 60px rgba(15, 23, 42, 0.05);
-        }
-
-        .form-group {
-            position: relative;
-            margin-bottom: 2.5rem;
-        }
-
-        .form-input {
-            width: 100%;
-            padding: 1rem 0;
-            background: transparent;
-            border: none;
-            border-bottom: 2px solid #E2E8F0;
-            font-family: inherit;
-            font-size: 1.05rem;
-            color: var(--text-primary);
-            outline: none;
-            transition: var(--transition-smooth);
-        }
-
-        .form-label {
-            position: absolute;
-            top: 1rem;
-            left: 0;
-            color: var(--text-secondary);
-            font-weight: 600;
-            pointer-events: none;
-            transition: var(--transition-smooth);
-            transform-origin: left top;
-        }
-
-        /* Label floating animation */
-        .form-input:focus ~ .form-label,
-        .form-input:not(:placeholder-shown) ~ .form-label {
-            transform: translateY(-24px) scale(0.85);
-            color: var(--accent-indigo);
-            font-weight: 700;
-        }
-
-        .form-input:focus {
-            border-color: var(--accent-indigo);
-        }
-
-        .form-error {
-            position: absolute;
-            bottom: -20px;
-            left: 0;
-            font-size: 0.8rem;
-            color: #EF4444;
-            font-weight: 600;
-            opacity: 0;
-            transform: translateY(-5px);
-            transition: var(--transition-smooth);
-        }
-
-        .form-group.has-error .form-input {
-            border-color: #EF4444;
-        }
-
-        .form-group.has-error .form-error {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .submit-btn {
-            width: 100%;
-            padding: 1.2rem;
-            background: var(--gradient-indigo);
-            color: white;
-            border: none;
-            border-radius: 100px;
-            font-weight: 700;
-            font-size: 1.1rem;
-            cursor: pointer;
-            box-shadow: 0 8px 24px rgba(79, 70, 229, 0.2);
-            transition: var(--transition-smooth);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-        }
-
-        .submit-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 16px 36px rgba(79, 70, 229, 0.3);
-        }
-
-        /* Success state inside form container */
-        .form-success-state {
-            display: none;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            padding: 2rem 0;
-        }
-
-        .success-checkmark {
-            width: 72px;
-            height: 72px;
-            background: rgba(16, 185, 129, 0.1);
-            color: #10B981;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2.2rem;
-            margin-bottom: 2rem;
-            animation: popIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
-
-        @keyframes popIn {
-            0% { transform: scale(0.5); opacity: 0; }
-            100% { transform: scale(1); opacity: 1; }
-        }
-
-        .form-success-state h3 {
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-        }
-
-        .form-success-state p {
-            color: var(--text-secondary);
-            font-size: 1.05rem;
-        }
-
-        /* Footer bottom */
-        footer {
-            padding: 5rem 8% 3rem;
-            border-top: 1px solid var(--border-slate);
-            background: rgba(255, 255, 255, 0.3);
-            backdrop-filter: blur(10px);
-        }
-
-        .footer-grid {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 2rem;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .footer-brand {
-            font-weight: 700;
-            color: var(--text-primary);
-        }
-
-        .footer-links-row {
-            display: flex;
-            gap: 2.5rem;
-            list-style: none;
-        }
-
-        .footer-links-row a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.9rem;
-            transition: var(--transition-smooth);
-        }
-
-        .footer-links-row a:hover {
-            color: var(--text-primary);
-        }
-
-        .footer-copy {
-            width: 100%;
-            text-align: center;
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            margin-top: 4rem;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(15, 23, 42, 0.04);
-        }
-
-        /* Live Demo Modal styling migrated to dashboard.html */
-
-        /* Proven Automation Blueprints styles */
-        .blueprints {
-            background-color: var(--bg-base);
-            padding: 6.5rem 8% 5rem;
-        }
-
-        .blueprints-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2.5rem;
-        }
-
-        .blueprint-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-glass);
-            border-radius: 32px;
-            padding: 3.5rem 2.5rem;
-            box-shadow: 0 20px 40px rgba(15, 23, 42, 0.03), 0 1px 2px rgba(15, 23, 42, 0.02);
-            transition: border-color 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .blueprint-card.revealed {
-            transition: border-color 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .blueprint-card:hover {
-            box-shadow: 0 30px 60px rgba(15, 23, 42, 0.08);
-            border-color: rgba(79, 70, 229, 0.2);
-            transform: translateY(-8px);
-        }
-
-        .blueprint-header {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .blueprint-dept {
-            font-size: 0.75rem;
-            font-weight: 700;
-            color: var(--accent-indigo);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        .blueprint-badge {
-            font-family: 'Outfit', sans-serif;
-            font-weight: 800;
-            font-size: 1.4rem;
-            color: var(--text-primary);
-            line-height: 1.25;
-        }
-
-        .blueprint-flow {
-            display: flex;
-            flex-direction: column;
-            gap: 1.25rem;
-            margin-bottom: 2.5rem;
-        }
-
-        .flow-step {
-            font-size: 0.95rem;
-            color: var(--text-secondary);
-            line-height: 1.5;
-        }
-
-        .flow-step strong {
-            color: var(--text-primary);
-        }
-
-        .blueprint-outcome {
-            margin-top: auto;
-        }
-
-        .outcome-tag {
-            display: inline-block;
-            background: rgba(16, 185, 129, 0.1);
-            color: #059669; /* Emerald/green */
-            padding: 0.5rem 1rem;
-            border-radius: 100px;
-            font-size: 0.85rem;
-            font-weight: 700;
-        }
-
-        /* Media queries */
-        @media (max-width: 1024px) {
-            .hero-container {
-                flex-direction: column;
-                text-align: center;
-                gap: 2rem;
-                justify-content: center;
-            }
-
-            .hero-content {
-                max-width: 100%;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .hero-buttons {
-                justify-content: center;
-            }
-
-            .hero-visual {
-                width: 100%;
-                height: auto;
-            }
-            .hero-dashboard {
-                grid-template-columns: 1fr;
-                grid-template-rows: auto;
-            }
-
-            .problem-layout {
-                grid-template-columns: 1fr;
-                gap: 4rem;
-            }
-
-            .services-grid,
-            .blueprints-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .proof-box {
-                flex-direction: column;
-                padding: 4rem 3rem;
-            }
-
-            .contact-layout {
-                grid-template-columns: 1fr;
-                gap: 4rem;
-            }
-        }
-
+            padding: 0.5rem 1.4rem; border-radius: 999px;
+            background: var(--gradient-hero); color: #fff; font-weight: 600;
+            font-size: 0.85rem; border: none; cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 8px 30px rgba(99,102,241,0.3); }
         @media (max-width: 768px) {
-            nav {
-                padding: 1.25rem 5%;
-            }
+            .nav-links a:not(.nav-cta) { display: none; }
+        }
 
-            .nav-links {
-                display: none; /* Mobile navigation toggle omitted for absolute visual simplicity */
-            }
+        /* ===== HERO ===== */
+        .hero {
+            min-height: 100vh; display: flex; flex-direction: column;
+            align-items: center; justify-content: center; text-align: center;
+            padding: 8rem 2rem 5rem;
+        }
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            background: rgba(99,102,241,0.1); border: 1px solid rgba(99,102,241,0.2);
+            padding: 0.35rem 1rem; border-radius: 999px; font-size: 0.78rem;
+            color: var(--accent3); margin-bottom: 2rem;
+        }
+        .hero h1 {
+            font-size: clamp(2.5rem, 7vw, 4.8rem); font-weight: 800;
+            line-height: 1.1; max-width: 850px; margin-bottom: 1.5rem;
+        }
+        .hero h1 .gradient {
+            background: var(--gradient-hero);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .hero p {
+            font-size: 1.15rem; color: var(--text2); max-width: 600px;
+            margin-bottom: 2.5rem; line-height: 1.8;
+        }
+        .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+        .btn-primary {
+            padding: 0.85rem 2.5rem; border-radius: 999px;
+            background: var(--gradient-hero); color: #fff; font-weight: 600;
+            font-size: 0.95rem; border: none; cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(99,102,241,0.35); }
+        .btn-secondary {
+            padding: 0.85rem 2.5rem; border-radius: 999px;
+            background: var(--surface); color: var(--text); font-weight: 500;
+            font-size: 0.95rem; border: 1px solid var(--border); cursor: pointer;
+            transition: background 0.2s, border-color 0.2s;
+        }
+        .btn-secondary:hover { background: var(--surface-hover); border-color: var(--border-light); }
 
-            section {
-                padding: 8rem 5% 6rem;
-            }
+        .hero-stats {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 3rem;
+            margin-top: 4rem; max-width: 600px; width: 100%;
+        }
+        .hero-stats div { text-align: center; }
+        .hero-stats .num {
+            font-size: 2rem; font-weight: 800;
+            background: var(--gradient-hero);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .hero-stats .label { font-size: 0.8rem; color: var(--text3); margin-top: 0.2rem; }
 
-            .proof-guarantee {
-                width: 100%;
-            }
+        /* ===== PAIN POINT ===== */
+        .pain {
+            padding: 5rem 2rem; max-width: 900px; margin: 0 auto; text-align: center;
+        }
+        .pain h2 { font-size: 2.2rem; margin-bottom: 1rem; }
+        .pain h2 .highlight { color: var(--accent2); }
+        .pain p { color: var(--text2); max-width: 650px; margin: 0 auto 3rem; }
+        .pain-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem;
+        }
+        .pain-item {
+            background: var(--surface); border: 1px solid var(--border);
+            border-radius: 12px; padding: 1.5rem; text-align: left;
+            transition: border-color 0.2s;
+        }
+        .pain-item:hover { border-color: rgba(99,102,241,0.3); }
+        .pain-item .icon { font-size: 1.5rem; margin-bottom: 0.5rem; }
+        .pain-item h4 { font-size: 0.95rem; margin-bottom: 0.3rem; }
+        .pain-item p { font-size: 0.85rem; color: var(--text3); margin: 0; }
 
-            .contact-form-container {
-                padding: 3rem 2rem;
-            }
+        /* ===== SERVICES ===== */
+        .services {
+            padding: 5rem 2rem; max-width: 1100px; margin: 0 auto;
+        }
+        .services-header { text-align: center; margin-bottom: 3rem; }
+        .services-header h2 { font-size: 2.2rem; margin-bottom: 0.8rem; }
+        .services-header p { color: var(--text2); max-width: 550px; margin: 0 auto; }
+        .services-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.2rem;
+        }
+        .service-card {
+            background: var(--gradient-card); border: 1px solid rgba(99,102,241,0.12);
+            border-radius: 16px; padding: 2rem;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+        .service-card:hover { transform: translateY(-4px); border-color: rgba(99,102,241,0.3); }
+        .service-card .s-icon {
+            width: 48px; height: 48px; border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.4rem; margin-bottom: 1.2rem;
+            background: rgba(99,102,241,0.15);
+        }
+        .service-card h3 { font-size: 1.1rem; margin-bottom: 0.5rem; }
+        .service-card p { color: var(--text2); font-size: 0.88rem; line-height: 1.7; }
+
+        /* ===== HOW IT WORKS ===== */
+        .process {
+            padding: 5rem 2rem; max-width: 900px; margin: 0 auto;
+        }
+        .process-header { text-align: center; margin-bottom: 3rem; }
+        .process-header h2 { font-size: 2.2rem; margin-bottom: 0.8rem; }
+        .process-header p { color: var(--text2); max-width: 550px; margin: 0 auto; }
+        .process-steps { display: flex; flex-direction: column; gap: 1.5rem; }
+        .step {
+            display: flex; gap: 1.5rem; align-items: flex-start;
+            background: var(--surface); border: 1px solid var(--border);
+            border-radius: 16px; padding: 1.8rem;
+        }
+        .step-num {
+            width: 44px; height: 44px; min-width: 44px;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-weight: 800; font-size: 1.1rem;
+            background: var(--gradient-hero); color: #fff;
+        }
+        .step-content h4 { font-size: 1rem; margin-bottom: 0.3rem; }
+        .step-content p { color: var(--text2); font-size: 0.88rem; }
+
+        /* ===== SOCIAL PROOF ===== */
+        .proof {
+            padding: 5rem 2rem; max-width: 900px; margin: 0 auto; text-align: center;
+        }
+        .proof h2 { font-size: 2rem; margin-bottom: 0.8rem; }
+        .proof > p { color: var(--text2); max-width: 500px; margin: 0 auto 3rem; }
+        .proof-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; text-align: left;
+        }
+        .testimonial {
+            background: var(--surface); border: 1px solid var(--border);
+            border-radius: 14px; padding: 1.8rem;
+        }
+        .testimonial .quote {
+            font-size: 0.9rem; color: var(--text2); font-style: italic;
+            margin-bottom: 1.2rem; line-height: 1.7;
+        }
+        .testimonial .author { display: flex; align-items: center; gap: 0.8rem; }
+        .testimonial .author .avatar {
+            width: 40px; height: 40px; border-radius: 50%;
+            background: var(--gradient-hero); display: flex; align-items: center;
+            justify-content: center; font-weight: 700; font-size: 1rem;
+        }
+        .testimonial .author .name { font-size: 0.88rem; font-weight: 600; }
+        .testimonial .author .role { font-size: 0.78rem; color: var(--text3); }
+
+        /* ===== CTA ===== */
+        .cta {
+            padding: 5rem 2rem; max-width: 700px; margin: 0 auto; text-align: center;
+        }
+        .cta-box {
+            background: var(--gradient-card);
+            border: 1px solid rgba(99,102,241,0.2);
+            border-radius: 24px; padding: 3.5rem 2.5rem;
+        }
+        .cta-box h2 { font-size: 2rem; margin-bottom: 0.8rem; }
+        .cta-box p { color: var(--text2); margin-bottom: 2rem; }
+        .cta-box .btn-primary { font-size: 1rem; padding: 1rem 3rem; }
+
+        .cta-form {
+            display: flex; flex-direction: column; gap: 1rem; max-width: 480px; margin: 2rem auto 0;
+        }
+        .cta-form input, .cta-form textarea {
+            width: 100%; padding: 0.9rem 1.2rem; border-radius: 12px;
+            background: rgba(255,255,255,0.04); border: 1px solid var(--border);
+            color: var(--text); font-family: inherit; font-size: 0.9rem;
+            outline: none; transition: border-color 0.2s;
+        }
+        .cta-form input:focus, .cta-form textarea:focus { border-color: var(--accent1); }
+        .cta-form textarea { resize: vertical; min-height: 80px; }
+        .cta-form .btn-primary { width: 100%; }
+
+        /* ===== FAQ ===== */
+        .faq {
+            padding: 4rem 2rem 5rem; max-width: 700px; margin: 0 auto;
+        }
+        .faq h2 { text-align: center; font-size: 2rem; margin-bottom: 2.5rem; }
+        .faq-item {
+            border-bottom: 1px solid var(--border); padding: 1.2rem 0;
+        }
+        .faq-q {
+            display: flex; justify-content: space-between; align-items: center;
+            cursor: pointer; font-weight: 600; font-size: 0.95rem;
+            color: var(--text); user-select: none;
+        }
+        .faq-q .arrow { transition: transform 0.3s; color: var(--text3); }
+        .faq-q.open .arrow { transform: rotate(180deg); }
+        .faq-a {
+            max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.3s ease;
+            color: var(--text2); font-size: 0.88rem; line-height: 1.7;
+        }
+        .faq-a.open { max-height: 300px; padding-top: 0.8rem; }
+
+        /* ===== FOOTER ===== */
+        footer {
+            text-align: center; padding: 2rem;
+            border-top: 1px solid var(--border);
+            color: var(--text3); font-size: 0.82rem;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 640px) {
+            .hero { padding-top: 6rem; }
+            .hero-stats { grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+            .step { flex-direction: column; }
+            .step-num { width: 36px; height: 36px; min-width: 36px; font-size: 0.9rem; }
+            .cta-box { padding: 2rem 1.5rem; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Ambient Glow Orbs -->
-    <div class="ambient-glow">
-        <div class="glow-orb orb-1"></div>
-        <div class="glow-orb orb-2"></div>
+<div class="bg-glow">
+    <div class="orb o1"></div>
+    <div class="orb o2"></div>
+    <div class="orb o3"></div>
+</div>
+
+<div class="wrap">
+
+<!-- ===== NAV ===== -->
+<nav>
+    <span class="logo">◆ Workflow Labs</span>
+    <div class="nav-links">
+        <a href="#services">Services</a>
+        <a href="#process">How It Works</a>
+        <a href="#faq">FAQ</a>
+        <a href="#cta" class="nav-cta">Free Audit</a>
     </div>
+</nav>
 
-    <!-- Frosted Navigation -->
-    <nav>
-        <a href="#" class="logo">
-            <span>Workflow</span>Labs
-        </a>
-        <ul class="nav-links">
-            <li><a href="#problem">Core Bottleneck</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#blueprints">Blueprints</a></li>
-            <li><a href="#proof">Proof</a></li>
-            <li><a href="#contact">Inquiry</a></li>
-        </ul>
-        <a href="#contact" class="nav-cta">Request an Audit</a>
-    </nav>
+<!-- ===== HERO ===== -->
+<section class="hero">
+    <div class="hero-badge">
+        <span>✦</span>
+        <span>Trusted by 50+ growing businesses</span>
+    </div>
+    <h1>
+        You're losing hours to<br>
+        <span class="gradient">tasks a machine can do in seconds.</span>
+    </h1>
+    <p>
+        We build custom AI automation for lead generation, cold calls, email outreach, and more.<br>
+        You focus on closing deals. We handle the repetitive work.
+    </p>
+    <div class="hero-actions">
+        <a href="#cta" class="btn-primary">Get Your Free Automation Audit →</a>
+        <a href="#services" class="btn-secondary">See Our Services</a>
+    </div>
+    <div class="hero-stats">
+        <div>
+            <div class="num">10,000+</div>
+            <div class="label">Hours Saved</div>
+        </div>
+        <div>
+            <div class="num">50+</div>
+            <div class="label">Clients Served</div>
+        </div>
+        <div>
+            <div class="num">98%</div>
+            <div class="label">Task Accuracy</div>
+        </div>
+    </div>
+</section>
 
-    <!-- SECTION 1: HERO SECTION -->
-    <section class="hero" id="hero">
-        <div class="hero-container">
-            <div class="hero-content" id="hero-reveal">
-                <div class="hero-badge">Gear Up For Automation</div>
-                <h1>Still doing manual work and left behind? <span>It's time to automate repeated tasks.</span></h1>
-                <p class="hero-subtitle">Stop losing 40% of your team's capacity to manual entry, sorting, and follow-ups. We build elite enterprise AI voice agents and cognitive pipelines that handle repeated workflows 24/7. Elevate performance, maximize output, and get your first working prototype free in 48 hours.</p>
-                <div class="hero-buttons">
-                    <a href="dashboard.html?demo=true" class="btn btn-primary" id="openDemoBtn">
-                        <span style="font-size: 1.2rem;">🎙️</span> See Live Voice Agent Demo
-                    </a>
-                    <a href="dashboard.html" class="btn btn-secondary">Explore Operations Dashboard 📊</a>
-                </div>
-            </div>
-            <div class="hero-visual">
-                <div id="webgl-canvas-container" style="position: absolute; inset: 0; z-index: 1; pointer-events: auto; overflow: hidden;"></div>
+<!-- ===== PAIN ===== -->
+<section class="pain" id="pain">
+    <h2>Are you still doing <span class="highlight">this</span> manually?</h2>
+    <p>If you recognise any of these, you're leaving money on the table — and your competitors are catching up.</p>
+    <div class="pain-grid">
+        <div class="pain-item">
+            <div class="icon">📞</div>
+            <h4>Cold calling all day</h4>
+            <p>Dialing 100+ numbers manually when AI can qualify leads in 1/10th the time.</p>
+        </div>
+        <div class="pain-item">
+            <div class="icon">📧</div>
+            <h4>Writing emails one by one</h4>
+            <p>Sending personalised follow-ups at scale without burning out your team.</p>
+        </div>
+        <div class="pain-item">
+            <div class="icon">💬</div>
+            <h4>WhatsApp outreach at scale</h4>
+            <p>Copy-pasting messages when automated sequences could do it smarter.</p>
+        </div>
+        <div class="pain-item">
+            <div class="icon">🎯</div>
+            <h4>Hunting for leads</h4>
+            <p>Scraping websites and directories when AI-powered lead gen runs itself.</p>
+        </div>
+        <div class="pain-item">
+            <div class="icon">📋</div>
+            <h4>Manual data entry</h4>
+            <p>Typing information from one system to another — a robot's job.</p>
+        </div>
+        <div class="pain-item">
+            <div class="icon">⏰</div>
+            <h4>Working after hours</h4>
+            <p>Weekend catch-up is a sign your workflows aren't working for you.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ===== SERVICES ===== -->
+<section class="services" id="services">
+    <div class="services-header">
+        <h2>Automation services that actually deliver</h2>
+        <p>We design, build, and deploy custom automation workflows tailored to your business.</p>
+    </div>
+    <div class="services-grid">
+        <div class="service-card">
+            <div class="s-icon">🤖</div>
+            <h3>Lead Generation Automation</h3>
+            <p>AI scrapes, enriches, and qualifies leads from your target industries — delivered daily to your CRM or inbox.</p>
+        </div>
+        <div class="service-card">
+            <div class="s-icon">📞</div>
+            <h3>Cold Call Automation</h3>
+            <p>AI voice agents that sound human, handle objections, book meetings — and never get tired. Pay per conversation.</p>
+        </div>
+        <div class="service-card">
+            <div class="s-icon">💬</div>
+            <h3>WhatsApp Outreach</h3>
+            <p>Personalised WhatsApp sequences with smart follow-ups, attachment delivery, and real-time reply handling.</p>
+        </div>
+        <div class="service-card">
+            <div class="s-icon">📧</div>
+            <h3>Email Outreach Automation</h3>
+            <p>Smart email campaigns with AI copywriting, A/B testing, automatic follow-ups, and deliverability optimisation.</p>
+        </div>
+        <div class="service-card">
+            <div class="s-icon">📝</div>
+            <h3>Content Creation</h3>
+            <p>Blog posts, social media, ad copy — generated and scheduled automatically, in your brand voice.</p>
+        </div>
+        <div class="service-card">
+            <div class="s-icon">⚡</div>
+            <h3>Custom Automation</h3>
+            <p>Any repetitive task you can think of. We'll build it. CRM sync, invoice processing, reporting — you name it.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ===== PROCESS ===== -->
+<section class="process" id="process">
+    <div class="process-header">
+        <h2>How it works</h2>
+        <p>From discovery to deployment in days, not months.</p>
+    </div>
+    <div class="process-steps">
+        <div class="step">
+            <div class="step-num">1</div>
+            <div class="step-content">
+                <h4>Tell us your bottleneck</h4>
+                <p>Hop on a 15-minute call (or fill the form). We'll identify the highest-impact task to automate first.</p>
             </div>
         </div>
-    </section>
+        <div class="step">
+            <div class="step-num">2</div>
+            <div class="step-content">
+                <h4>We build a custom prototype</h4>
+                <p>Our engineering team designs and builds your automation. You get a working prototype — <strong>free of charge</strong>.</p>
+            </div>
+        </div>
+        <div class="step">
+            <div class="step-num">3</div>
+            <div class="step-content">
+                <h4>Test & refine</h4>
+                <p>We run the prototype with your real data. You give feedback. We iterate until it's perfect.</p>
+            </div>
+        </div>
+        <div class="step">
+            <div class="step-num">4</div>
+            <div class="step-content">
+                <h4>Deploy & scale</h4>
+                <p>Once approved, we deploy into production and handle ongoing maintenance. You save hours every single day.</p>
+            </div>
+        </div>
+    </div>
+</section>
 
-    <!-- SECTION 2: THE CORE PROBLEM -->
-    <section class="problem" id="problem">
-        <div class="problem-layout">
-            <div class="problem-stat" id="stat-reveal">
-                <div class="stat-number">60 Sec</div>
-                <div class="stat-label">To Complete Complex Workflows</div>
-            </div>
-            <div class="problem-description" id="problem-text-reveal">
-                <span class="section-tag">Operational Velocity</span>
-                <h3>Complete your tasks in seconds, not hours.</h3>
-                <p>Stop letting manual workflows slow down your execution. Our cognitive pipelines process leads, enrich databases, and trigger emails in under a minute, scaling your output without adding headcount.</p>
-                <div class="highlight-box">
-                    Deploy autonomous agents that handle lead generation, outreach, and cold calling at 10x speed, letting your team focus purely on closing deals.
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SECTION 3: CORE SERVICES -->
-    <section class="services" id="services">
-        <div class="section-header" id="services-header-reveal">
-            <span class="section-tag">Core Services</span>
-            <h2>Architecting High-Output Enterprise Workflows</h2>
-            <p>We build end-to-end automation infrastructure tailored for elite operations. We don't just supply software; we build high-performing cognitive workflows.</p>
-        </div>
-        <div class="services-grid">
-            <!-- Service Card 1: Automated Lead Generation -->
-            <div class="tilt-card" id="service-card-1">
-                <div class="card-icon">🎯</div>
-                <h3>Automated Lead Generation</h3>
-                <p>Dynamically scrape, enrich, and qualify prospects from high-intent channels. Our pipelines aggregate contact details, firmographic data, and buying signals to automatically feed your sales pipeline with warm, ready-to-close opportunities.</p>
-            </div>
-            <!-- Service Card 2: Automated WhatsApp Outreach -->
-            <div class="tilt-card" id="service-card-2">
-                <div class="card-icon">💬</div>
-                <h3>Automated WhatsApp Outreach</h3>
-                <p>Launch automated, conversational messaging and follow-ups directly on WhatsApp. Build high-engagement touchpoints with custom API triggers, maintaining personalized customer relationships at scale without any manual overhead.</p>
-            </div>
-            <!-- Service Card 3: Automated Cold Calls -->
-            <div class="tilt-card" id="service-card-3">
-                <div class="card-icon">📞</div>
-                <h3>Automated Cold Calls</h3>
-                <p>Deploy conversational AI voice agents to handle inbound and outbound calls naturally. Whether reaching out directly to qualified customers or dynamically searching for and vetting developers based on client requests, we offer flexible call flows.</p>
-            </div>
-            <!-- Service Card 4: Automated Email Outreach -->
-            <div class="tilt-card" id="service-card-4">
-                <div class="card-icon">✉️</div>
-                <h3>Automated Email Outreach</h3>
-                <p>Scale outbound sequencing and manage inbox responses automatically. Draft tailored, highly contextual replies, classify incoming messages based on user intent, and automatically update your database systems 24/7.</p>
-            </div>
-            <!-- Service Card 5: Automated Content Creation -->
-            <div class="tilt-card" id="service-card-5">
-                <div class="card-icon">✍️</div>
-                <h3>Automated Content Creation</h3>
-                <p>Generate high-converting marketing materials, social media posts, and custom copy dynamically. Train custom language models on your brand voice to maintain an active, elite digital presence and publish content around the clock.</p>
-            </div>
-            <!-- Service Card 6: Flexible Custom Automations -->
-            <div class="tilt-card" id="service-card-6">
-                <div class="card-icon">🔄</div>
-                <h3>Flexible Custom Automations</h3>
-                <p>From custom database syncing to dynamic developer sourcing, we design and scale options for any enterprise stack. Tell us what repetitive manual task is slowing down your growth, and we will build a custom engine to automate it.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- SECTION 4: PROVEN AUTOMATION BLUEPRINTS -->
-    <section class="blueprints" id="blueprints">
-        <div class="section-header" id="blueprints-header-reveal">
-            <span class="section-tag">Automation Blueprints</span>
-            <h2>Proven Blueprints for Enterprise Efficiency</h2>
-            <p>Deploy pre-configured cognitive pipelines designed to eliminate friction across your core operations.</p>
-        </div>
-        <div class="blueprints-grid">
-            <!-- Card 1: Sales & CRM -->
-            <div class="blueprint-card">
-                <div class="blueprint-header">
-                    <span class="blueprint-dept">Sales & CRM</span>
-                    <span class="blueprint-badge">Auto-Prospect Enrichment</span>
-                </div>
-                <div class="blueprint-flow">
-                    <div class="flow-step"><strong>Trigger:</strong> New lead submits inquiry on website.</div>
-                    <div class="flow-step"><strong>AI Execution:</strong> Scrapes LinkedIn, updates CRM with headcount, tech stack, and intent data.</div>
-                    <div class="flow-step"><strong>Human-in-the-Loop:</strong> Sales representative reviews automatically drafted intro email.</div>
-                </div>
-                <div class="blueprint-outcome">
-                    <span class="outcome-tag">Boosts response rates by 40%</span>
-                </div>
-            </div>
-            <!-- Card 2: Support -->
-            <div class="blueprint-card">
-                <div class="blueprint-header">
-                    <span class="blueprint-dept">Support</span>
-                    <span class="blueprint-badge">Zendesk Triage & KB Sync</span>
-                </div>
-                <div class="blueprint-flow">
-                    <div class="flow-step"><strong>Trigger:</strong> Customer submits a support ticket.</div>
-                    <div class="flow-step"><strong>AI Execution:</strong> Classifies ticket sentiment, queries internal knowledge base, drafts resolution.</div>
-                    <div class="flow-step"><strong>Human-in-the-Loop:</strong> Agent approves response before sending to user.</div>
-                </div>
-                <div class="blueprint-outcome">
-                    <span class="outcome-tag">Reduces ticket resolution time by 65%</span>
-                </div>
-            </div>
-            <!-- Card 3: Finance -->
-            <div class="blueprint-card">
-                <div class="blueprint-header">
-                    <span class="blueprint-dept">Finance</span>
-                    <span class="blueprint-badge">AP Invoicing & 3-Way Matching</span>
-                </div>
-                <div class="blueprint-flow">
-                    <div class="flow-step"><strong>Trigger:</strong> Vendor invoice received via accounts payable inbox.</div>
-                    <div class="flow-step"><strong>AI Execution:</strong> Extracts line items, matches against purchase order and receiving logs in NetSuite.</div>
-                    <div class="flow-step"><strong>Human-in-the-Loop:</strong> CFO reviews matching report when discrepancies exceed 2%.</div>
-                </div>
-                <div class="blueprint-outcome">
-                    <span class="outcome-tag">Cuts AP discrepancies by 75%</span>
-                </div>
-            </div>
-            <!-- Card 4: Legal & Docs -->
-            <div class="blueprint-card">
-                <div class="blueprint-header">
-                    <span class="blueprint-dept">Legal & Docs</span>
-                    <span class="blueprint-badge">Contract Compliance Audit</span>
-                </div>
-                <div class="blueprint-flow">
-                    <div class="flow-step"><strong>Trigger:</strong> Supplier contract uploaded to shared drive.</div>
-                    <div class="flow-step"><strong>AI Execution:</strong> Audits contract against standard MSA guidelines, flags non-compliant clauses.</div>
-                    <div class="flow-step"><strong>Human-in-the-Loop:</strong> In-house counsel reviews highlighted risks and suggested edits.</div>
-                </div>
-                <div class="blueprint-outcome">
-                    <span class="outcome-tag">Saves 80% of legal review time</span>
-                </div>
-            </div>
-            <!-- Card 5: Operations -->
-            <div class="blueprint-card">
-                <div class="blueprint-header">
-                    <span class="blueprint-dept">Operations</span>
-                    <span class="blueprint-badge">Supply Chain Exception Routing</span>
-                </div>
-                <div class="blueprint-flow">
-                    <div class="flow-step"><strong>Trigger:</strong> Shipping carrier reports a transit delay.</div>
-                    <div class="flow-step"><strong>AI Execution:</strong> Re-calculates ETA, queries alternate inventory hubs, drafts alert notifications.</div>
-                    <div class="flow-step"><strong>Human-in-the-Loop:</strong> Logistics manager selects alternative shipping route.</div>
-                </div>
-                <div class="blueprint-outcome">
-                    <span class="outcome-tag">Reduces late deliveries by 45%</span>
-                </div>
-            </div>
-            <!-- Card 6: HR -->
-            <div class="blueprint-card">
-                <div class="blueprint-header">
-                    <span class="blueprint-dept">HR</span>
-                    <span class="blueprint-badge">Automated Provisioning</span>
-                </div>
-                <div class="blueprint-flow">
-                    <div class="flow-step"><strong>Trigger:</strong> HR system registers new employee contract signed.</div>
-                    <div class="flow-step"><strong>AI Execution:</strong> Provisions email, sets up Slack and GitHub accounts, generates welcome pack.</div>
-                    <div class="flow-step"><strong>Human-in-the-Loop:</strong> HR manager triggers the final setup verification check.</div>
-                </div>
-                <div class="blueprint-outcome">
-                    <span class="outcome-tag">Eliminates 90% onboarding effort</span>
+<!-- ===== SOCIAL PROOF ===== -->
+<section class="proof">
+    <h2>Trusted by founders who value their time</h2>
+    <p>Real results from real businesses that automated with us.</p>
+    <div class="proof-grid">
+        <div class="testimonial">
+            <div class="quote">"Workflow Labs automated our entire lead gen process. We went from 20 calls a day to 200 qualified leads a week. Game changer."</div>
+            <div class="author">
+                <div class="avatar">RK</div>
+                <div>
+                    <div class="name">Rahul K.</div>
+                    <div class="role">Founder, GrowthStudio</div>
                 </div>
             </div>
         </div>
-    </section>
-
-    <!-- SECTION 5: THE NO-RISK PROOF -->
-    <section class="proof" id="proof">
-        <div class="proof-box" id="proof-reveal">
-            <div class="proof-text">
-                <span class="section-tag" style="color: var(--accent-indigo);">Strategic Proof</span>
-                <h2>A working prototype. Built for your specific bottleneck. Free.</h2>
-                <p>We do not pitch slides. We build functional software. We will design a custom, live automation for your most painful database or email bottleneck. Test it with your team. If it does not save them at least 5 hours in the first week, we walk away. No invoices, no contracts, no catch.</p>
-            </div>
-            <div class="proof-guarantee">
-                <span class="guarantee-badge">⚙️</span>
-                <div class="guarantee-title">Zero-Risk Prototype</div>
-                <div class="guarantee-sub">100% Free Build · Zero Commitments</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SECTION 5: FOOTER / CONTACT -->
-    <section class="contact" id="contact">
-        <div class="contact-layout">
-            <div class="contact-info" id="contact-info-reveal">
-                <span class="section-tag">Strategic Triage</span>
-                <h2>Unlock Operational Leverage.</h2>
-                <p>Contact our automation engineering team to map your workflows. Build custom systems that scale your output and eliminate operational friction.</p>
-                <div class="agency-meta">
-                    <div class="meta-item">
-                        <div class="meta-icon">📍</div>
-                        <div>Workflow Labs, Global Operations</div>
-                    </div>
-                    <div class="meta-item">
-                        <div class="meta-icon">✉️</div>
-                        <div>partner@workflowlabs.agency</div>
-                    </div>
-                </div>
-            </div>
-            <div class="contact-form-container" id="contact-form-reveal">
-                <!-- Actual Form -->
-                <form id="leadForm" onsubmit="handleFormSubmit(event)">
-                    <div class="form-group" id="nameGroup">
-                        <input type="text" id="formName" class="form-input" placeholder=" " required autocomplete="name">
-                        <label for="formName" class="form-label">Full Name</label>
-                        <span class="form-error">Please enter your full name.</span>
-                    </div>
-                    
-                    <div class="form-group" id="companyGroup">
-                        <input type="text" id="formCompany" class="form-input" placeholder=" " required autocomplete="organization">
-                        <label for="formCompany" class="form-label">Company / Organization</label>
-                        <span class="form-error">Please enter your company or organization name.</span>
-                    </div>
-                    
-                    <div class="form-group" id="mobileGroup">
-                        <input type="tel" id="formMobile" class="form-input" placeholder=" " required autocomplete="tel">
-                        <label for="formMobile" class="form-label">Mobile Number</label>
-                        <span class="form-error">Please enter a valid 10-digit mobile number.</span>
-                    </div>
-
-                    <div class="form-group" id="bottleneckGroup">
-                        <input type="text" id="formBottleneck" class="form-input" placeholder=" " required>
-                        <label for="formBottleneck" class="form-label">Primary Operational Bottleneck</label>
-                        <span class="form-error">Please describe your main operational bottleneck.</span>
-                    </div>
-
-                    <button type="submit" class="submit-btn" id="submitBtn">
-                        Request Free Prototype 🚀
-                    </button>
-                </form>
-
-                <!-- Success State -->
-                <div class="form-success-state" id="successState">
-                    <div class="success-checkmark">✓</div>
-                    <h3>Consultation Registered</h3>
-                    <p>Your prototype request is registered. Our automation engineering partner will contact you on your registered mobile number within 2 business hours.</p>
+        <div class="testimonial">
+            <div class="quote">"I was spending 4 hours a day on email follow-ups. Now the AI handles it end-to-end. I just review the meetings booked."</div>
+            <div class="author">
+                <div class="avatar">PS</div>
+                <div>
+                    <div class="name">Priya S.</div>
+                    <div class="role">CEO, Launchpad Ventures</div>
                 </div>
             </div>
         </div>
-    </section>
-
-    <!-- Footer Bottom -->
-    <footer>
-        <div class="footer-grid">
-            <div class="footer-brand">
-                <span>Workflow</span>Labs
+        <div class="testimonial">
+            <div class="quote">"The WhatsApp outreach automation alone recovered 3 lost hours per day for my sales team. ROI in the first week."</div>
+            <div class="author">
+                <div class="avatar">AM</div>
+                <div>
+                    <div class="name">Arjun M.</div>
+                    <div class="role">Director, NexGen Solutions</div>
+                </div>
             </div>
-            <ul class="footer-links-row">
-                <li><a href="#problem">Core Bottleneck</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#blueprints">Blueprints</a></li>
-                <li><a href="#proof">Proof</a></li>
-                <li><a href="#contact">Inquiry</a></li>
-            </ul>
         </div>
-        <div class="footer-copy">
-            &copy; 2026 Workflow Labs. All rights reserved. Architecting elite enterprise AI automation.
+    </div>
+</section>
+
+<!-- ===== CTA ===== -->
+<section class="cta" id="cta">
+    <div class="cta-box">
+        <h2>Get your free automation audit</h2>
+        <p>Tell us your biggest bottleneck and we'll build a working prototype — at no cost. No commitment. No contracts.</p>
+        <form class="cta-form" name="inquiry" method="POST" action="https://formsubmit.co/your@email.com" data-netlify="true">
+            <input type="text" name="name" placeholder="Your name" required>
+            <input type="email" name="email" placeholder="Email address" required>
+            <input type="tel" name="phone" placeholder="Phone number" required>
+            <input type="text" name="company" placeholder="Company name">
+            <textarea name="bottleneck" placeholder="What repetitive task is eating your time? (e.g., 'cold calling 100 leads daily', 'manual email follow-ups')" required></textarea>
+            <button type="submit" class="btn-primary">Request Free Prototype 🚀</button>
+        </form>
+        <p style="margin-top: 1.2rem; font-size: 0.8rem; color: var(--text3);">🔒 No spam. Your data stays yours. We'll respond within 24 hours.</p>
+    </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section class="faq" id="faq">
+    <h2>Frequently asked questions</h2>
+    <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+            <span>How much does automation cost?</span>
+            <span class="arrow">▾</span>
         </div>
-    </footer>
-
-    <!-- Modal removed. Migrated to dashboard.html -->
-
-
-    
-    <!-- Three.js Library -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <!-- GSAP (Animation Library) -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-
-    <!-- Site scripts -->
-    <script>
-        // Register GSAP ScrollTrigger
-        gsap.registerPlugin(ScrollTrigger);
-
-        // ── 3D CARD HOVER TILT MECHANISM ──
-        document.querySelectorAll('.tilt-card').forEach(card => {
-            card.addEventListener('mousemove', e => {
-                card.style.transition = 'none';
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-
-                const centerX = rect.width / 2;
-                const centerY = rect.height / 2;
-
-                const rotateX = ((y - centerY) / centerY) * -10; // Max 10 degrees tilt
-                const rotateY = ((x - centerX) / centerX) * 10;
-
-                card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
-            });
-
-            card.addEventListener('mouseleave', () => {
-                card.style.transition = 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)';
-                card.style.transform = 'rotateX(0deg) rotateY(0deg) translateY(0)';
-            });
-        });
-
-
-        // ── GSAP CINEMATIC SCROLL REVEALS ──
-        // Hero Reveal
-        gsap.from("#hero-reveal", {
-            opacity: 0,
-            y: 40,
-            duration: 1.2,
-            ease: "power4.out"
-        });
-
-        // Problem Section Stat Reveal
-        gsap.from("#stat-reveal", {
-            scrollTrigger: {
-                trigger: "#problem",
-                start: "top 80%",
-                toggleActions: "play none none none"
-            },
-            scale: 0.8,
-            opacity: 0,
-            duration: 1,
-            ease: "back.out(1.7)"
-        });
-
-        gsap.from("#problem-text-reveal", {
-            scrollTrigger: {
-                trigger: "#problem",
-                start: "top 80%",
-                toggleActions: "play none none none"
-            },
-            opacity: 0,
-            x: 40,
-            duration: 1,
-            ease: "power3.out"
-        });
-
-        // Services Section Bento Reveal
-        gsap.from("#services-header-reveal", {
-            scrollTrigger: {
-                trigger: "#services",
-                start: "top 85%"
-            },
-            opacity: 0,
-            y: 30,
-            duration: 0.8
-        });
-
-        gsap.from(".tilt-card", {
-            scrollTrigger: {
-                trigger: ".services-grid",
-                start: "top 85%"
-            },
-            opacity: 0,
-            y: 50,
-            duration: 1,
-            stagger: 0.15,
-            ease: "power4.out",
-            clearProps: "opacity,transform"
-        });
-
-        // Blueprints Section Reveal
-        gsap.from("#blueprints-header-reveal", {
-            scrollTrigger: {
-                trigger: "#blueprints",
-                start: "top 85%"
-            },
-            opacity: 0,
-            y: 30,
-            duration: 0.8
-        });
-
-        gsap.from(".blueprint-card", {
-            scrollTrigger: {
-                trigger: ".blueprints-grid",
-                start: "top 85%"
-            },
-            opacity: 0,
-            y: 50,
-            duration: 1,
-            stagger: 0.1,
-            ease: "power4.out",
-            clearProps: "opacity,transform",
-            onComplete: () => {
-                document.querySelectorAll('.blueprint-card').forEach(card => card.classList.add('revealed'));
-            }
-        });
-
-        // Proof Section Box Reveal
-        gsap.from("#proof-reveal", {
-            scrollTrigger: {
-                trigger: "#proof",
-                start: "top 85%"
-            },
-            opacity: 0,
-            y: 40,
-            duration: 1.2,
-            ease: "power3.out"
-        });
-
-        // Contact Section Triage layout reveal
-        gsap.from("#contact-info-reveal", {
-            scrollTrigger: {
-                trigger: "#contact",
-                start: "top 85%"
-            },
-            opacity: 0,
-            x: -30,
-            duration: 1
-        });
-
-        gsap.from("#contact-form-reveal", {
-            scrollTrigger: {
-                trigger: "#contact",
-                start: "top 85%"
-            },
-            opacity: 0,
-            x: 30,
-            duration: 1
-        });
-
-
-        // ── INQUIRY FORM VALIDATION & REGISTRATION ──
-        function handleFormSubmit(e) {
-            e.preventDefault();
-            
-            const nameInput = document.getElementById('formName');
-            const companyInput = document.getElementById('formCompany');
-            const mobileInput = document.getElementById('formMobile');
-            const bottleneckInput = document.getElementById('formBottleneck');
-            
-            let isValid = true;
-
-            // Reset error groups
-            document.querySelectorAll('.form-group').forEach(g => g.classList.remove('has-error'));
-
-            // Name verification
-            if (nameInput.value.trim() === '') {
-                document.getElementById('nameGroup').classList.add('has-error');
-                isValid = false;
-            }
-
-            // Company verification
-            if (companyInput.value.trim() === '') {
-                document.getElementById('companyGroup').classList.add('has-error');
-                isValid = false;
-            }
-
-            // Indian Mobile verification (10 digits starting with 6-9, optional +91 prefix)
-            const mobileVal = mobileInput.value.trim().replace(/[\s\-()]/g, '');
-            const mobileRegex = /^(?:\+?91)?([6-9]\d{9})$/;
-            if (!mobileRegex.test(mobileVal)) {
-                document.getElementById('mobileGroup').classList.add('has-error');
-                isValid = false;
-            }
-
-            // Bottleneck verification
-            if (bottleneckInput.value.trim() === '') {
-                document.getElementById('bottleneckGroup').classList.add('has-error');
-                isValid = false;
-            }
-
-            if (isValid) {
-                // Trigger simulated submit success animation
-                const form = document.getElementById('leadForm');
-                const success = document.getElementById('successState');
-                
-                // Animate transition
-                gsap.to(form, {
-                    opacity: 0,
-                    y: -10,
-                    duration: 0.4,
-                    onComplete: () => {
-                        form.style.display = 'none';
-                        success.style.display = 'flex';
-                        gsap.from(success, {
-                            opacity: 0,
-                            y: 10,
-                            duration: 0.4
-                        });
-                    }
-                });
-            }
-        }
-
-
-        // ── THREE.JS KINETIC NEURAL NETWORK MESH ──
-        function initKineticMesh() {
-            const container = document.getElementById('webgl-canvas-container');
-            if (!container) return;
-
-            const width = container.clientWidth || 500;
-            const height = container.clientHeight || 600;
-
-            // 1. Scene & Camera Setup
-            const scene = new THREE.Scene();
-            const camera = new THREE.PerspectiveCamera(60, width / height, 1, 1000);
-            camera.position.z = 350;
-
-            // 2. Renderer Setup with transparent background
-            const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-            renderer.setSize(width, height);
-            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-            container.appendChild(renderer.domElement);
-
-            // 3. Nodes Initialization
-            const baseNodeCount = 200;
-            let currentNodeCount = baseNodeCount;
-            const minNodeCount = 50;
-            const nodes = [];
-            const hoverRadius = 120;
-            const mouseStrength = 30;
-
-            for (let i = 0; i < baseNodeCount; i++) {
-                nodes.push({
-                    baseX: (Math.random() - 0.5) * 350,
-                    baseY: (Math.random() - 0.5) * 350,
-                    baseZ: (Math.random() - 0.5) * 350,
-                    x: 0, y: 0, z: 0,
-                    noiseOffsetX: Math.random() * 100,
-                    noiseOffsetY: Math.random() * 100,
-                    noiseOffsetZ: Math.random() * 100,
-                    size: Math.random() * 4 + 5, // enlarged node sizes (between 5 and 9)
-                    color: Math.random() > 0.5 ? new THREE.Color('#4F46E5') : new THREE.Color('#7C3AED') // deep indigo and deep violet
-                });
-            }
-
-            // 4. Points Geometry & Custom Shader Material
-            const pointsGeometry = new THREE.BufferGeometry();
-            const posArray = new Float32Array(baseNodeCount * 3);
-            const sizeArray = new Float32Array(baseNodeCount);
-            const colorArray = new Float32Array(baseNodeCount * 3);
-
-            for (let i = 0; i < baseNodeCount; i++) {
-                const n = nodes[i];
-                posArray[i * 3] = n.baseX;
-                posArray[i * 3 + 1] = n.baseY;
-                posArray[i * 3 + 2] = n.baseZ;
-                sizeArray[i] = n.size;
-                colorArray[i * 3] = n.color.r;
-                colorArray[i * 3 + 1] = n.color.g;
-                colorArray[i * 3 + 2] = n.color.b;
-            }
-
-            pointsGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
-            pointsGeometry.setAttribute('aSize', new THREE.BufferAttribute(sizeArray, 1));
-            pointsGeometry.setAttribute('aColor', new THREE.BufferAttribute(colorArray, 3));
-
-            const pointVertexShader = `
-                attribute float aSize;
-                attribute vec3 aColor;
-                varying vec3 vColor;
-                void main() {
-                    vColor = aColor;
-                    vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
-                    gl_Position = projectionMatrix * mvPosition;
-                    gl_PointSize = aSize * (300.0 / -mvPosition.z);
-                }
-            `;
-
-            const pointFragmentShader = `
-                varying vec3 vColor;
-                void main() {
-                    vec2 center = gl_PointCoord - vec2(0.5);
-                    float dist = length(center);
-                    if (dist > 0.5) discard;
-                    float alpha = smoothstep(0.5, 0.1, dist);
-                    gl_FragColor = vec4(vColor, alpha);
-                }
-            `;
-
-            const pointsMaterial = new THREE.ShaderMaterial({
-                vertexShader: pointVertexShader,
-                fragmentShader: pointFragmentShader,
-                transparent: true,
-                depthWrite: false,
-                blending: THREE.NormalBlending
-            });
-
-            const pointsMesh = new THREE.Points(pointsGeometry, pointsMaterial);
-            scene.add(pointsMesh);
-
-            // 5. Lines Geometry & Custom Shader Material
-            const lineGeometry = new THREE.BufferGeometry();
-            const lineVertexShader = `
-                attribute float aAlpha;
-                varying float vAlpha;
-                void main() {
-                    vAlpha = aAlpha;
-                    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-                }
-            `;
-
-            const lineFragmentShader = `
-                uniform vec3 uColor;
-                varying float vAlpha;
-                void main() {
-                    gl_FragColor = vec4(uColor, vAlpha);
-                }
-            `;
-
-            const lineMaterial = new THREE.ShaderMaterial({
-                uniforms: {
-                    uColor: { value: new THREE.Color('#94A3B8') } // Slate/grey lines
-                },
-                vertexShader: lineVertexShader,
-                fragmentShader: lineFragmentShader,
-                transparent: true,
-                depthWrite: false,
-                blending: THREE.NormalBlending
-            });
-
-            const linesMesh = new THREE.LineSegments(lineGeometry, lineMaterial);
-            scene.add(linesMesh);
-
-            // 6. Interactive Mouse Logic
-            const raycaster = new THREE.Raycaster();
-            const mouse = new THREE.Vector2();
-            const plane = new THREE.Plane(new THREE.Vector3(0, 0, 1), 0);
-            const mouse3D = new THREE.Vector3(9999, 9999, 9999);
-            let isMouseActive = false;
-
-            container.addEventListener('mousemove', (event) => {
-                isMouseActive = true;
-                const rect = container.getBoundingClientRect();
-                mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
-                mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
-            });
-
-            container.addEventListener('mouseleave', () => {
-                isMouseActive = false;
-            });
-
-            // 7. Resizing Setup
-            function onWindowResize() {
-                const w = container.clientWidth || 500;
-                const h = container.clientHeight || 600;
-                camera.aspect = w / h;
-                camera.updateProjectionMatrix();
-                renderer.setSize(w, h);
-            }
-            window.addEventListener('resize', onWindowResize);
-
-            // 8. Animation & FPS Optimization Loop
-            const clock = new THREE.Clock();
-            let lastTime = performance.now();
-            let frameCount = 0;
-
-            function animate() {
-                requestAnimationFrame(animate);
-
-                const now = performance.now();
-                const delta = now - lastTime;
-                lastTime = now;
-
-                // FPS Performance Guard
-                frameCount++;
-                if (frameCount > 60 && delta > 18.2) { // Dropped below 55fps (18.2ms)
-                    if (currentNodeCount > minNodeCount) {
-                        currentNodeCount = Math.max(minNodeCount, Math.floor(currentNodeCount * 0.7));
-                        pointsGeometry.setDrawRange(0, currentNodeCount);
-                        frameCount = 0;
-                    }
-                }
-
-                const time = clock.getElapsedTime();
-
-                // Mouse 3D Projection
-                if (isMouseActive) {
-                    raycaster.setFromCamera(mouse, camera);
-                    raycaster.ray.intersectPlane(plane, mouse3D);
-                } else {
-                    mouse3D.set(9999, 9999, 9999);
-                }
-
-                // Update Points
-                const pos = pointsGeometry.attributes.position.array;
-                for (let i = 0; i < currentNodeCount; i++) {
-                    const n = nodes[i];
-                    
-                    // Brownian drift using sine noise
-                    const driftX = Math.sin(time * 0.5 + n.noiseOffsetX) * 12;
-                    const driftY = Math.cos(time * 0.4 + n.noiseOffsetY) * 12;
-                    const driftZ = Math.sin(time * 0.3 + n.noiseOffsetZ) * 12;
-
-                    let targetX = n.baseX + driftX;
-                    let targetY = n.baseY + driftY;
-                    let targetZ = n.baseZ + driftZ;
-
-                    // Cursor Gravitational field attraction
-                    const dx = targetX - mouse3D.x;
-                    const dy = targetY - mouse3D.y;
-                    const dz = targetZ - mouse3D.z;
-                    const dist = Math.sqrt(dx*dx + dy*dy + dz*dz);
-
-                    if (dist < hoverRadius) {
-                        const factor = (1.0 - dist / hoverRadius);
-                        targetX -= (dx / dist) * factor * mouseStrength;
-                        targetY -= (dy / dist) * factor * mouseStrength;
-                        targetZ -= (dz / dist) * factor * mouseStrength;
-                    }
-
-                    n.x = targetX;
-                    n.y = targetY;
-                    n.z = targetZ;
-
-                    pos[i * 3] = n.x;
-                    pos[i * 3 + 1] = n.y;
-                    pos[i * 3 + 2] = n.z;
-                }
-                pointsGeometry.attributes.position.needsUpdate = true;
-
-                // Update Lines (Dynamic Connections)
-                const linePositions = [];
-                const lineAlphas = [];
-                const maxDistance = 75;
-
-                for (let i = 0; i < currentNodeCount; i++) {
-                    for (let j = i + 1; j < currentNodeCount; j++) {
-                        const n1 = nodes[i];
-                        const n2 = nodes[j];
-
-                        const dx = n1.x - n2.x;
-                        const dy = n1.y - n2.y;
-                        const dz = n1.z - n2.z;
-                        const dist = Math.sqrt(dx*dx + dy*dy + dz*dz);
-
-                        if (dist < maxDistance) {
-                            linePositions.push(n1.x, n1.y, n1.z);
-                            linePositions.push(n2.x, n2.y, n2.z);
-
-                            const alpha = (1.0 - dist / maxDistance) * 0.45; // Increased line opacities to 0.45 for contrast
-                            lineAlphas.push(alpha, alpha);
-                        }
-                    }
-                }
-
-                lineGeometry.setAttribute('position', new THREE.Float32BufferAttribute(linePositions, 3));
-                lineGeometry.setAttribute('aAlpha', new THREE.Float32BufferAttribute(lineAlphas, 1));
-
-                renderer.render(scene, camera);
-            }
-
-            animate();
-        }
-
-        // Initialize Kinetic Mesh
-        initKineticMesh();
-
-        ScrollTrigger.refresh();
-    </script>
+        <div class="faq-a">Every business is different. We start with a free audit and prototype — you only pay when you're satisfied and ready to scale. Pricing is transparent and starts at ₹15,000/month for managed automation.</div>
+    </div>
+    <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+            <span>Do I need technical skills?</span>
+            <span class="arrow">▾</span>
+        </div>
+        <div class="faq-a">Zero. We handle everything — discovery, development, deployment, and maintenance. You just tell us what's repetitive and we make it disappear.</div>
+    </div>
+    <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+            <span>How long does it take to set up?</span>
+            <span class="arrow">▾</span>
+        </div>
+        <div class="faq-a">Most automations go from concept to working prototype in 3–7 days. Complex enterprise workflows may take 2–3 weeks.</div>
+    </div>
+    <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+            <span>Is the free prototype really free?</span>
+            <span class="arrow">▾</span>
+        </div>
+        <div class="faq-a">Yes. No credit card, no commitment. We build a working proof-of-concept for your specific use case. If you love it, we talk about next steps.</div>
+    </div>
+    <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+            <span>What kind of businesses do you work with?</span>
+            <span class="arrow">▾</span>
+        </div>
+        <div class="faq-a">Startups, agencies, e-commerce stores, real estate firms, and growing businesses of any size — if you have repetitive tasks, we can automate them.</div>
+    </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+    <p>◆ Workflow Labs — Automate. Scale. Grow.</p>
+    <p style="margin-top: 0.3rem;">© 2026 Workflow Labs. All rights reserved.</p>
+</footer>
+
+</div>
+
+<script>
+function toggleFaq(el) {
+    el.classList.toggle('open');
+    const answer = el.nextElementSibling;
+    answer.classList.toggle('open');
+}
+// Smooth scroll for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+        e.preventDefault();
+        const target = document.querySelector(a.getAttribute('href'));
+        if (target) target.scrollIntoView({ behavior: 'smooth' });
+    });
+});
+</script>
 </body>
 </html>
