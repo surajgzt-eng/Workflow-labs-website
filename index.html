@@ -141,12 +141,13 @@
             max-width: 850px;
             width: 100%;
             margin: 0 auto;
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            background: rgba(99, 102, 241, 0.08);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
             border-radius: 24px;
             padding: 3rem 2.5rem;
-            box-shadow: 0 4px 40px rgba(0,0,0,0.04);
+            box-shadow: 0 4px 40px rgba(99, 102, 241, 0.06);
+            border: 1px solid rgba(99, 102, 241, 0.1);
         }
         .hero-badge {
             display: inline-flex; align-items: center; gap: 0.4rem;
@@ -731,11 +732,11 @@ document.querySelectorAll('.service-card').forEach(card => {
     const ctx = canvas.getContext('2d');
 
     const isMobile = window.innerWidth < 768;
-    const COUNT = isMobile ? 60 : 150;
-    const CONNECTION_DIST = isMobile ? 100 : 130;
-    const MOUSE_RADIUS = isMobile ? 120 : 180;
-    const SPEED = isMobile ? 0.15 : 0.35;
-    const FORCE = isMobile ? 2 : 5;
+    const COUNT = isMobile ? 100 : 150;
+    const CONNECTION_DIST = isMobile ? 110 : 130;
+    const MOUSE_RADIUS = isMobile ? 140 : 180;
+    const SPEED = isMobile ? 0.5 : 0.35;
+    const FORCE = isMobile ? 4 : 5;
 
     let W, H, particles = [];
     let mouse = { x: -9999, y: -9999 };
@@ -800,7 +801,6 @@ document.querySelectorAll('.service-card').forEach(card => {
     }
 
     function drawConnections() {
-        if (isMobile) return; // skip connections on mobile for perf
         for (let i = 0; i < particles.length; i++) {
             for (let j = i + 1; j < particles.length; j++) {
                 const dx = particles[i].x - particles[j].x;
