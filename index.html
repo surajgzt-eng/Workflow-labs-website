@@ -585,6 +585,8 @@ function toggleFaq(el) {
 }
 
 // ===== FORM HANDLER =====
+const GOOGLE_APPS_SCRIPT_URL = 'YOUR_WEB_APP_URL_HERE'; // ← Replace after deploying code.gs as Web App
+
 document.getElementById('contact-form').addEventListener('submit', function(e) {
     e.preventDefault();
     const btn = this.querySelector('button');
@@ -595,21 +597,29 @@ document.getElementById('contact-form').addEventListener('submit', function(e) {
     const data = {};
     formData.forEach((val, key) => data[key] = val);
 
-    // Store locally + redirect to mailto fallback
+    // Store locally as backup
     localStorage.setItem('wf_inquiry', JSON.stringify(data));
 
-    // Try formsubmit.co or fall back
-    fetch('https://formsubmit.co/ajax/workflowlabs23@gmail.com', {
-        method: 'POST',
-        headers: { 'Accept': 'application/json' },
-        body: formData
-    }).then(r => r.json()).then(() => {
-        btn.textContent = '✓ Sent! We\'ll be in touch';
-        this.reset();
-        setTimeout(() => { btn.textContent = 'Request Free Prototype 🚀'; btn.disabled = false; }, 3000);
-    }).catch(() => {
-        btn.textContent = '✓ Inquiry saved';
-        setTimeout(() => { btn.textContent = 'Request Free Prototype 🚀'; btn.disabled = false; }, 3000);
+    // Try Google Apps Script (always) + formsubmit.co fallback
+    Promise.all([
+        fetch(GOOGLE_APPS_SCRIPT_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        }).then(r => r.json()).catch(() => null),
+        fetch('https://formsubmit.co/ajax/workflowlabs23@gmail.com', {
+            method: 'POST',
+            headers: { 'Accept': 'application/json' },
+            body: formData
+        }).then(r => r.json()).catch(() => null)
+    ]).then(([gasResult, fsResult]) => {
+        if (gasResult || fsResult) {
+            btn.textContent = '✓ Sent! We\'ll be in touch';
+            this.reset();
+        } else {
+            btn.textContent = '✓ Saved — we\'ll follow up';
+        }
+        setTimeout(() => { btn.textContent = 'Request Free Prototype 🚀'; btn.disabled = false; }, 4000);
     });
 });
 
