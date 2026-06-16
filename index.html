@@ -191,6 +191,59 @@
 
         @keyframes scrollLogos { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
+        /* ===== COMPARISON TABLE ===== */
+        .hero-comparison { 
+            max-width: 720px; 
+            margin: 0 auto; 
+            padding: 1.5rem; 
+            background: rgba(255,255,255,0.1); 
+            border: 1px solid rgba(255,255,255,0.2); 
+            border-radius: 16px; 
+            backdrop-filter: blur(10px);
+        }
+        .comparison-table { 
+            display: grid; 
+            grid-template-columns: 2fr 1fr 1fr 1.5fr; 
+            gap: 0.75rem; 
+            font-size: 0.85rem; 
+        }
+        .comp-header { 
+            display: contents; 
+        }
+        .comp-header > span { 
+            font-weight: 700; 
+            color: var(--accent1); 
+            padding: 0.5rem 0; 
+            border-bottom: 2px solid rgba(99,102,241,0.3); 
+        }
+        .comp-row { 
+            display: contents; 
+        }
+        .comp-row > span { 
+            padding: 0.5rem 0; 
+            border-bottom: 1px solid rgba(255,255,255,0.1); 
+        }
+        .task-name { font-weight: 500; color: var(--text); }
+        .manual-time { color: #ef4444; font-weight: 600; }
+        .auto-time { color: #22c55e; font-weight: 600; }
+        .saved-time { color: var(--accent1); font-weight: 700; }
+        .comp-total { 
+            display: contents; 
+        }
+        .comp-total > span { 
+            padding-top: 0.75rem; 
+            border-top: 2px solid var(--accent1); 
+            font-size: 0.9rem; 
+        }
+
+        @media (max-width: 640px) {
+            .comparison-table { 
+                grid-template-columns: 1.8fr 1fr 1fr 1.3fr; 
+                font-size: 0.75rem; 
+                gap: 0.5rem; 
+            }
+        }
+
         /* ===== SCROLL REVEAL ===== */
         .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
         .reveal.visible { opacity: 1; transform: translateY(0); }
@@ -249,10 +302,23 @@
             <a href="#cta" class="btn-primary">Get Your Free Audit →</a>
             <a href="#services" class="btn-secondary">See Services</a>
         </div>
-        <div class="hero-stats reveal" style="transition-delay:0.5s;">
-            <div><div class="num">10,000+</div><div class="label">Hours Saved</div></div>
-            <div><div class="num">50+</div><div class="label">Clients</div></div>
-            <div><div class="num">98%</div><div class="label">Accuracy</div></div>
+        <div class="hero-comparison reveal" style="transition-delay:0.5s;">
+            <h3 style="font-size:1.1rem;font-weight:600;color:var(--text);margin-bottom:1.5rem;text-align:center;">Weekly Time per Rep — Manual vs. Automated</h3>
+            <div class="comparison-table">
+                <div class="comp-header"><span>Task</span><span>Manual</span><span>Automated</span><span>Saved / Week</span></div>
+                <div class="comp-row><span class="task-name">Lead Generation</span><span class="manual-time">2.0 hrs</span><span class="auto-time">5 min</span><span class="saved-time">~1.9 hrs</span></comp-row>
+                <comp-row><span class="task-name">Cold Calling (100 dials)</span><span class="manual-time">4.0 hrs</span><span class="auto-time">30 min</span><span class="saved-time">~3.5 hrs</span></comp-row>
+                <comp-row><span class="task-name">Email Outreach (50 emails)</span><span class="manual-time">2.5 hrs</span><span class="auto-time">10 min</span><span class="saved-time">~2.3 hrs</span></comp-row>
+                <comp-row><span class="task-name">WhatsApp Outreach</span><span class="manual-time">1.5 hrs</span><span class="auto-time">5 min</span><span class="saved-time">~1.4 hrs</span></comp-row>
+                <comp-row><span class="task-name">CRM Data Entry</span><span class="manual-time">3.0 hrs</span><span class="auto-time">2 min</span><span class="saved-time">~3.0 hrs</span></comp-row>
+                <comp-row><span class="task-name">Follow-up Scheduling</span><span class="manual-time">1.0 hr</span><span class="auto-time">1 min</span><span class="saved-time">~1.0 hr</span></comp-row>
+                <div class="comp-total"><span class="task-name"><strong>Total Weekly</strong></span><span class="manual-time"><strong>14 hrs</strong></span><span class="auto-time"><strong>~53 min</strong></span><span class="saved-time"><strong>~13 hrs saved</strong></span></div>
+            </div>
+            <p style="font-size:0.75rem;color:var(--text3);text-align:center;margin-top:1rem;line-height:1.5;">
+                Sources: HubSpot State of Sales 2024 (reps spend 21% day on admin), McKinsey (30% selling time), 
+                Forrester (AI saves 10–15 hrs/wk/rep), Nucleus Research (14.5% productivity lift), 
+                Salesforce State of Sales (9% time selling).
+            </p>
         </div>
     </div>
 </section>
